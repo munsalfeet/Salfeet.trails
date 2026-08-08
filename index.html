@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بلدية سلفيت - دليل خدمات الجمهور 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            direction: rtl;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ==================== HEADER ==================== */
+        header {
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+            border-bottom: 5px solid #2c5f2d;
+            padding: 30px 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 120px 1fr 140px;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .municipality-logo{
+            width:180px;
+            height:160px;
+            object-fit:contain;
+            border-radius:100%;
+            background:#fff;
+            padding:0px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .municipality-logo:hover{
+            transform:scale(1.05);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header-title {
+            text-align: center;
+        }
+
+        .header-title h1 {
+            font-size: 52px;
+            color: #2c5f2d;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .header-title h2 {
+            font-size: 24px;
+            color: #166534;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .header-title p {
+            font-size: 14px;
+            color: #2c5f2d;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        .icon-section {
+            text-align: center;
+            font-size: 70px;
+        }
+
+        /* ==================== SEARCH BAR ==================== */
+        .search-wrapper {
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .search-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #2c5f2d;
+            box-shadow: 0 0 0 3px rgba(44, 95, 45, 0.1);
+        }
+
+        .search-box button {
+            padding: 14px 28px;
+            background: #2c5f2d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .search-box button:hover {
+            background: #1a3a1b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(44, 95, 45, 0.3);
+        }
+
+        /* ==================== MAIN CONTAINER ==================== */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 25px;
+            min-height: calc(100vh - 400px);
+        }
+
+        /* ==================== SIDEBAR ==================== */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            overflow: hidden;
+        }
+
+        .sidebar-title {
+            background: linear-gradient(135deg, #2c5f2d 0%, #1a3a1b 100%);
+            color: white;
+            padding: 18px 16px;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 3px solid #1a3a1b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .sidebar-menu a:hover {
+            background: #f5f5f5;
+            color: #2c5f2d;
+            padding-right: 20px;
+        }
+
+        .sidebar-menu a.active {
+            background: #e8f5e9;
+            color: #2c5f2d;
+            border-right: 4px solid #2c5f2d;
+            padding-right: 12px;
+            font-weight: 600;
+        }
+
+        .sidebar-menu i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* ==================== CONTENT AREA ==================== */
+        .content-area {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2c5f2d;
+        }
+
+        .category-header h2 {
+            font-size: 32px;
+            color: #2c5f2d;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .category-icon {
+            font-size: 36px;
+        }
+
+        /* ==================== SERVICE CARDS ==================== */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border-top: 6px solid #2c5f2d;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(44, 95, 45, 0.15);
+            border-color: #e0e0e0;
+        }
+
+        .service-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eef0 100%);
+            padding: 16px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .service-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #2c5f2d;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .service-body {
+            padding: 18px;
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .service-info:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .info-value {
+            color: #2c5f2d;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        /* ==================== PRICE TABLE ==================== */
+        .price-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #f5f5f5;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .price-table th {
+            background: #2c5f2d;
+            color: white;
+            padding: 10px 8px;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        .price-table td {
+            border: 1px solid #e0e0e0;
+            padding: 10px 8px;
+            text-align: right;
+        }
+
+        .price-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .price-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* ==================== BADGES ==================== */
+        .badge-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f5f5f5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .price-badge {
+            background: #e8f5e9;
+            color: #2c5f2d;
+        }
+
+        .duration-badge {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: linear-gradient(135deg, #2c5f2d 0%, #1a3a1b 100%);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 50px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .header-content {
+                grid-template-columns: 100px 1fr;
+                gap: 20px;
+            }
+
+            .header-title h1 {
+                font-size: 40px;
+            }
+
+            .icon-section {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .header-title h1 {
+                font-size: 32px;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .sidebar-menu a {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
+
+            .category-header h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* ==================== NO RESULTS ==================== */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-results i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 20px;
+            margin: 15px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCl4deI84ZCCdkUD1yyM9GnKWayG_iIUuD5sjbGJlrmgrcwysQ3bnjpy5H&s=10"
+                    alt="شعار بلدية سلفيت"
+                    class="municipality-logo">
+            </div>
+            <div class="header-title">
+                <h1>مركز خدمات الجمهور</h1>
+                <h2>بلدية سلفيت</h2>
+                <p>دليل خدمات الجمهور</p>
+            </div>
+            <div class="icon-section">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;">
+                    <!-- Book cover -->
+                    <rect x="15" y="10" width="35" height="55" fill="#4CAF50" stroke="#2c5f2d" stroke-width="2" rx="4"/>
+                    <line x1="32.5" y1="10" x2="32.5" y2="65" stroke="#2c5f2d" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="20" y1="20" x2="30" y2="20" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="20" y1="28" x2="30" y2="28" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="20" y1="36" x2="30" y2="36" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="20" y1="44" x2="30" y2="44" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="20" y1="52" x2="30" y2="52" stroke="#FFFFFF" stroke-width="1.5" opacity="0.7"/>
+                    <!-- Book back -->
+                    <rect x="50" y="10" width="35" height="55" fill="#E8F5E9" stroke="#2c5f2d" stroke-width="2" rx="4"/>
+                    <line x1="67.5" y1="10" x2="67.5" y2="65" stroke="#2c5f2d" stroke-width="1.5" opacity="0.6"/>
+                    <line x1="55" y1="20" x2="65" y2="20" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="55" y1="28" x2="65" y2="28" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="55" y1="36" x2="65" y2="36" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="55" y1="44" x2="65" y2="44" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+                    <line x1="55" y1="52" x2="65" y2="52" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEARCH BAR -->
+    <div class="search-wrapper">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن الخدمة المطلوبة..." onkeyup="searchServices()">
+                <button onclick="searchServices()"><i class="fas fa-search"></i> بحث</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-title">
+                <i class="fas fa-list"></i> تصنيفات الخدمات
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="filterByCategory('all'); return false;" class="active" data-category="all">
+                    <i class="fas fa-th-large"></i> جميع الخدمات
+                </a></li>
+                <li><a href="#" onclick="filterByCategory('engineering'); return false;" data-category="engineering">
+                    <i class="fas fa-building"></i> الهندسة
+                </a></li>
+                <li><a href="#" onclick="filterByCategory('water'); return false;" data-category="water">
+                    <i class="fas fa-droplet"></i> المياه
+                </a></li>
+                <li><a href="#" onclick="filterByCategory('electricity'); return false;" data-category="electricity">
+                    <i class="fas fa-bolt"></i> الكهرباء
+                </a></li>
+                <li><a href="#" onclick="filterByCategory('health'); return false;" data-category="health">
+                    <i class="fas fa-leaf"></i> الصحة والبيئة
+                </a></li>
+                <li><a href="#" onclick="filterByCategory('admin'); return false;" data-category="admin">
+                    <i class="fas fa-file-alt"></i> إدارية ومالية
+                </a></li>
+                <li><a href="#" onclick="filterByCategory('public'); return false;" data-category="public">
+                    <i class="fas fa-users"></i> خدمات عامة
+                </a></li>
+            </ul>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="content-area">
+            <div class="category-header">
+                <span class="category-icon">📋</span>
+                <h2 id="categoryTitle">جميع الخدمات</h2>
+            </div>
+            <div id="servicesContainer" class="services-container"></div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p> جميع الحقوق محفوظة © 2025 بلدية سلفيت</p>
+        </div>
+    </footer>
+
+    <script>
+        // قاعدة بيانات الخدمات
+        const servicesDatabase = {
+            engineering: [
+                { id: 1, name: 'رخصة بناء جديدة', category: 'engineering', duration: '20 يوم', price: 'حسب المساحة', icon: '🏗️', priceTable: false },
+                { id: 2, name: 'نقل ملكية رخصة بناء', category: 'engineering', duration: '14 يوم', price: '1 دينار', icon: '📋', priceTable: false },
+                { id: 3, name: 'تجديد رخصة بناء', category: 'engineering', duration: '14 يوم', price: 'حسب المساحة', icon: '🔄', priceTable: true },
+                { id: 4, name: 'استرداد تأمين بناء', category: 'engineering', duration: '3 أيام', price: 'مجاني', icon: '💰', priceTable: false },
+                { id: 5, name: 'طلب إذن صب', category: 'engineering', duration: '2 يوم', price: 'مجاني', icon: '✓', priceTable: false },
+                { id: 6, name: 'فتح ملف موقع وترسيم', category: 'engineering', duration: '4 أيام', price: '20 دينار', icon: '📍', priceTable: false }
+            ],
+            water: [
+                { id: 11, name: 'اشتراك مياه جديد', category: 'water', duration: '7 أيام', price: '100 دينار', icon: '💧', priceTable: false },
+                { id: 12, name: 'نقل ملكية اشتراك مياه', category: 'water', duration: '5 أيام', price: '20 دينار', icon: '↔️', priceTable: false },
+                { id: 13, name: 'فصل اشتراك مياه', category: 'water', duration: '3 أيام', price: '10 دنانير', icon: '❌', priceTable: false },
+                { id: 14, name: 'إعادة وصل المياه', category: 'water', duration: '5 أيام', price: '20 دينار', icon: '✓', priceTable: false },
+                { id: 15, name: 'تغيير عداد مياه', category: 'water', duration: '1 يوم', price: '150 شيكل', icon: '🔧', priceTable: false }
+            ],
+            electricity: [
+                { id: 19, name: 'اشتراك كهرباء 1 فاز', category: 'electricity', duration: '6 أيام', price: '100 دينار + رسوم أخرى ', icon: '⚡', priceTable: false },
+                { id: 20, name: 'اشتراك كهرباء 3 فاز', category: 'electricity', duration: '7 أيام', price: '2000 شيكل + رسوم', icon: '⚡⚡', priceTable: false },
+                { id: 21, name: 'نقل ملكية اشتراك كهرباء', category: 'electricity', duration: '4 أيام', price: '20 دينار', icon: '↔️', priceTable: false },
+                { id: 22, name: 'فصل الكهرباء', category: 'electricity', duration: '4 أيام', price: '10 دنانير', icon: '❌', priceTable: false },
+                { id: 24, name: 'إعادة وصل الكهرباء', category: 'electricity', duration: '4 أيام', price: '20 دينار', icon: '✓', priceTable: false }
+            ],
+            health: [
+                { id: 27, name: 'رخصة حرف وصناعات', category: 'health', duration: '12 يوم', price: '24 - 250 دينار', icon: '🏭', priceTable: false },
+                { id: 28, name: 'تجديد رخصة حرف', category: 'health', duration: '7 أيام', price: '24 - 250 دينار', icon: '🔄', priceTable: false },
+                { id: 29, name: 'إغلاق ملف حرفة', category: 'health', duration: '3 أيام', price: '20 شيكل', icon: '❌', priceTable: false },
+                { id: 30, name: 'تغيير إسم حرفة', category: 'health', duration: '3 أيام', price: 'حسب الحرفة', icon: '✏️', priceTable: false },
+                { id: 32, name: 'شكوى بيئية', category: 'health', duration: '3 أيام', price: 'مجاني', icon: '⚠️', priceTable: false }
+            ],
+            admin: [
+                { id: 33, name: 'شهادة ساكن مدينة', category: 'admin', duration: '2 يوم', price: '20 شيكل', icon: '📄', priceTable: false },
+                { id: 34, name: 'شهادة براءة ذمة', category: 'admin', duration: '4 أيام', price: '20 شيكل', icon: '✓', priceTable: false },
+                { id: 35, name: 'شهادة تأكيد اسم', category: 'admin', duration: '1 يوم', price: '20 شيكل', icon: '📋', priceTable: false },
+                { id: 36, name: 'إثبات ملكية بناء', category: 'admin', duration: '2 يوم', price: '20 شيكل', icon: '🏠', priceTable: false },
+                { id: 37, name: 'إثبات عدم وجود ملكية', category: 'admin', duration: '2 يوم', price: '20 شيكل', icon: '❌', priceTable: false }
+            ],
+            public: [
+                { id: 39, name: 'استخدام المركز الجماهيري', category: 'public', duration: '1 يوم', price: '200 - 250 شيكل', icon: '🏛️', priceTable: false },
+                { id: 40, name: 'استخدام ديوان البلدية', category: 'public', duration: '1 يوم', price: '50 شيكل/يوم', icon: '🏢', priceTable: false },
+                { id: 41, name: 'الاشتراك في مكتبة البلدية', category: 'public', duration: '1 يوم', price: '10 - 100 شيكل', icon: '📚', priceTable: false },
+                { id: 42, name: 'عقد دورات تدريبية', category: 'public', duration: 'حسب الدورة', price: 'حسب الدورة', icon: '🎓', priceTable: false },
+                { id: 43, name: 'تمكين المرأة اقتصادياً', category: 'public', duration: 'متغير', price: 'مجاني/برسوم', icon: '👩', priceTable: false }
+            ]
+        };
+
+        const priceData = {
+            'حسب المساحة': [
+                { range: 'حتى 100 م²', price: '200 شيكل' },
+                { range: '101 - 200 م²', price: '400 شيكل' },
+                { range: '201 - 300 م²', price: '600 شيكل' },
+                { range: '301 - 500 م²', price: '800 شيكل' },
+                { range: 'أكثر من 500 م²', price: '1000 شيكل' }
+            ]
+        };
+
+        let currentFilter = 'all';
+
+        function displayServices(services) {
+            const container = document.getElementById('servicesContainer');
+            const categoryTitle = document.getElementById('categoryTitle');
+
+            if (services.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <i class="fas fa-search"></i>
+                        <h3>لم يتم العثور على خدمات</h3>
+                        <p>الرجاء تجربة كلمات بحث أخرى</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let categoryName = {
+                'all': 'جميع الخدمات',
+                'engineering': '🏗️ خدمات الهندسة',
+                'water': '💧 خدمات المياه',
+                'electricity': '⚡ خدمات الكهرباء',
+                'health': '🏥 الصحة والبيئة',
+                'admin': '📋 الخدمات الإدارية والمالية',
+                'public': '🏢 الخدمات العامة والمكتبة'
+            };
+
+            categoryTitle.textContent = categoryName[currentFilter] || 'جميع الخدمات';
+
+            let html = '';
+            services.forEach(service => {
+                html += `
+                    <div class="service-card">
+                        <div class="service-header">
+                            <h3 class="service-title">${service.icon} ${service.name}</h3>
+                        </div>
+                        <div class="service-body">
+                            <div class="service-info">
+                                <span class="info-label">⏱️ المدة:</span>
+                                <span class="info-value">${service.duration}</span>
+                            </div>
+                            <div class="service-info">
+                                <span class="info-label">💰 الرسم:</span>
+                                <span class="info-value">${service.price}</span>
+                            </div>
+                            ${service.priceTable && priceData[service.price] ? `
+                                <div class="price-section">
+                                    <strong style="font-size: 13px;">تفاصيل الرسوم:</strong>
+                                    <table class="price-table">
+                                        <tr>
+                                            <th>المساحة</th>
+                                            <th>الرسم</th>
+                                        </tr>
+                                        ${priceData[service.price].map(item => `
+                                            <tr>
+                                                <td>${item.range}</td>
+                                                <td><strong>${item.price}</strong></td>
+                                            </tr>
+                                        `).join('')}
+                                    </table>
+                                </div>
+                            ` : ''}
+                            <div class="badge-group">
+                                <span class="badge price-badge">${service.price}</span>
+                                <span class="badge duration-badge">⏱️ ${service.duration}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function filterByCategory(category) {
+            currentFilter = category;
+
+            // تحديث الرابط النشط في الشريط الجانبي
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+
+            let services = [];
+            if (category === 'all') {
+                Object.values(servicesDatabase).forEach(cat => {
+                    services = services.concat(cat);
+                });
+            } else {
+                services = servicesDatabase[category] || [];
+            }
+
+            displayServices(services);
+        }
+
+        function searchServices() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            let results = [];
+
+            Object.values(servicesDatabase).forEach(category => {
+                category.forEach(service => {
+                    if (service.name.includes(query) || query === '') {
+                        results.push(service);
+                    }
+                });
+            });
+
+            displayServices(results);
+        }
+
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            let allServices = [];
+            Object.values(servicesDatabase).forEach(cat => {
+                allServices = allServices.concat(cat);
+            });
+            displayServices(allServices);
+        });
+    </script>
+</body>
+</html>
