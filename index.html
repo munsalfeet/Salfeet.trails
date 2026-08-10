@@ -12,7 +12,7 @@
 :root{
   --stone:#F4EFE2; --stone-deep:#E8E0CC; --white:#FFFFFF;
   --green:#6E8F5C; --green-dark:#3E5631; --green-deeper:#2A3B21;
-  --sky:#6FA9D6; --sky-dark:#2F6693;
+  --sky:#34a50073; --sky-dark:#34a5003d;
   --gray:#8B8A82; --gray-soft:#C9C6B8;
   --ink:#23281D; --ink-soft:#54594A;
   --path:#8C5A2B;
@@ -161,6 +161,10 @@ html[lang="en"] .hero h1{ font-family:var(--font-display-en); font-weight:600; }
 .btn-ghost:hover{ background:rgba(255,255,255,0.22); transform:translateY(-2px); }
 .btn-outline{ background:transparent; border:1.5px solid var(--green); color:var(--green-dark); }
 .btn-outline:hover{ background:var(--green); color:#fff; }
+.btn-map{ background:var(--sky-dark); color:#fff; box-shadow:0 10px 26px rgba(47,102,147,0.45); }
+.btn-map:hover{ background:var(--sky); transform:translateY(-2px); }
+.btn-bus{ background:#00bcf5; color:#fff; box-shadow:0 10px 26px rgba(0,188,245,0.4); }
+.btn-bus:hover{ background:var(--sky-dark); transform:translateY(-2px); }
 .btn-sm{ padding:0.55rem 1.1rem; font-size:0.8rem; }
 .btn:focus-visible{ outline:2px solid var(--sky); outline-offset:3px; }
 
@@ -238,6 +242,7 @@ html[lang="en"] .stat-chip b{ font-family:var(--font-display-en); }
 .stat-chip span{ font-size:0.68rem; color:var(--ink-soft); }
 
 .progress-panel{
+  display:none;
   background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:1.3rem 1.5rem;
   margin-bottom:1.4rem; border:1px solid var(--glass-border);
 }
@@ -299,6 +304,21 @@ html[lang="en"] .sidebar h3{ font-family:var(--font-display-en); }
 .leaflet-tooltip.stop-label.label-dim .lbl-pill{ opacity:0.4; transform:scale(0.88); box-shadow:0 2px 5px rgba(35,40,29,0.12); }
 
 .bus-pin{ width:32px; height:32px; border-radius:50%; background:var(--sky-dark); border:2.5px solid #fff; display:flex; align-items:center; justify-content:center; font-size:1rem; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
+.bus-station-marker{ display:flex; flex-direction:column; align-items:center; width:130px; pointer-events:none; }
+.bus-station-badge{
+  width:38px; height:38px; border-radius:50%; background:#00bcf5; border:2.5px solid #fff;
+  display:flex; align-items:center; justify-content:center; font-size:1.15rem;
+  box-shadow:0 3px 10px rgba(0,0,0,0.45); position:relative;
+}
+.bus-station-badge::after{
+  content:''; position:absolute; bottom:-7px; left:50%; transform:translateX(-50%);
+  border-left:7px solid transparent; border-right:7px solid transparent; border-top:8px solid #00bcf5;
+}
+.bus-station-label{
+  margin-top:10px; background:var(--sky-dark); color:#fff; font-size:0.68rem; font-weight:700;
+  padding:0.28rem 0.75rem; border-radius:999px; white-space:nowrap; text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.35); border:1.5px solid #fff;
+}
 .me-pin{ width:22px; height:22px; border-radius:50%; background:#23281D; border:3px solid #fff; box-shadow:0 0 0 6px rgba(37,99,235,0.28); }
 .me-pin.tracking{ animation:mePulse 1.8s ease-out infinite; }
 @keyframes mePulse{
@@ -362,7 +382,7 @@ html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
   border:1px solid var(--glass-border); display:flex; flex-direction:column; transition:transform .2s,box-shadow .2s;
 }
 .bus-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-lg); }
-.bus-media{ height:150px; position:relative; background:linear-gradient(135deg,var(--green),var(--sky-dark)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
+.bus-media{ height:150px; position:relative; background:linear-gradient(135deg,#00bcf5,var(--sky-dark)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
 .bus-media img{ width:100%; height:100%; object-fit:cover; }
 .bus-media .ic-badge{ position:absolute; top:10px; inset-inline-start:10px; background:rgba(255,255,255,0.9); border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; box-shadow:var(--shadow-sm); }
 .bus-media .no-img-label{ color:#fff; font-size:0.75rem; background:rgba(0,0,0,0.25); padding:0.3rem 0.7rem; border-radius:999px; position:absolute; bottom:10px; }
@@ -376,19 +396,19 @@ html[lang="en"] .bus-body h3{ font-family:var(--font-display-en); }
 .bus-highlights b{ color:var(--ink); }
 
 /* ================= فوتر ================= */
-footer{ background:var(--green-deeper); color:#E9E5D4; padding:0.5rem 0; }
+footer{ background:var(--stone); color:var(--ink); padding:0.5rem 0; border-top:1px solid var(--glass-border); }
 .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:2rem; margin-bottom:2rem; }
 @media (max-width:760px){ .footer-grid{ grid-template-columns:1fr; } }
 .footer-brand{ display:flex; align-items:center; gap:0.7rem; margin-bottom:0.9rem; }
 .footer-brand img{ width:44px; height:44px; border-radius:10px; background:#fff; padding:3px; }
-.footer-brand b{ font-family:var(--font-display-ar); font-size:1.15rem; }
-footer p{ font-size:0.68rem; color:#D8D4C0; line-height:1.5; text-align:center; margin:0; }
-footer p strong{ color:#F4E9C6; }
-footer h5{ font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em; color:#F4E9C6; margin:0 0 0.9rem; }
+.footer-brand b{ font-family:var(--font-display-ar); font-size:1.15rem; color:var(--ink); }
+footer p{ font-size:0.68rem; color:var(--ink); line-height:1.5; text-align:center; margin:0; }
+footer p strong{ color:var(--ink); }
+footer h5{ font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink); margin:0 0 0.9rem; }
 footer ul{ list-style:none; padding:0   ; margin:0; display:flex; flex-direction:column; gap:0.55rem; }
-footer ul a{ text-decoration:none; color:#D8D4C0; font-size:0.85rem; }
-footer ul a:hover{ color:#fff; }
-.footer-bottom{ border-top:1px solid rgba(255,255,255,0.12); padding-top:1.3rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:0.75rem; color:#B7B39E; }
+footer ul a{ text-decoration:none; color:var(--ink); font-size:0.85rem; }
+footer ul a:hover{ color:var(--green-dark); }
+.footer-bottom{ border-top:1px solid rgba(35,40,29,0.12); padding-top:1.3rem; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:0.75rem; color:var(--ink); }
 
 /* ================= المودال ================= */
 .modal-overlay{ position:fixed; inset:0; background:rgba(15,18,10,0.72); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:2000; padding:1.2rem; opacity:0; pointer-events:none; transition:opacity .18s ease; }
@@ -411,17 +431,21 @@ html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
 .modal-text b{ color:var(--ink); }
 
 /* ================= مودال مسار الوجهة (من الحافة إلى الوجهة) ================= */
-.dest-modal-card{ background:var(--paper); width:min(920px,100%); max-height:92vh; overflow-y:auto; border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,0.55); position:relative; }
-.dest-modal-header{ text-align:center; padding:1.5rem 1.3rem 1.1rem; background:linear-gradient(135deg,var(--green-deeper),var(--green-dark)); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--path); }
-.dest-modal-title{ font-family:var(--font-display-ar); font-size:1.6rem; font-weight:700; color:#F4E9C6; margin:0 0 0.25rem; }
+.dest-modal-card{ background:var(--paper); width:min(620px,100%); max-height:92vh; overflow-y:auto; border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,0.55); position:relative; }
+.dest-modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--sky-dark),#00bcf5); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--sky-dark); }
+.dest-modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#FFFFFF; margin:0 0 0.3rem; }
 html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
-.dest-modal-subtitle{ font-size:0.82rem; color:rgba(255,255,255,0.85); }
-.dest-modal-body{ padding:1rem 1.2rem 1.4rem; }
+.dest-modal-subtitle{ font-size:0.85rem; color:rgba(255,255,255,0.85); }
+.dest-modal-body{ padding:1rem 1.3rem 1.5rem; }
 .dest-map-wrap{ width:100%; height:min(58vh,440px); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); position:relative; }
 #destMap{ width:100%; height:100%; }
 .dest-map-loading{ position:absolute; inset:0; background:rgba(251,249,242,0.85); display:flex; align-items:center; justify-content:center; font-size:0.85rem; color:var(--ink-soft); z-index:400; transition:opacity .2s ease; }
 .dest-map-loading.hidden{ opacity:0; pointer-events:none; }
-.dest-info-row{ display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem; }
+.dest-info-row{
+  display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem;
+  background:var(--paper); border:1px solid var(--glass-border); border-radius:var(--radius);
+  padding:0.9rem 1rem; box-shadow:var(--shadow-sm);
+}
 .dest-info-row .mchip{ background:var(--stone); border-radius:999px; padding:0.4rem 0.95rem; font-size:0.78rem; color:var(--ink-soft); }
 .dest-note{ font-size:0.78rem; color:var(--ink-soft); margin-top:0.7rem; line-height:1.7; }
 .dest-hero-img{ width:100%; height:min(34vw,180px); border-radius:14px; overflow:hidden; margin-bottom:1rem; background:var(--stone); }
@@ -466,30 +490,19 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
 <!-- ============ شريط التنقل ============ -->
 <nav class="nav">
   <div class="container nav-inner">
-    <div class="brand" id="brandHome" role="link" tabindex="0" aria-label="الرئيسية">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCl4deI84ZCCdkUD1yyM9GnKWayG_iIUuD5sjbGJlrmgrcwysQ3bnjpy5H&s=10" alt="شعار بلدية سلفيت">
+    <div class="brand" id="brandHome" role="link" tabindex="0" data-aria-ar="الرئيسية" data-aria-en="Home" aria-label="الرئيسية">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCl4deI84ZCCdkUD1yyM9GnKWayG_iIUuD5sjbGJlrmgrcwysQ3bnjpy5H&s=10" data-alt-ar="شعار بلدية سلفيت" data-alt-en="Salfit Municipality Logo" alt="شعار بلدية سلفيت">
       <div class="brand-text">
         <b><span data-ar>دروب الزيتون</span><span data-en>Salfit Interactive</span></b>
         <span data-ar>بلدية سلفيت</span><span data-en>Salfit Municipality</span>
       </div>
     </div>
-    <div class="nav-links" id="navLinks">
-      <button class="nav-drawer-close" id="navDrawerClose" aria-label="close menu">✕</button>
-      <a href="#about" data-ar>عن المسار</a><a href="#about" data-en>About</a>
-      <a href="#map-section" data-ar>الخريطة</a><a href="#map-section" data-en>Map</a>
-      <a href="#bus" data-ar>مسار الحافلة</a><a href="#bus" data-en>Bus Tours</a>
-    </div>
     <div class="nav-tools">
-      <div class="search-box">
-        <input type="text" id="globalSearch" placeholder="ابحث عن المسار" data-ph-ar="ابحث عن المسار" data-ph-en="Search bus tours...">
-      </div>
-      <button class="tool-btn" id="fontToggle" title="تكبير الخط" aria-label="font size">A+</button>
+      <button class="tool-btn" id="fontToggle" data-title-ar="تكبير الخط" data-title-en="Increase font size" title="تكبير الخط" aria-label="font size">A+</button>
       <button class="tool-btn lang-toggle" id="langToggle" aria-label="language">EN</button>
-      <button class="tool-btn nav-burger" id="navBurger" aria-label="menu" aria-expanded="false">☰</button>
     </div>
   </div>
 </nav>
-<div class="nav-overlay" id="navOverlay"></div>
 <!-- ============ الهيرو / الصفحة الرئيسية ============ -->
 <header class="hero" id="home">
   <div class="container hero-content">
@@ -503,14 +516,14 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
       <span data-en>Discover the beating heart of Salfit through nine historic walking trails, then continue your journey with a customized bus tour tailored to your interests and time.</span>
     </p>
     <div class="hero-ctas">
-      <a href="#map-section" class="btn btn-primary"><span data-ar>ابدأ رحلتك</span><span data-en>Start the Tour</span> <span>→</span></a>
-      <a href="#bus" class="btn btn-ghost"><span data-ar>اختر مسار الحافلة </span><span data-en>Explore the Map</span></a>
+      <a href="#about" class="btn btn-ghost"><span data-ar>عن المسار</span><span data-en>About</span></a>
+      <a href="#map-section" class="btn btn-ghost"><span data-ar>الخريطة</span><span data-en>Map</span> <span>→</span></a>
+      <a href="#bus" class="btn btn-ghost"><span data-ar> مسار الحافلة </span><span data-en>Bus Route</span></a>
     </div>
     <div class="hero-meta">
       <div class="meta-chip"><span class="ic">🕐</span><div><b id="liveClock">--:--</b><span data-ar>التوقيت المحلي</span><span data-en>Local Time</span></div></div>
       <div class="meta-chip"><span class="ic">☀️</span><div><b>27°C</b><span data-ar>الطقس</span><span data-en>Weather</span></div></div>
       <div class="meta-chip"><span class="ic">🧭</span><div><b>9</b><span data-ar>دروب سير</span><span data-en>Walking trails</span></div></div>
-      <div class="meta-chip"><span class="ic">🚌</span><div><b>5</b><span data-ar>جولات حافلة حسب اهتمامك</span><span data-en>Bus tours</span></div></div>
     </div>
   </div>
 </header>
@@ -520,7 +533,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
   <div class="container">
     <a href="#home" class="btn btn-outline btn-sm page-back">🏠 <span data-ar>الرئيسية</span><span data-en>Home</span></a>
     <div class="section-head">
-      <span class="eyebrow" data-ar>عن المسار</span><span class="eyebrow" data-en></span>
+      <span class="eyebrow" data-ar>عن المسار</span><span class="eyebrow" data-en>About the Tour</span>
       <h2 class="section-title"><span data-ar>مرحلتان، تجربة واحدة متكاملة</span><span data-en>Two stages, one seamless experience</span></h2>
       <p class="section-sub">
         <span data-ar>تجمع دروب الزيتون بين جولات السير التفاعلية وجولات الحافلة، لتوفر للزوار تجربة متكاملة تتيح لهم اكتشاف مدينة سلفيت واستكشاف معالمها التاريخية والطبيعية والثقافية</span>
@@ -534,20 +547,20 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
         <h3><span data-ar>استكشف الدروب سيراً على الأقدام</span><span data-en>Stage One — Walking Tour</span></h3>
         <p><span data-ar>ليست مجرد جولة، بل رحلة تروي حكاية سلفيت. تنقلكم عبر تسعة دروب مترابطة بين تاريخ المدينة وتراثها وطبيعتها، لتكتشفوا معالمها وساحاتها وينابيعها في تجربة تفاعلية ثرية تجمع بين المعرفة ومتعة الاستكشاف.</span><span data-en>Visitors walk through the historic city center, following nine carefully ordered trails — from the municipality building to the bus station.</span></p>
         <ul>
-          <li data-ar></li><li data-en>Precisely mapped route between stops</li>
-          <li data-ar></li><li data-en>Detailed card for every trail</li>
-          <li data-ar></li><li data-en>Ends at the Bus Station</li>
+          <li data-ar>مسار محدد بدقة بين المحطات</li><li data-en>Precisely mapped route between stops</li>
+          <li data-ar>بطاقة تفصيلية لكل درب</li><li data-en>Detailed card for every trail</li>
+          <li data-ar>ينتهي عند موقف الحافلات</li><li data-en>Ends at the Bus Station</li>
         </ul>
       </div>
       <div class="stage-card">
         <div class="stage-num">02</div>
         <div class="stage-icon">🚌</div>
         <h3><span data-ar>واصل رحلتك عبر جولات الحافلة</span><span data-en>Stage Two — Bus Tours</span></h3>
-        <p><span data-ar>عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد المسارات بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريد</span><span data-en>After reaching the Bus Station, visitors choose a customized route based on their interests and available time, from seven suggested routes around the city.</span></p>
+        <p><span data-ar>عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد المسارات بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريد</span><span data-en>After reaching the Bus Station, visitors choose a customized route based on their interests and available time, from four suggested routes around the city.</span></p>
         <ul>
-          <li data-ar></li><li data-en></li>
-          <li data-ar></li><li data-en></li>
-          <li data-ar></li><li data-en></li>
+          <li data-ar>أربع جولات مصممة حسب الاهتمامات</li><li data-en>Four routes designed around your interests</li>
+          <li data-ar>مسار محسوب عبر شبكة الطرق الفعلية</li><li data-en>Route calculated over the real road network</li>
+          <li data-ar>معلومات المسافة والوقت التقديري لكل وجهة</li><li data-en>Estimated distance and time for every destination</li>
         </ul>
       </div>
     </div>
@@ -561,7 +574,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
     <div class="section-head">
       <span class="eyebrow" data-ar>دروب الزيتون</span><span data-en>Olive Trails</span>
       <h2 class="section-title"><span data-ar>الخريطة التفاعلية</span><span data-en>Interactive Map</span></h2>
-      <p class="section-sub"><span data-ar></span><span data-en></span></p>
+      <p class="section-sub"><span data-ar>اختر المواقع لرسم مسارك، وتابع تفاصيل كل محطة على الخريطة</span><span data-en>Select stops to draw your route, and explore each stop's details on the map</span></p>
     </div>
 
     <div class="map-stats-bar">
@@ -575,7 +588,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
       <div class="progress-top">
         <b><span data-ar>تقدّم الجولة</span><span data-en>Tour Progress</span> — <span id="progressPct">0%</span> <span data-ar>مكتمل</span><span data-en>completed</span></b>
         <div style="display:flex; gap:0.4rem;">
-          <button class="btn btn-outline btn-sm" id="rerouteBtn" style="padding:0.3rem 0.8rem;border-radius:999px;font-size:0.7rem;" title="إعادة حساب المسار">
+          <button class="btn btn-outline btn-sm" id="rerouteBtn" style="padding:0.3rem 0.8rem;border-radius:999px;font-size:0.7rem;" data-title-ar="إعادة حساب المسار" data-title-en="Recalculate route" title="إعادة حساب المسار">
             <span data-ar>🔄 إعادة حساب المسار</span><span data-en>🔄 Recalculate</span>
           </button>
         </div>
@@ -604,14 +617,14 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
 
         <div class="map-mode-badge" id="mapModeBadge">🛰️ <span id="mapModeLabel"><span data-ar>خريطة أساسية</span><span data-en>Basemap</span></span></div>
 
-        <div class="map-toolbar" role="toolbar" aria-label="أدوات الخريطة">
-          <button class="map-btn" id="mapGpsBtn" title="بدء الملاحة المباشرة" aria-label="بدء الملاحة">🧭<span class="pulse-dot"></span></button>
-          <button class="map-btn" id="satBtn" title="تبديل نوع الخريطة" aria-label="تبديل نوع الخريطة">🗺️</button>
+        <div class="map-toolbar" role="toolbar" data-aria-ar="أدوات الخريطة" data-aria-en="Map tools" aria-label="أدوات الخريطة">
+          <button class="map-btn" id="mapGpsBtn" data-title-ar="بدء الملاحة المباشرة" data-title-en="Start live navigation" data-aria-ar="بدء الملاحة" data-aria-en="Start navigation" title="بدء الملاحة المباشرة" aria-label="بدء الملاحة">🧭<span class="pulse-dot"></span></button>
+          <button class="map-btn" id="satBtn" data-title-ar="تبديل نوع الخريطة" data-title-en="Switch map type" data-aria-ar="تبديل نوع الخريطة" data-aria-en="Switch map type" title="تبديل نوع الخريطة" aria-label="تبديل نوع الخريطة">🗺️</button>
           <div class="map-divider"></div>
-          <button class="map-btn" id="zoomIn" title="تكبير" aria-label="تكبير">➕</button>
-          <button class="map-btn" id="zoomOut" title="تصغير" aria-label="تصغير">➖</button>
+          <button class="map-btn" id="zoomIn" data-title-ar="تكبير" data-title-en="Zoom in" data-aria-ar="تكبير" data-aria-en="Zoom in" title="تكبير" aria-label="تكبير">➕</button>
+          <button class="map-btn" id="zoomOut" data-title-ar="تصغير" data-title-en="Zoom out" data-aria-ar="تصغير" data-aria-en="Zoom out" title="تصغير" aria-label="تصغير">➖</button>
           <div class="map-divider"></div>
-          <button class="map-btn" id="homeBtn" title="توسيط الخريطة" aria-label="توسيط الخريطة">🏠</button>
+          <button class="map-btn" id="homeBtn" data-title-ar="توسيط الخريطة" data-title-en="Center map" data-aria-ar="توسيط الخريطة" data-aria-en="Center map" title="توسيط الخريطة" aria-label="توسيط الخريطة">🏠</button>
         </div>
 
       </div>
@@ -624,9 +637,9 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
   <div class="container">
     <a href="#home" class="btn btn-outline btn-sm page-back">🏠 <span data-ar>الرئيسية</span><span data-en>Home</span></a>
     <div class="section-head">
-      <span class="eyebrow" data-ar></span><span class="eyebrow" data-en></span>
+      <span class="eyebrow" data-ar>مسار الحافلة</span><span class="eyebrow" data-en>Bus Route</span>
       <h2 class="section-title"><span data-ar>اختر مسار الحافلة الخاصة بك</span><span data-en>Choose Your Bus Tour</span></h2>
-      <p class="section-sub"><span data-ar>عند وصولك إلى موقف الحافلات، اختر من بين أربع جولات مصممة حسب اهتماماتك ووقتك المتاح.</span><span data-en>Upon arrival at the Bus Station, choose from seven routes designed around your interests and available time.</span></p>
+      <p class="section-sub"><span data-ar>عند وصولك إلى موقف الحافلات، اختر من بين أربع جولات مصممة حسب اهتماماتك ووقتك المتاح.</span><span data-en>Upon arrival at the Bus Station, choose from four routes designed around your interests and available time.</span></p>
     </div>
     <div class="bus-grid" id="busGrid"></div>
   </div>
@@ -683,7 +696,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
       <p class="dest-desc" id="destDesc"></p>
       <div id="destVideo"></div>
       <p class="dest-note">
-        <span data-ar></span>
+        <span data-ar>يبدأ هذا المسار من موقف الحافلات (نهاية درب التجمع والترفيه) ويتابع عبر شبكة الطرق الفعلية وصولاً إلى الوجهة المختارة.</span>
         <span data-en>This route starts from the Bus Station (the end of the Gathering &amp; Leisure Trail) and continues via the road network to the selected destination.</span>
       </p>
     </div>
@@ -691,42 +704,40 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
 </div>
 
 <div class="toast" id="toast"></div>
-<button class="back-to-top" id="backToTop" aria-label="back to top" title="العودة للأعلى">↑</button>
+<button class="back-to-top" id="backToTop" aria-label="back to top" data-title-ar="العودة للأعلى" data-title-en="Back to top" title="العودة للأعلى">↑</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
 <script>
+/* لون موحّد لكل خطوط ومسارات جولات الحافلة (بدون تدرج أخضر) */
+const BUS_ROUTE_COLOR = '#00bcf5';
+
 /* ============================================================
    1) اللغة / الثيم / الخط / أدوات عامة
    ============================================================ */
 const html = document.documentElement;
+function applyI18nAttrs(){
+  document.querySelectorAll('[data-title-ar]').forEach(el=>{
+    el.title = html.lang==='ar' ? el.dataset.titleAr : el.dataset.titleEn;
+  });
+  document.querySelectorAll('[data-aria-ar]').forEach(el=>{
+    el.setAttribute('aria-label', html.lang==='ar' ? el.dataset.ariaAr : el.dataset.ariaEn);
+  });
+  document.querySelectorAll('[data-alt-ar]').forEach(el=>{
+    el.setAttribute('alt', html.lang==='ar' ? el.dataset.altAr : el.dataset.altEn);
+  });
+}
 function setLang(lang){
   html.lang = lang; html.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.getElementById('langToggle').textContent = lang === 'ar' ? 'EN' : 'ع';
-  const s = document.getElementById('globalSearch');
-  s.placeholder = lang === 'ar' ? s.dataset.phAr : s.dataset.phEn;
   document.querySelectorAll('.contact-form input,.contact-form textarea').forEach(el=>{
     if(el.dataset.phAr) el.placeholder = lang === 'ar' ? el.dataset.phAr : el.dataset.phEn;
   });
+  applyI18nAttrs();
   renderBus();
 }
+applyI18nAttrs();
 document.getElementById('langToggle').onclick = () => setLang(html.lang === 'ar' ? 'en' : 'ar');
-
-const navBurger = document.getElementById('navBurger');
-const navLinks = document.getElementById('navLinks');
-const navOverlay = document.getElementById('navOverlay');
-const navDrawerClose = document.getElementById('navDrawerClose');
-function setNavDrawer(isOpen){
-  navLinks.classList.toggle('open', isOpen);
-  navOverlay.classList.toggle('open', isOpen);
-  navBurger.setAttribute('aria-expanded', String(isOpen));
-  navBurger.textContent = isOpen ? '✕' : '☰';
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-navBurger.onclick = () => setNavDrawer(!navLinks.classList.contains('open'));
-navDrawerClose.onclick = () => setNavDrawer(false);
-navOverlay.onclick = () => setNavDrawer(false);
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setNavDrawer(false)));
 
 /* ============ نظام التنقل بين الصفحات (بدون تحميل صفحة جديدة) ============ */
 const pageIds = ['home', 'about', 'map-section', 'bus'];
@@ -739,7 +750,10 @@ function showPage(id){
   document.body.dataset.page = id;
   window.scrollTo({ top: 0, behavior: 'auto' });
   if (id === 'map-section' && typeof map !== 'undefined'){
-    setTimeout(() => { map.invalidateSize(); map.setView(center, 17); }, 80);
+    setTimeout(() => { 
+      map.invalidateSize(); 
+      fitMapToRoute();
+    }, 80);
   }
 }
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -786,17 +800,6 @@ function initClock(){
   tick(); setInterval(tick, 15000);
 }
 initClock();
-
-/* ============================================================
-   2) البحث
-   ============================================================ */
-let searchTerm = '';
-let searchDebounce;
-document.getElementById('globalSearch').addEventListener('input', (e)=>{
-  clearTimeout(searchDebounce);
-  const val = e.target.value.trim().toLowerCase();
-  searchDebounce = setTimeout(() => { searchTerm = val; renderBus(); }, 200);
-});
 
 /* ============================================================
    3) بيانات الدروب — مبني من بيانات مسار دروب الزيتون الأصلية
@@ -849,7 +852,7 @@ const rawSites = [
 
   {id:6, nameAr:" ", nameEn:"Afana House", pathAr:"درب الأصالة", pathEn:"Heritage Trail", emoji:"🏛", difficulty:"moderate",
    x:167235.80, y:165438.41,
-   image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZjqtp6b7cQQ62l-pC-F-zsvOUSAlN3o_3IhBhSPwj01Wpkc5ylAgyaTZn&s=10",
+   image:"https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/Afaneh.png",
    video:"https://www.facebook.com/watch/?v=825782240589842",
    textAr:"دار عفانة\nمن أبرز المباني التراثية، تمثل نموذجًا أصيلًا للعمارة الفلسطينية التقليدية من أواخر العهد العثماني.\n\nشُيدت من الحجر المحلي، وتتميز بعقودها الحجرية المتينة وساحاتها الداخلية.",
    textEn:"Afana House\nOne of the most prominent heritage buildings, an authentic example of traditional Palestinian architecture from the late Ottoman era.\n\nBuilt from local stone, featuring sturdy stone arches and inner courtyards."},
@@ -891,21 +894,21 @@ const WADI_SHAIR_TRAIL_XY = [[169444.475,165211.274],[169403.821,165217.984],[16
    ============================================================ */
 const busTours = [
   {icon:"عين فريج", ar:"عين فريج", en:"Nature Tour", duration:"120 د / min",dist:"18 كم / km", color:"#6E8F5C",
-   img:"https://pbs.twimg.com/media/B6KRmBeCMAE0Dcm.jpg", video:"",
+   img:"https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/Ain%20Farij.png", video:"",
    descAr:"استكشاف الوديان والينابيع والغطاء النباتي الطبيعي حول المدينة.", descEn:"Explore the valleys, springs, and natural vegetation surrounding the city.",
    hlAr:"ينابيع، مسارات خضراء، تنوع حيوي", hlEn:"Springs, green trails, biodiversity",
    stops_geo:[
      {x:166564.05929999985, y:165096.23389999941, nameAr:"عين فريج", nameEn:"Ein Fareej Spring"}
    ]},
   {icon:"عين عدس", ar:"عين عدس", en:"Olive & Agriculture Tour", duration:"100 د / min", stops:5, dist:"12 كم / km", color:"#8C5A2B",
-   img:"", video:"",
+   img:"https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/Ain%20Eads.png", video:"",
    descAr:"زيارة مزارع الزيتون التاريخية والتعرف على صناعة زيت الزيتون المحلية.", descEn:"Visit historic olive farms and learn about local olive oil production.",
    hlAr:"معاصر زيتون، مزارع عائلية، تذوق محلي", hlEn:"Olive presses, family farms, local tasting",
    stops_geo:[
      {x:165245.24170000013, y:165448.02659999952, nameAr:"عين عدس", nameEn:"Ein Ades Spring"}
    ]},
   {icon:"خربة قيس", ar:"خربة قيس", en:"Investment & Industrial Tour", duration:"80 د / min", stops:4, dist:"10 كم / km", color:"#8B8A82",
-   img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD_yjMrqRk0UW0KR4ndmeDO3XjnKHUGH_cuehsEZ3kU9YeNLUBxnvmUz0&s=10", video:"",
+   img:"https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/KhirbetQeis.png", video:"",
    descAr:"استعراض المنطقة الصناعية وفرص الاستثمار المتاحة في سلفيت.", descEn:"Overview of the industrial zone and available investment opportunities in Salfit.",
    hlAr:"مصانع محلية، أراضٍ استثمارية، شراكات", hlEn:"Local factories, investment land, partnerships",
    stops_geo:[
@@ -934,11 +937,7 @@ const busTours = [
 function renderBus(){
   const grid = document.getElementById('busGrid');
   grid.innerHTML = '';
-  const filtered = busTours.filter(t => !searchTerm || t.ar.toLowerCase().includes(searchTerm) || t.en.toLowerCase().includes(searchTerm));
-  if(filtered.length === 0){
-    grid.innerHTML = `<div class="empty-state">${html.lang==='ar' ? 'لا توجد جولات مطابقة لبحثك' : 'No tours match your search'}</div>`;
-    return;
-  }
+  const filtered = busTours;
   filtered
     .forEach(t => {
       const card = document.createElement('div');
@@ -948,7 +947,7 @@ function renderBus(){
         ? `<img src="${escapeAttr(t.img)}" alt="${escapeAttr(html.lang==='ar' ? t.ar : t.en)}" loading="lazy">`
         : `<span class="no-img-label">${html.lang==='ar' ? t.ar.trim() : t.en}</span>`;
       card.innerHTML = `
-        <div class="bus-media" style="background:linear-gradient(135deg, ${t.color}, var(--sky-dark));">
+        <div class="bus-media" style="background:linear-gradient(135deg, ${BUS_ROUTE_COLOR}, var(--sky-dark));">
           ${mediaInner}
         </div>
         <div class="bus-body">
@@ -958,7 +957,7 @@ function renderBus(){
             <span>⏱ ${t.duration}</span>
             <span>📏 ${t.dist}</span>
           </div>
-          <button class="btn btn-primary btn-sm start-bus-btn" style="width:100%;justify-content:center;margin-top:0.4rem;">
+          <button class="btn btn-bus btn-sm start-bus-btn" style="width:100%;justify-content:center;margin-top:0.4rem;">
             ${html.lang==='ar' ? 'ابدأ الجولة' : 'Start Tour'}
           </button>
         </div>`;
@@ -979,7 +978,7 @@ const trailMeta = {}; // id -> {km, minutes}
    6) الخريطة — Leaflet + بناء المسار (مبني على الملف الأصلي)
    ============================================================ */
 const center = sites.reduce((a, s) => [a[0] + s.lat / sites.length, a[1] + s.lon / sites.length], [0, 0]);
-const map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView(center, 17);
+const map = L.map('map', { scrollWheelZoom: true, zoomControl: false }).setView(center, 15);
 
 /* طبقتا الخريطة: أساسية (OpenStreetMap) وقمر صناعي */
 const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -999,7 +998,11 @@ const transitLatLngs = routePartsXY.map(part => part.map(([x, y]) => { const [lo
 L.polyline(transitLatLngs, { color: '#ffffff', weight: 6, opacity: 0.85 }).addTo(map);
 L.polyline(transitLatLngs, { color: '#FFC93C', weight: 3.4, opacity: 0.95 }).addTo(map);
 
-const busIcon = L.divIcon({ className: '', html: '<div class="bus-pin">🚌</div>', iconSize: [32, 32], iconAnchor: [16, 16] });
+const busIcon = L.divIcon({
+  className: '',
+  html: `<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${html.lang==='ar' ? 'موقف الحافلات' : 'Bus Station'}</div></div>`,
+  iconSize: [130, 66], iconAnchor: [65, 45]
+});
 L.marker([busLat, busLon], { icon: busIcon }).addTo(map).bindPopup(`<b>${html.lang==='ar'?'موقف حافلات سلفيت':'Salfit Bus Station'}</b>`);
 
 function closestOnSegment(px, py, x1, y1, x2, y2) {
@@ -1233,6 +1236,28 @@ function setCurrentStop(id){
   showToast('تم تحديد محطتك الحالية', 'Current stop set');
 }
 
+/* ============================================================
+   دالة fitMapToRoute() — لتوسيط الخريطة وتكبيرها حسب المسار المحدد
+   ============================================================ */
+function fitMapToRoute() {
+  const orderedSites = selected.map(id => sites.find(s => s.id === id)).filter(Boolean);
+  if (orderedSites.length > 1) {
+    const allPoints = orderedSites.map(s => [s.lat, s.lon]);
+    // إضافة نقطة موقف الحافلات إذا كانت قريبة
+    const routeBounds = L.latLngBounds(allPoints);
+    map.fitBounds(routeBounds, { padding: [50, 50], maxZoom: 18 });
+  } else if (orderedSites.length === 1) {
+    map.setView([orderedSites[0].lat, orderedSites[0].lon], 16);
+  } else {
+    // إذا لم يكن هناك مسار محدد، نعرض الخريطة كاملة
+    const bounds = L.latLngBounds(sites.map(s => [s.lat, s.lon]).concat([[busLat, busLon]]));
+    map.fitBounds(bounds, { padding: [40, 40] });
+  }
+}
+
+/* ============================================================
+   دالة render() المعدلة — تعيد رسم المسار وتضبط الخريطة
+   ============================================================ */
 function render() {
   sites.forEach(site => {
     const idx = selected.indexOf(site.id);
@@ -1293,6 +1318,9 @@ function render() {
     list.appendChild(card);
   });
   updateProgress();
+
+  // ضبط الخريطة حسب المسار الجديد
+  fitMapToRoute();
 }
 
 document.getElementById('resetBtn').onclick = () => { selected = [...DEFAULT_ROUTE]; currentStopId = null; render(); };
@@ -1301,10 +1329,13 @@ renderBus();
 
 const bounds = L.latLngBounds(sites.map(s => [s.lat, s.lon]).concat([[busLat, busLon]]));
 document.getElementById('statCount').textContent = sites.length;
-map.fitBounds(bounds, { padding: [40, 40] });
+
+// عند تحميل الصفحة، نضبط الخريطة على المسار الافتراضي
+fitMapToRoute();
 
 /* ---------- 🏠 توسيط الخريطة على كامل المسار ---------- */
 document.getElementById('homeBtn').onclick = () => {
+  const bounds = L.latLngBounds(sites.map(s => [s.lat, s.lon]).concat([[busLat, busLon]]));
   map.flyToBounds(bounds, { padding: [40, 40], duration: 0.6 });
   showToast('تم توسيط الخريطة على كامل المسار', 'Map centered on the full trail');
 };
@@ -1313,16 +1344,9 @@ document.getElementById('homeBtn').onclick = () => {
 document.getElementById('zoomIn').onclick = () => map.zoomIn();
 document.getElementById('zoomOut').onclick = () => map.zoomOut();
 
-/* ---------- 🔄 إعادة حساب المسار وعرضه ---------- */
+/* ---------- 🔄 إعادة حساب المسار — الآن تضبط الخريطة تلقائياً ---------- */
 document.getElementById('rerouteBtn').onclick = () => {
-  render();
-  const selSites = selected.map(id => sites.find(s => s.id === id)).filter(Boolean);
-  if (selSites.length > 1) {
-    const routeBounds = L.latLngBounds(selSites.map(s => [s.lat, s.lon]));
-    map.flyToBounds(routeBounds, { padding: [60, 60], duration: 0.7 });
-  } else {
-    map.flyToBounds(bounds, { padding: [40, 40], duration: 0.6 });
-  }
+  render(); // render() تستدعي fitMapToRoute() تلقائياً
   showToast('تمت إعادة حساب المسار', 'Route recalculated');
 };
 
@@ -1336,14 +1360,14 @@ function setMapMode(mode){
     if (map.hasLayer(satelliteLayer)) map.removeLayer(satelliteLayer);
     if (!map.hasLayer(baseLayer)) baseLayer.addTo(map);
     satBtn.textContent = '🛰️';
-    satBtn.title = 'التبديل إلى القمر الصناعي';
+    satBtn.title = html.lang==='ar' ? 'التبديل إلى القمر الصناعي' : 'Switch to satellite view';
     modeBadge.firstChild.textContent = '🗺️ ';
     modeLabel.innerHTML = '<span data-ar>خريطة أساسية</span><span data-en>Basemap</span>';
   } else {
     if (map.hasLayer(baseLayer)) map.removeLayer(baseLayer);
     if (!map.hasLayer(satelliteLayer)) satelliteLayer.addTo(map);
     satBtn.textContent = '🗺️';
-    satBtn.title = 'التبديل إلى الخريطة الأساسية';
+    satBtn.title = html.lang==='ar' ? 'التبديل إلى الخريطة الأساسية' : 'Switch to basemap view';
     modeBadge.firstChild.textContent = '🛰️ ';
     modeLabel.innerHTML = '<span data-ar>قمر صناعي</span><span data-en>Satellite</span>';
   }
@@ -1368,7 +1392,7 @@ const gpsBtn = document.getElementById('mapGpsBtn');
 function stopTracking(){
   if(watchId !== null){ navigator.geolocation.clearWatch(watchId); watchId = null; }
   gpsBtn.classList.remove('on');
-  gpsBtn.title = 'بدء الملاحة المباشرة';
+  gpsBtn.title = html.lang==='ar' ? 'بدء الملاحة المباشرة' : 'Start live navigation';
   if(meMarker){ const el = meMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); }
   if(accCircle){ map.removeLayer(accCircle); accCircle = null; }
 }
@@ -1377,7 +1401,7 @@ function startTracking(){
   if(!navigator.geolocation){ showToast('المتصفح لا يدعم تحديد الموقع', 'Geolocation not supported'); return; }
   showToast('جارٍ تفعيل التتبع المباشر...', 'Starting live tracking...');
   gpsBtn.classList.add('on');
-  gpsBtn.title = 'إيقاف الملاحة المباشرة';
+  gpsBtn.title = html.lang==='ar' ? 'إيقاف الملاحة المباشرة' : 'Stop live navigation';
 
   watchId = navigator.geolocation.watchPosition((pos) => {
     const { latitude, longitude, accuracy } = pos.coords;
@@ -1389,7 +1413,6 @@ function startTracking(){
     }).addTo(map).bindPopup(html.lang==='ar' ? 'موقعك الحالي' : 'Your location');
 
     if(accCircle){ map.removeLayer(accCircle); accCircle = null; }
-    // لا نرسم دائرة حول الموقع
 
     let nearest = null, best = Infinity;
     sites.forEach(s => { const d = haversineLL([latitude,longitude],[s.lat,s.lon]); if(d < best){ best = d; nearest = s; } });
@@ -1603,7 +1626,7 @@ async function openDestMap(tour){
     // المرحلة 1: من موقف الحافلات إلى بداية المسار (أو المحطات) عبر شبكة الطرق
     const { latlngs, distance, duration } = await fetchRoadRoute(allPts);
     const roadLine1 = L.polyline(latlngs, { color: '#ffffff', weight: 7, opacity: 0.6 }).addTo(map);
-    const roadLine2 = L.polyline(latlngs, { color: tour.color, weight: 4.2, opacity: 0.95 }).addTo(map);
+    const roadLine2 = L.polyline(latlngs, { color: BUS_ROUTE_COLOR, weight: 4.2, opacity: 0.95 }).addTo(map);
     destRouteLayers.push(roadLine1, roadLine2);
 
     let totalKm = distance / 1000;
@@ -1613,7 +1636,7 @@ async function openDestMap(tour){
       // المرحلة 2: المسار الفعلي المساح (وليس عبر شبكة الطرق) من البداية إلى النهاية
       const trailLatLngs = tour.fixedTrailXY.map(([x, y]) => { const [lon, lat] = toWGS(x, y); return [lat, lon]; });
       const trailLine1 = L.polyline(trailLatLngs, { color: '#ffffff', weight: 6, opacity: 0.7 }).addTo(map);
-      const trailLine2 = L.polyline(trailLatLngs, { color: tour.color, weight: 3.6, opacity: 0.95, dashArray: '10,6' }).addTo(map);
+      const trailLine2 = L.polyline(trailLatLngs, { color: BUS_ROUTE_COLOR, weight: 3.6, opacity: 0.95 }).addTo(map);
       destRouteLayers.push(trailLine1, trailLine2);
       const trailKm = tour.fixedTrailLenKm;
       const trailMins = Math.round((trailKm / 4.5) * 60);
@@ -1631,11 +1654,11 @@ async function openDestMap(tour){
       ${hasFixedTrail ? `<span class="mchip">🥾 ${html.lang==='ar'?'من البداية للنهاية: المسار الفعلي المساح':'Start to end: actual surveyed trail'}</span>` : ''}`;
   } catch(err){
     // خط تقريبي مباشر بين المحطات بالترتيب في حال تعذّر الوصول لخدمة التوجيه
-    const fallback = L.polyline(allPts, { color: tour.color, weight: 3, opacity: 0.85, dashArray: '8,8' }).addTo(map);
+    const fallback = L.polyline(allPts, { color: BUS_ROUTE_COLOR, weight: 3, opacity: 0.85 }).addTo(map);
     destRouteLayers.push(fallback);
     if (hasFixedTrail){
       const trailLatLngs = tour.fixedTrailXY.map(([x, y]) => { const [lon, lat] = toWGS(x, y); return [lat, lon]; });
-      const trailLine = L.polyline(trailLatLngs, { color: tour.color, weight: 3.6, opacity: 0.95, dashArray: '10,6' }).addTo(map);
+      const trailLine = L.polyline(trailLatLngs, { color: BUS_ROUTE_COLOR, weight: 3.6, opacity: 0.95 }).addTo(map);
       destRouteLayers.push(trailLine);
     }
     infoRow.innerHTML = `<span class="mchip">⚠ ${html.lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`;
