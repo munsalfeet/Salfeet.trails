@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
 /* ============================================
-   جميع الأنماط الأساسية (مختصرة)
+   جميع الأنماط الأساسية
    ============================================ */
 * { box-sizing:border-box; margin:0; }
 :root{
@@ -35,6 +35,7 @@ html{ scroll-behavior:smooth; font-size:calc(16px * var(--scale)); }
 body{ display:flex; flex-direction:column; min-height:100vh; background:var(--stone-deep); color:var(--ink); font-family:var(--font-body-ar); transition:.2s; margin:0; }
 html[lang="en"] body{ font-family:var(--font-body-en); }
 .container{ max-width:1220px; margin:0 auto; padding:0 6vw; }
+
 /* شريط التنقل */
 .nav{ position:sticky; top:0; z-index:900; padding:0.7rem 0; background:var(--glass); backdrop-filter:blur(16px); border-bottom:1px solid var(--glass-border); }
 .nav-inner{ display:flex; align-items:center; gap:1rem; }
@@ -48,12 +49,14 @@ html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 .tool-btn:hover{ background:var(--green); color:#fff; border-color:var(--green); }
 .lang-toggle{ width:auto; padding:0 1.2rem; border-radius:999px; font-weight:700; font-size:0.85rem; background:var(--white); border:1px solid var(--gray-soft); display:flex; align-items:center; gap:0.4rem; }
 .lang-toggle:hover{ background:var(--green); color:#fff; border-color:var(--green); }
+
 /* الصفحات */
 #about, #map-section, #bus{ display:none; }
 #about.is-active, #map-section.is-active, #bus.is-active{ display:block; }
 #home{ display:none; }
 #home.is-active{ display:flex; }
 .page-back{ margin-bottom:1.4rem; }
+
 /* الهيرو */
 .hero{ position:relative; min-height:70vh; display:flex; align-items:center; background:linear-gradient(180deg,rgba(20,25,15,0.35),rgba(16,20,12,0.78)), url('https://www.travelpalestine.ps/public/files/image/destinations/salfeet%20old%20city.jpg') center/cover no-repeat; color:#F6F3E6; overflow:hidden; }
 .hero-content{ position:relative; padding:6.2rem 0 8.5rem; width:100%; min-height:60vh; display:flex; flex-direction:column; justify-content:center; }
@@ -62,25 +65,37 @@ html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 html[lang="en"] .hero h1{ font-family:var(--font-display-en); font-weight:600; }
 .hero-subtitle{ font-size:clamp(1.1rem,2vw,1.4rem); font-weight:300; color:#EFEADA; margin:-0.1rem 0 1.2rem; position:relative; z-index:2; }
 
-/* ===== النص الترحيبي - بدون صندوق مع وميض ===== */
+/* ===== النص الترحيبي - موحد للغتين ===== */
 .hero p.lede {
   font-size: 1.08rem;
-  max-width: 600px;
+  max-width: 700px;
+  width: 100%;
   line-height: 1.8;
   color: #EFEADA;
-  margin: 0 0 3rem 0 ;
+  margin: 0 0 3rem 0;
   position: relative;
   z-index: 40;
   text-shadow: 0 2px 12px rgba(0,0,0,0.6);
   animation: dropFade 8s ease-in-out infinite;
-  text-align: align;
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: -0.01rem; /* ← توازن جيد */
 }
+
+/* ✅ إزالة أي اختلافات بين اللغتين */
+html[dir="rtl"] .hero p.lede,
+html[lang="en"] .hero p.lede {
+  text-align: justify;
+  margin: 0 0 3rem 0;
+}
+
 @keyframes dropFade {
-  0% { transform: translateY(-100px); opacity: 0; }
-  20% { transform: translateY(0); opacity: 1; }
-  70% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(50px); opacity: 0; }
+  0%   { transform: translateY(-100px); opacity: 0; }
+  20%  { transform: translateY(0);      opacity: 1; }
+  70%  { transform: translateY(0);      opacity: 1; }
+  100% { transform: translateY(50px);   opacity: 0; }
 }
+
 /* الأزرار والعناصر الأخرى */
 .hero-ctas{ display:flex; gap:0.9rem; flex-wrap:wrap; margin-bottom:2.6rem; position:relative; z-index:2; margin-top:auto; }
 .btn{ display:inline-flex; align-items:center; gap:0.55rem; padding:0.95rem 1.7rem; border-radius:999px; font-weight:700; font-size:0.95rem; cursor:pointer; border:none; transition:.2s; text-decoration:none; }
@@ -100,7 +115,7 @@ html[lang="en"] .hero h1{ font-family:var(--font-display-en); font-weight:600; }
 html[lang="en"] .meta-chip b{ font-family:var(--font-display-en); }
 .meta-chip span{ font-size:0.88rem; color:#D8D4C0; }
 
-/* باقي الأنماط (المختصرة) */
+/* باقي الأنماط */
 section{ padding:5.5rem 0; }
 .section-head{ max-width:680px; margin-bottom:3rem; }
 h2.section-title{ font-family:var(--font-display-ar); font-size:clamp(1.8rem,3.4vw,2.7rem); margin:0 0 0.9rem; color:var(--ink); }
@@ -116,6 +131,7 @@ html[lang="en"] h2.section-title{ font-family:var(--font-display-en); font-weigh
 html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 .stage-card p{ font-size:0.92rem; color:var(--ink-soft); line-height:1.85; margin:0 0 1rem; }
 .stage-card ul{ margin:0; padding-inline-start:1.2rem; font-size:0.85rem; color:var(--ink-soft); line-height:2; }
+
 /* الخريطة */
 .map-stats-bar{ display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.4rem; }
 .stat-chip{ background:var(--white); border:1px solid var(--glass-border); border-radius:var(--radius); padding:0.7rem 1.1rem; box-shadow:0 2px 10px rgba(35,40,29,0.08); text-align:center; min-width:100px; }
@@ -189,6 +205,7 @@ html[dir="rtl"] .map-toolbar{ left:16px; right:auto; }
 .map-mode-badge{ position:absolute; top:16px; right:16px; z-index:640; background:rgba(35,40,29,0.68); color:#fff; backdrop-filter:blur(6px); border-radius:999px; padding:0.32rem 0.85rem; font-size:0.7rem; font-weight:600; display:flex; align-items:center; gap:0.35rem; box-shadow:0 2px 10px rgba(35,40,29,0.08); pointer-events:none; }
 html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
 @media (max-width:760px){ #map{ min-height:440px; } .map-toolbar{ top:10px; padding:6px; gap:4px; } .map-btn{ width:37px; height:37px; font-size:0.92rem; } .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; } }
+
 /* جولات الحافلة */
 .bus-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; }
 .bus-card{ background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--glass-border); display:flex; flex-direction:column; transition:.2s; }
@@ -202,9 +219,11 @@ html[lang="en"] .bus-body h3{ font-family:var(--font-display-en); }
 .bus-body p{ font-size:0.85rem; color:var(--ink-soft); line-height:1.7; margin:0; flex:1; }
 .bus-meta{ display:flex; gap:0.6rem; flex-wrap:wrap; font-size:0.72rem; color:var(--ink-soft); }
 .bus-meta span{ background:var(--stone); padding:0.25rem 0.6rem; border-radius:999px; }
+
 /* فوتر */
 footer{ background:var(--stone); padding:0.5rem 0; border-top:1px solid var(--glass-border); flex-shrink:0; }
 footer p{ font-size:0.68rem; color:var(--ink); line-height:1.5; text-align:center; margin:0; }
+
 /* مودال */
 .modal-overlay{ position:fixed; inset:0; background:rgba(15,18,10,0.72); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:2000; padding:1.2rem; opacity:0; pointer-events:none; transition:opacity .18s; }
 .modal-overlay.open{ opacity:1; pointer-events:auto; }
@@ -283,12 +302,11 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
     <div class="container hero-content">
       <div class="hero-eyebrow"><span>🌿</span><span id="heroEyebrow">دروب الزيتون</span></div>
       <h1 id="heroTitle">اكتشف مدينة سلفيت</h1>
-      <!-- النص الترحيبي بدون صندوق مع وميض -->
-      <p class="lede" id="heroDesc">مرحباً بكم في دروب الزيتون، بوابتكم التفاعلية لاكتشاف سلفيت وتاريخها وتراثها وطبيعتها. استكشفوا أبرز معالمها عبر شبكة من الدروب، ثم واصلوا رحلتكم بالحافلة إلى وجهات مختارة وفق اهتماماتكم ووقتكم. نتمنى لكم تجربة مميزة تعكس أصالة سلفيت وجمالها.</p>
+      <p class="lede" id="heroDesc">مرحباً بكم في دروب الزيتون، بوابتكم التفاعلية لاكتشاف سلفيت وتاريخها وتراثها وطبيعتها. استكشفوا أبرز معالمها عبر شبكة من الدروب، ثم واصلوا رحلتكم بالحافلة إلى وجهات مختارة وفق اهتماماتكم ووقتكم ، نتمنى لكم تجربة مميزة تعكس أصالة سلفيت وجمالها.</p>
       <div class="hero-ctas">
-        <a href="#about" class="btn btn-ghost" id="heroAboutBtn">عن المسار</a>
-        <a href="#map-section" class="btn btn-map-highlight" id="heroMapBtn">الخريطة <span>→</span></a>
-        <a href="#bus" class="btn btn-ghost" id="heroBusBtn">مسار الحافلة</a>
+        <a href="#about" class="btn btn-ghost" id="heroAboutBtn">عن الدروب</a>
+        <a href="#map-section" class="btn btn-ghost" id="heroMapBtn">الخريطة</a>
+        <a href="#bus" class="btn btn-ghost" id="heroBusBtn">دروب الحافلة</a>
       </div>
       <div class="hero-meta">
         <div class="meta-chip"><span class="ic">🕐</span><div><b id="liveClock">--:--</b><span id="clockLabel">التوقيت المحلي</span></div></div>
@@ -304,7 +322,6 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
       <a href="#home" class="btn btn-outline btn-sm page-back" id="aboutHome">🏠 الرئيسية</a>
       <div class="section-head">
         <h2 class="section-title" id="aboutTitle">مرحلتان، تجربة واحدة متكاملة</h2>
-        <p class="section-sub" id="aboutDesc">تجمع دروب الزيتون بين جولات السير التفاعلية وجولات الحافلة، لتوفر للزوار تجربة متكاملة تتيح لهم اكتشاف مدينة سلفيت واستكشاف معالمها التاريخية والطبيعية والثقافية</p>
       </div>
       <div class="about-grid">
         <div class="stage-card">
@@ -317,7 +334,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
           <div class="stage-num">02</div>
           <div class="stage-icon">🚌</div>
           <h3 id="stage2Title">واصل رحلتك عبر جولات الحافلة</h3>
-          <p id="stage2Desc">عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد المسارات بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريد</p>
+          <p id="stage2Desc">عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد الدروببما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريد</p>
         </div>
       </div>
     </div>
@@ -328,9 +345,9 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
     <div class="container">
       <a href="#home" class="btn btn-outline btn-sm page-back" id="mapHome">🏠 الرئيسية</a>
       <div class="section-head">
-        <span id="mapEyebrow">دروب الزيتون</span>
-        <h2 class="section-title" id="mapTitle">الخريطة التفاعلية</h2>
-        <p class="section-sub" id=""> </p>
+        <span id="mapEyebrow"></span>
+        <h2 class="section-title" id="mapTitle">خارطة دروب الزيتون</h2>
+        <p class="section-sub" id="mapSub"> </p>
       </div>
       <div class="map-stats-bar">
         <div class="stat-chip"><b id="statCount">10</b><span id="statTrailsLabel">دروب</span></div>
@@ -380,8 +397,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
     <div class="container">
       <a href="#home" class="btn btn-outline btn-sm page-back" id="busHome">🏠 الرئيسية</a>
       <div class="section-head">
-        <h2 class="section-title" id="busTitle">اختر مسار الحافلة حسب اهتمامك و وقتك</h2>
-        <p class="section-sub" id="busSub"> </p>
+        <h2 class="section-title" id="busTitle">اختر درب الحافلة حسب اهتمامك و وقتك</h2>
       </div>
       <div class="bus-grid" id="busGrid"></div>
     </div>
@@ -434,6 +450,7 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
 <div class="toast" id="toast"></div>
 <button class="back-to-top" id="backToTop">↑</button>
 
+<!-- ============ السكربتات ============ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
 <script>
@@ -441,24 +458,22 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
 //   كائن الترجمة (جميع النصوص)
 // ============================================================
 const T = {
-  brandTitle: { ar:'دروب الزيتون', en:'Salfit Interactive' },
-  brandSub: { ar:'بلدية سلفيت', en:'Salfit Municipality' },
+  brandTitle: { ar:'دروب الزيتون', en:'Olive Paths' },
+  brandSub: { ar:'بلدية سلفيت', en:'Salfeet Municipality' },
   langLabel: { ar:'English', en:'عربي' },
-  heroEyebrow: { ar:'دروب الزيتون', en:'An immersive digital tourism experience' },
-  heroTitle: { ar:'اكتشف مدينة سلفيت', en:'Welcome to Salfit' },
+  heroEyebrow: { ar:'دروب الزيتون', en:'Olive Paths' },
+  heroTitle: { ar:'اكتشف مدينة سلفيت', en:'Discover the city of Salfeet.' },
   heroSub: { ar:'خطوة بخطوة بين التاريخ والطبيعة', en:'Step by step through history and nature' },
   heroDesc: { ar:'مرحباً بكم في دروب الزيتون، بوابتكم التفاعلية لاكتشاف مدينة سلفيت. انطلقوا في رحلة فريدة تستكشفون خلالها تاريخ المدينة العريق، وتراثها الأصيل، وطبيعتها الخلابة، عبر شبكة من الدروب التي تقودكم إلى أبرز معالمها، ثم استكملوا رحلتكم بالحافلة إلى وجهات مختارة وفق برنامج الزيارة واهتماماتكم والوقت المتاح. نتمنى لكم تجربة لا تُنسى تعكس أصالة سلفيت، وجمال طبيعتها، وكرم ضيافة أهلها.',
-    en:'Discover the beating heart of Salfit through nine historic walking trails, then continue your journey with a customized bus tour tailored to your interests and time.' },
-  heroAboutBtn: { ar:'عن المسار', en:'About' },
+    en:'Welcome to Olive Trails your interactive gateway to discovering Salfeet its history, heritage, and natural beauty , Explore its key landmarks via a network of trails, then continue your journey by bus to destinations tailored to your interests and schedule. We wish you a memorable experience that reflects the authenticity and beauty of Salfeet.' },
+  heroAboutBtn: { ar:'عن الدروب', en:'About' },
   heroMapBtn: { ar:'الخريطة', en:'Map' },
-  heroBusBtn: { ar:'مسار الحافلة', en:'Bus Route' },
+  heroBusBtn: { ar:'درب الحافلة', en:'Bus Route' },
   clockLabel: { ar:'التوقيت المحلي', en:'Local Time' },
   weatherLabel: { ar:'الطقس', en:'Weather' },
   trailsLabel: { ar:'دروب سير', en:'Walking trails' },
   aboutHome: { ar:'🏠 الرئيسية', en:'🏠 Home' },
   aboutTitle: { ar:'مرحلتان، تجربة واحدة متكاملة', en:'Two stages, one seamless experience' },
-  aboutDesc: { ar:'تجمع دروب الزيتون بين جولات السير التفاعلية وجولات الحافلة، لتوفر للزوار تجربة متكاملة تتيح لهم اكتشاف مدينة سلفيت واستكشاف معالمها التاريخية والطبيعية والثقافية',
-    en:'Salfit Interactive Tour is designed for official delegations, tourists, investors, students, and international visitors — combining an on-foot exploration with a wider bus discovery of the city\'s surroundings.' },
   stage1Title: { ar:'استكشف الدروب سيراً على الأقدام', en:'Stage One — Walking Tour' },
   stage1Desc: { ar:'ليست مجرد جولة، بل رحلة تروي حكاية سلفيت. تنقلكم عبر تسعة دروب مترابطة بين تاريخ المدينة وتراثها وطبيعتها، لتكتشفوا معالمها وساحاتها وينابيعها في تجربة تفاعلية ثرية تجمع بين المعرفة ومتعة الاستكشاف.',
     en:'Visitors walk through the historic city center, following nine carefully ordered trails — from the municipality building to the bus station.' },
@@ -466,15 +481,15 @@ const T = {
   stage1li2: { ar:'بطاقة تفصيلية لكل درب', en:'Detailed card for every trail' },
   stage1li3: { ar:'ينتهي عند موقف الحافلات', en:'Ends at the Bus Station' },
   stage2Title: { ar:'واصل رحلتك عبر جولات الحافلة', en:'Stage Two — Bus Tours' },
-  stage2Desc: { ar:'عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد المسارات بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريد',
+  stage2Desc: { ar:'عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد الدروببما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريد',
     en:'After reaching the Bus Station, visitors choose a customized route based on their interests and available time, from four suggested routes around the city.' },
   stage2li1: { ar:'أربع جولات مصممة حسب الاهتمامات', en:'Four routes designed around your interests' },
   stage2li2: { ar:'مسار محسوب عبر شبكة الطرق الفعلية', en:'Route calculated over the real road network' },
   stage2li3: { ar:'معلومات المسافة والوقت التقديري لكل وجهة', en:'Estimated distance and time for every destination' },
   mapHome: { ar:'🏠 الرئيسية', en:'🏠 Home' },
   mapEyebrow: { ar:'دروب الزيتون', en:'Olive Trails' },
-  mapTitle: { ar:'الخريطة التفاعلية', en:'Interactive Map' },
-  mapSub: { ar:'اختر المواقع لرسم مسارك، وتابع تفاصيل كل محطة على الخريطة', en:'Select stops to draw your route, and explore each stop\'s details on the map' },
+  mapTitle: { ar:'خارطة دروب الزيتون', en:'Olive Trails Map' },
+  mapSub: { ar:'', en:'' },
   statTrailsLabel: { ar:'دروب', en:'Trails' },
   statSelectedLabel: { ar:'مختار', en:'Selected' },
   statDistLabel: { ar:'طول المسار', en:'Route Length' },
@@ -490,8 +505,7 @@ const T = {
   resetLabel: { ar:'مسح المسار', en:'Reset' },
   mapModeLabel: { ar:'خريطة أساسية', en:'Basemap' },
   busHome: { ar:'🏠 الرئيسية', en:'🏠 Home' },
-  busTitle: { ar:'اختر مسار الحافلة حسب اهتمامك و وقتك', en:'Choose Your Bus Tour' },
-  busSub: { ar:' ', en:' ' },
+  busTitle: { ar:'اختر درب الحافلة حسب اهتمامك و وقتك', en:'Choose a bus route based on your interests and available time.' },
   audioLabel: { ar:'دليل صوتي', en:'Audio Guide' },
   gpsLabel: { ar:'ملاحة GPS', en:'GPS Navigate' },
   qrLabel: { ar:'رمز QR', en:'QR Code' },
@@ -500,19 +514,19 @@ const T = {
   destNote: { ar:'يبدأ هذا المسار من موقف الحافلات (نهاية درب التجمع والترفيه) ويتابع عبر شبكة الطرق الفعلية وصولاً إلى الوجهة المختارة.',
     en:'This route starts from the Bus Station (the end of the Gathering & Leisure Trail) and continues via the road network to the selected destination.' },
   footerText: { ar:'<strong>الدليل التفاعلي الرسمي لدروب الزيتون</strong><br>إشراف: <strong>بلدية سلفيت</strong> | تصميم وتطوير: <strong>ديما ماضي</strong><br>جميع الحقوق محفوظة © {year} بلدية سلفيت',
-    en:'<strong>The Official Interactive Guide to Olive Trails</strong><br>Supervised by: <strong>Salfit Municipality</strong> | Design & Development: <strong>Dima Madi</strong><br>All rights reserved © {year} Salfit Municipality' },
-  stopNames: { 1:{ar:'بلدية سلفيت',en:'Salfit Municipality'}, 2:{ar:'ديوان بلدية سلفيت',en:'Salfit Municipal Hall'}, 3:{ar:'حديقة البلدية القديمة',en:'Old Town Garden'}, 4:{ar:'عين المغرفة',en:'Ain Al-Maghrafa Spring'}, 5:{ar:'زقاق الحواكير',en:"Hashem's Alley"}, 6:{ar:'دار عفانة',en:'Afana House'}, 7:{ar:'الصالة الرياضية',en:'Sports Hall'}, 8:{ar:'شارع أبو جهاد',en:'Abu Jihad Street'}, 9:{ar:'ساحة التوتة',en:'Tut Square'}, 10:{ar:'حديقة البلدية',en:'Municipal Park'} },
+    en:'<strong>The Official Interactive Guide to Olive Trails</strong><br>Supervised by: <strong>Salfeet Municipality</strong> | Design & Development: <strong>Dema Madi</strong><br>All rights reserved © {year} Salfeet Municipality' },
+  stopNames: { 1:{ar:'بلدية سلفيت',en:'Salfeet Municipality'}, 2:{ar:'ديوان بلدية سلفيت',en:'Salfeet Municipal Hall'}, 3:{ar:'حديقة البلدية القديمة',en:'Old Town Garden'}, 4:{ar:'عين المغرفة',en:'Ain Al-Maghrafa Spring'}, 5:{ar:'زقاق الحواكير',en:"Hashem's Alley"}, 6:{ar:'دار عفانة',en:'Afana House'}, 7:{ar:'الصالة الرياضية',en:'Sports Hall'}, 8:{ar:'شارع أبو جهاد',en:'Abu Jihad Street'}, 9:{ar:'ساحة التوتة',en:'Tut Square'}, 10:{ar:'حديقة البلدية',en:'Municipal Park'} },
   stopPaths: { 1:{ar:'درب الأساس',en:'Foundation Trail'}, 2:{ar:'درب ذاكرة الأجداد',en:'Ancestors Trail'}, 3:{ar:'درب عبق الياسمين',en:'Jasmine Trail'}, 4:{ar:'درب عين المغرفة',en:'Ain Al-Maghrafa Trail'}, 5:{ar:'درب الحواكير',en:'Orchards Trail'}, 6:{ar:'درب الأصالة',en:'Heritage Trail'}, 7:{ar:'درب التحدي',en:'Challenge Trail'}, 8:{ar:'درب النقاء',en:'Purity Trail'}, 9:{ar:'درب ميدان التوتة',en:'Tut Square Trail'}, 10:{ar:'درب اللقاء والترفيه',en:'Gathering & Leisure Trail'} },
-  stopTexts: { 1:{ar:'محطة الانطلاق\nأمام مبنى بلدية سلفيت تبدأ رحلة دروب الزيتون، حيث تلتقي المسارات وتنطلق الحكايات.\n\nتُعد بلدية سلفيت، التي تأسست عام 1882، من أقدم الهيئات المحلية في فلسطين.\n\nتقع مدينة سلفيت في قلب الضفة الغربية، وتتميز بطبيعتها الجبلية وينابيعها العذبة وأراضيها الزراعية الخصبة.',
-    en:'Starting Point\nIn front of Salfit Municipality building begins the Olive Trails journey, where routes meet and stories unfold.\n\nFounded in 1882, Salfit Municipality is one of the oldest local authorities in Palestine.\n\nSalfit sits at the heart of the West Bank, known for its mountainous landscape, fresh springs, and fertile agricultural land.' },
+  stopTexts: { 1:{ar:'محطة الانطلاق\nأمام مبنى بلدية سلفيت تبدأ رحلة دروب الزيتون، حيث تلتقي الدروبوتنطلق الحكايات.\n\nتُعد بلدية سلفيت، التي تأسست عام 1882، من أقدم الهيئات المحلية في فلسطين.\n\nتقع مدينة سلفيت في قلب الضفة الغربية، وتتميز بطبيعتها الجبلية وينابيعها العذبة وأراضيها الزراعية الخصبة.',
+    en:'Starting Point\nIn front of Salfeet Municipality building begins the Olive Trails journey, where routes meet and stories unfold.\n\nFounded in 1882, Salfeet Municipality is one of the oldest local authorities in Palestine.\n\nSalfeet sits at the heart of the West Bank, known for its mountainous landscape, fresh springs, and fertile agricultural land.' },
   2:{ar:'ديوان بلدية سلفيت\nيُعد ديوان بلدية سلفيت من المرافق المجتمعية المهمة، يستضيف الفعاليات الرسمية والثقافية والاجتماعية على مدار العام.\n\nيجسد الديوان رؤية بلدية سلفيت في تعزيز التواصل مع المواطنين ودعم المبادرات المجتمعية.',
     en:'Municipal Hall\nA key community facility hosting official, cultural, and social events throughout the year.\n\nThe hall embodies the municipality\'s vision of strengthening ties with residents and supporting community initiatives.' },
   3:{ar:'حديقة البلدية القديمة\nمن أقدم الحدائق العامة في سلفيت، شكّلت متنفسًا طبيعيًا ووجهة مفضلة للعائلات لعقود.\n\nتحتفظ الحديقة بمكانتها كأحد المعالم المجتمعية التي تعكس روح المدينة.',
-    en:'Old Town Garden\nOne of Salfit\'s oldest public gardens, a favorite family destination for decades.\n\nThe garden remains a landmark reflecting the spirit of the city.' },
+    en:'Old Town Garden\nOne of Salfeet\'s oldest public gardens, a favorite family destination for decades.\n\nThe garden remains a landmark reflecting the spirit of the city.' },
   4:{ar:'عين المغرفة\nمن أبرز العيون التاريخية في البلدة القديمة، وكانت مصدرًا رئيسيًا للمياه لعقود طويلة.\n\nترجح الدراسات أن بناءها يعود إلى العهد العثماني، بين القرنين السابع عشر والتاسع عشر.\n\nشُيّد المبنى بالحجر المحلي وفق الطراز المعماري التقليدي.',
     en:'Ain Al-Maghrafa Spring\nOne of the most prominent historic springs in the old town, a main water source for decades.\n\nStudies suggest it dates to the Ottoman era, between the 17th and 19th centuries.\n\nBuilt from local stone in the traditional architectural style.' },
   5:{ar:'زقاق يتوسط حواكير المنازل القديمة وأشجارها المثمرة، ويعكس علاقة أهل سلفيت الوثيقة بأشجار الزيتون.',
-    en:'An alley winding through old house orchards and fruit trees, reflecting Salfit\'s close relationship with the olive tree.' },
+    en:'An alley winding through old house orchards and fruit trees, reflecting Salfeet\'s close relationship with the olive tree.' },
   6:{ar:'دار عفانة\nمن أبرز المباني التراثية، تمثل نموذجًا أصيلًا للعمارة الفلسطينية التقليدية من أواخر العهد العثماني.\n\nشُيدت من الحجر المحلي، وتتميز بعقودها الحجرية المتينة وساحاتها الداخلية.',
     en:'Afana House\nOne of the most prominent heritage buildings, an authentic example of traditional Palestinian architecture from the late Ottoman era.\n\nBuilt from local stone, featuring sturdy stone arches and inner courtyards.' },
   7:{ar:'تُعد الصالة الرياضية من أبرز المنشآت في المحافظة، تستضيف تدريبات وبطولات رياضية متنوعة على مدار العام.',
@@ -520,11 +534,11 @@ const T = {
   8:{ar:'طريق واسع ونظيف يصل زوار المسار بالأحياء المجاورة.',
     en:'A wide, clean street connecting trail visitors to the neighboring residential areas.' },
   9:{ar:'ساحة التوتة\nأُنشئت عام 1965، وتُعد القلب النابض لمدينة سلفيت، وكانت سوقًا رئيسيًا للمعدات الزراعية.\n\nيتوسط الساحة شجرة التوت التاريخية التي استمدت منها اسمها.',
-    en:'Tut Square\nEstablished in 1965, the beating heart of Salfit and once a main market for agricultural equipment.\n\nA historic mulberry tree at its center gives the square its name.' },
+    en:'Tut Square\nEstablished in 1965, the beating heart of Salfeet and once a main market for agricultural equipment.\n\nA historic mulberry tree at its center gives the square its name.' },
   10:{ar:'محطة إضافية للاستجمام، يوفر متنفسًا طبيعيًا يجمع المساحات الخضراء والأجواء الهادئة قبل الوصول إلى موقف الحافلات.',
     en:'A bonus leisure stop offering green spaces and a calm atmosphere just before reaching the Bus Station.' } },
   busTourNames: { 1:{ar:'عين فريج',en:'Nature Tour'}, 2:{ar:'عين عدس',en:'Olive & Agriculture Tour'}, 3:{ar:'خربة قيس',en:'Investment & Industrial Tour'}, 4:{ar:'وادي الشاعر',en:'Cultural & Heritage Tour'} },
-  busTourDescs: { 1:{ar:'استكشاف الوديان والينابيع والغطاء النباتي الطبيعي حول المدينة.',en:'Explore the valleys, springs, and natural vegetation surrounding the city.'}, 2:{ar:'زيارة مزارع الزيتون التاريخية والتعرف على صناعة زيت الزيتون المحلية.',en:'Visit historic olive farms and learn about local olive oil production.'}, 3:{ar:'استعراض المنطقة الصناعية وفرص الاستثمار المتاحة في سلفيت.',en:'Overview of the industrial zone and available investment opportunities in Salfit.'}, 4:{ar:'جولة معمقة في المواقع الأثرية والمباني التراثية المحيطة بالمدينة.',en:'An in-depth tour of archaeological sites and heritage buildings surrounding the city.'} },
+  busTourDescs: { 1:{ar:'استكشاف الوديان والينابيع والغطاء النباتي الطبيعي حول المدينة.',en:'Explore the valleys, springs, and natural vegetation surrounding the city.'}, 2:{ar:'زيارة مزارع الزيتون التاريخية والتعرف على صناعة زيت الزيتون المحلية.',en:'Visit historic olive farms and learn about local olive oil production.'}, 3:{ar:'استعراض المنطقة الصناعية وفرص الاستثمار المتاحة في سلفيت.',en:'Overview of the industrial zone and available investment opportunities in Salfeet.'}, 4:{ar:'جولة معمقة في المواقع الأثرية والمباني التراثية المحيطة بالمدينة.',en:'An in-depth tour of archaeological sites and heritage buildings surrounding the city.'} },
   busStart: { ar:'ابدأ الجولة', en:'Start Tour' },
   discoverTrail: { ar:'اكتشف درب', en:'Discover trail' },
   imHere: { ar:'أنا هنا', en:"I'm here" },
@@ -535,7 +549,7 @@ const T = {
   watchRouteVideo: { ar:'شاهد فيديو المسار', en:'Watch route video' },
   busTourSelected: { ar:'تم اختيار: {name} — المسار قيد الإعداد', en:'Selected: {name} — route coming soon' },
   destinationRoute: { ar:'المسار من موقف الحافلات إلى الوجهة', en:'Route from the Bus Station to the destination' },
-  busStationPopup: { ar:'موقف حافلات سلفيت', en:'Salfit Bus Station' },
+  busStationPopup: { ar:'موقف حافلات سلفيت', en:'Salfeet Bus Station' },
   busStationLabel: { ar:'موقف الحافلات', en:'Bus Station' },
   yourLocation: { ar:'موقعك الحالي', en:'Your location' },
   nearestStop: { ar:'أقرب محطة: {name}', en:'Nearest stop: {name}' },
@@ -576,18 +590,18 @@ function updateUI() {
     heroEyebrow:'heroEyebrow', heroTitle:'heroTitle', heroSub:'heroSub', 
     heroAboutBtn:'heroAboutBtn', heroMapBtn:'heroMapBtn', heroBusBtn:'heroBusBtn',
     clockLabel:'clockLabel', weatherLabel:'weatherLabel', trailsLabel:'trailsLabel',
-    aboutHome:'aboutHome', aboutTitle:'aboutTitle', aboutDesc:'aboutDesc',
+    aboutHome:'aboutHome', aboutTitle:'aboutTitle',
     stage1Title:'stage1Title', stage1Desc:'stage1Desc', stage1li1:'stage1li1', stage1li2:'stage1li2', stage1li3:'stage1li3',
     stage2Title:'stage2Title', stage2Desc:'stage2Desc', stage2li1:'stage2li1', stage2li2:'stage2li2', stage2li3:'stage2li3',
-    mapHome:'mapHome', mapEyebrow:'mapEyebrow', mapTitle:'mapTitle', mapSub:'mapSub',
+    mapHome:'mapHome', mapTitle:'mapTitle',
     statTrailsLabel:'statTrailsLabel', statSelectedLabel:'statSelectedLabel', statDistLabel:'statDistLabel', statTimeLabel:'statTimeLabel',
     rerouteLabel:'rerouteLabel', curStopLabel:'curStopLabel', nextStopLabel:'nextStopLabel', remDistLabel:'remDistLabel', remTimeLabel:'remTimeLabel',
     routeTitle:'routeTitle', routeSub:'routeSub', resetLabel:'resetLabel', mapModeLabel:'mapModeLabel',
-    busHome:'busHome', busTitle:'busTitle', busSub:'busSub',
+    busHome:'busHome', busTitle:'busTitle',
     audioLabel:'audioLabel', gpsLabel:'gpsLabel', qrLabel:'qrLabel', nextLabel:'nextLabel',
     destLoadingLabel:'destLoadingLabel', destNote:'destNote',
   };
-  // تحديث جميع العناصر العادية
+  
   Object.keys(map).forEach(key => {
     const el = document.getElementById(map[key]);
     if (el) {
@@ -600,13 +614,11 @@ function updateUI() {
     }
   });
 
-  // تحديث النص الترحيبي (الذي يتحرك) بشكل مباشر
   const heroDescEl = document.getElementById('heroDesc');
   if (heroDescEl) {
     heroDescEl.textContent = t('heroDesc');
   }
 
-  // باقي التحديثات
   updateProgressLabel();
   document.getElementById('langLabel').textContent = lang === 'ar' ? 'English' : 'عربي';
   document.querySelectorAll('[data-title-ar]').forEach(el => {
@@ -637,11 +649,10 @@ function updateProgressLabel() {
 
 function setLang(l) { lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr'; updateUI(); }
 
-// زر اللغة
 document.getElementById('langToggle').addEventListener('click', () => setLang(lang === 'ar' ? 'en' : 'ar'));
 
 // ============================================================
-//   بيانات الخريطة والمسارات (نفس الكود الأصلي)
+//   بيانات الخريطة والمسارات
 // ============================================================
 proj4.defs("EPSG:28191","+proj=cass +lat_0=31.73409694444445 +lon_0=35.21208055555556 +x_0=170251.555 +y_0=126867.909 +ellps=clrk80 +towgs84=-275.722,94.7824,340.894,-8.001,-4.42,-11.821,1 +units=m +no_defs");
 function toWGS(x,y){ return proj4("EPSG:28191","WGS84",[x,y]); }
@@ -651,7 +662,7 @@ const rawSites = [
   {id:2, x:166833.53799999971, y:165404.23589999974, image:"https://scontent.fjrs10-1.fna.fbcdn.net/v/t39.30808-6/469077290_1640060163388510_1253017649012326766_n.jpg", video:""},
   {id:3, x:166928.55350000039, y:165295.10309999995, image:"https://scontent.fjrs25-1.fna.fbcdn.net/v/t39.30808-6/484516558_660855609662863_3393275251732979649_n.jpg", video:""},
   {id:4, x:166920.10539999977, y:165096.63529999927, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAC1QbAvvgzZ7r08PELUlDPiQIpPGRGvAyLnFUWRp9aQ&s", video:"https://youtu.be/Q7sZbtf5Z_I?si=sv3hDr49vI0EELCX"},
-  {id:9, x:167072.94959999993, y:165365.39860000089, image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Salfit_06.jpg/250px-Salfit_06.jpg", video:""},
+  {id:9, x:167072.94959999993, y:165365.39860000089, image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Salfeet_06.jpg/250px-Salfeet_06.jpg", video:""},
   {id:5, x:167213.73, y:165450.93, image:"https://www.maan-ctr.org/magazine/files/image/photos/issue92/alrased/2/deirIstia/2.jpg", video:""},
   {id:6, x:167235.80, y:165438.41, image:"https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/Afaneh.png", video:"https://www.facebook.com/watch/?v=825782240589842"},
   {id:7, x:167382.58059999999, y:165430.92180000059, image:"https://palinfo.com/wp-content/uploads/models/media/images/2018/9/17/374208717.jpg", video:""},
@@ -675,7 +686,7 @@ const busTours = [
 ];
 
 // ============================================================
-//   الخريطة والمنطق (نفس الكود الأصلي)
+//   الخريطة والمنطق
 // ============================================================
 const BUS_ROUTE_COLOR = '#00bcf5';
 const DEFAULT_ROUTE = [1,2,3,4,9,5,6,7,8,10];
@@ -696,7 +707,6 @@ function youtubeEmbedUrl(url){ if(!url) return ''; if(url.includes('/embed/')) r
 function fmtTime(mins){ if(mins<60) return `${Math.round(mins)} ${lang==='ar'?'د':'min'}`; const h=Math.floor(mins/60), m=Math.round(mins%60); return `${h}${lang==='ar'?'س':'h'} ${m}${lang==='ar'?'د':'m'}`; }
 function showToast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(el._timer); el._timer=setTimeout(()=>el.classList.remove('show'),2600); }
 
-// دوال المسار (مأخوذة من الكود الأصلي)
 function closestOnSegment(px,py,x1,y1,x2,y2){ const dx=x2-x1, dy=y2-y1; const lenSq=dx*dx+dy*dy; let t=lenSq===0?0:((px-x1)*dx+(py-y1)*dy)/lenSq; t=Math.max(0,Math.min(1,t)); const cx=x1+t*dx, cy=y1+t*dy; return {x:cx,y:cy,t,dist:Math.hypot(px-cx,py-cy)}; }
 function projectToRoute(px,py){ let best=null; routePartsXY.forEach((part,pi)=>{ for(let i=0;i<part.length-1;i++){ const [x1,y1]=part[i],[x2,y2]=part[i+1]; const c=closestOnSegment(px,py,x1,y1,x2,y2); if(!best||c.dist<best.dist) best={part:pi,seg:i,t:c.t,x:c.x,y:c.y,dist:c.dist}; } }); return best; }
 sites.forEach(s=>{ s.snap=projectToRoute(s.x,s.y); });
@@ -857,7 +867,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 document.getElementById('brandHome').addEventListener('click', ()=>showPage('home'));
 showPage('home');
 
-console.log('✅ تم تحميل الموقع بالكامل مع تأثير الوميض.');
+console.log('✅ تم تحميل الموقع بالكامل مع تأثير الوميض والحركة.');
 </script>
 </body>
 </html>
