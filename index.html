@@ -13,12 +13,12 @@
    ============================================ */
 * { box-sizing:border-box; margin:0; }
 :root{
-  --stone:#F4EFE2; --stone-deep:#E8E0CC; --white:#FFFFFF;
-  --green:#6E8F5C; --green-dark:#3E5631; --green-deeper:#2A3B21;
-  --sky:#34a50073; --sky-dark:#34a5003d;
-  --gray:#8B8A82; --gray-soft:#C9C6B8;
-  --ink:#23281D; --ink-soft:#54594A;
-  --path:#8C5A2B;
+  --stone:#F4EFE2; --stone-deep:#e7e1cf; --white:#FFFFFF;
+  --green:#91908ef6; --green-dark:#161615fa; --green-deeper:#82d8fa;
+  --sky:#82d8fa; --sky-dark:#056b8a;
+  --gray:#8B8A82; --gray-soft:#131105;
+  --ink:#040700; --ink-soft:#020000;
+  --path:#aa6f39;
   --paper:#FBF9F2;
   --radius:16px; --radius-lg:26px;
   --shadow:0 10px 34px rgba(35,40,29,0.14);
@@ -106,8 +106,8 @@ html[lang="en"] .hero p.lede {
 .btn-map-highlight{ background:var(--green-dark); color:#fff; box-shadow:0 10px 26px rgba(49, 83, 86, 0.5); padding:1rem 2.4rem; font-size:1.1rem; }
 .btn-map-highlight:hover{ background:var(--green); transform:translateY(-2px); }
 .btn-sm{ padding:0.55rem 1.1rem; font-size:0.8rem; }
-.btn-bus{ background:#00bcf5; color:#fff; box-shadow:0 10px 26px rgba(8, 186, 240, 0.4); }
-.btn-bus:hover{ background:var(--sky-dark); transform:translateY(0px); }
+.btn-bus{ background:#50c9ee; color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); }
+.btn-bus:hover{ background:var(--sky-dark); transform:translateY(0%); }
 .hero-meta{ display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.5rem; position:relative; z-index:2; }
 .meta-chip{ display:flex; align-items:center; gap:0.6rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:var(--radius); padding:0.7rem 1.05rem; backdrop-filter:blur(10px); min-width:132px; }
 .meta-chip .ic{ font-size:1.35rem; }
@@ -137,7 +137,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 .stat-chip{ background:var(--white); border:1px solid var(--glass-border); border-radius:var(--radius); padding:0.7rem 1.1rem; box-shadow:0 2px 10px rgba(35,40,29,0.08); text-align:center; min-width:100px; }
 .stat-chip b{ display:block; font-family:var(--font-display-ar); font-size:1.15rem; color:var(--green-dark); }
 html[lang="en"] .stat-chip b{ font-family:var(--font-display-en); }
-.stat-chip span{ font-size:0.68rem; color:var(--ink-soft); }
+.stat-chip span{ font-size:1rem; color:black; }
 .progress-panel{ display:none; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:1.3rem 1.5rem; margin-bottom:1.4rem; border:1px solid var(--glass-border); }
 .progress-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:0.7rem; flex-wrap:wrap; gap:0.6rem; }
 .progress-top b{ font-family:var(--font-display-ar); font-size:1.05rem; }
@@ -147,7 +147,8 @@ html[lang="en"] .progress-top b{ font-family:var(--font-display-en); }
 .progress-details{ display:flex; gap:1.4rem; flex-wrap:wrap; margin-top:0.9rem; }
 .progress-details div{ font-size:0.78rem; color:var(--ink-soft); }
 .progress-details b{ display:block; color:var(--ink); font-size:0.95rem; }
-.layout{ display:grid; grid-template-columns:340px 1fr; min-height:640px; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); }
+.layout{ display:grid; grid-template-columns:1fr; min-height:640px; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); }
+.sidebar{ display:none !important; }
 @media (max-width:900px){ .layout{ grid-template-columns:1fr; } }
 .sidebar{ background:var(--paper); border-left:1px solid var(--glass-border); padding:1.4rem 1.2rem 1.6rem; overflow-y:auto; max-height:640px; }
 html[dir="rtl"] .sidebar{ border-left:1px solid var(--glass-border); border-right:none; }
@@ -159,7 +160,7 @@ html[lang="en"] .sidebar h3{ font-family:var(--font-display-en); }
 .route-summary b{ font-family:var(--font-display-ar); font-size:1rem; color:var(--path); }
 .reset-btn{ background:none; border:1px solid var(--path); color:var(--path); font-size:0.72rem; padding:0.35rem 0.7rem; border-radius:8px; cursor:pointer; }
 .reset-btn:hover{ background:var(--path); color:#fff; }
-.stop-card{ display:flex; align-items:flex-start; gap:0.7rem; padding:0.65rem 0.4rem; border-bottom:1px solid var(--glass-border); cursor:pointer; transition:background .15s; border-radius:8px; }
+.stop-card{ display:flex; align-items:flex-start; gap:0.7rem; padding:0.65rem 0.4rem; border-bottom:1px solid var(--glass-border); cursor:pointer; transition:background .5s; border-radius:8px; }
 .stop-card:hover{ background:rgba(110,143,92,0.08); }
 .stop-card.active{ background:rgba(110,143,92,0.16); }
 .stop-card.current{ outline:2px solid var(--sky-dark); }
@@ -173,7 +174,7 @@ html[lang="en"] .sidebar h3{ font-family:var(--font-display-en); }
 #map{ height:100%; min-height:640px; width:100%; background:#dfe6d8; }
 .site-pin{ position:relative; width:32px; height:32px; filter:drop-shadow(0 2px 3px rgba(0,0,0,0.35)); }
 .site-pin .pin-shape{ position:absolute; inset:0; width:32px; height:32px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#2563EB; border:2px solid #fff; box-shadow:0 3px 8px rgba(0,0,0,0.5); transition:.18s; }
-.site-pin.selected .pin-shape{ background:#dbf3db; border-color:#064d00; }
+.site-pin.selected .pin-shape{ background:#b7ebff; border-color:#081233; }
 .site-pin.current-pin .pin-shape{ background:#00d8c63b; }
 .site-pin .pin-num{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#000; font-family:var(--font-display-ar); font-weight:700; font-size:0.82rem; transform:translateY(-3px); }
 .site-pin .pin-dot{ position:absolute; top:8px; left:8px; width:16px; height:16px; border-radius:50%; background:#000; transform:rotate(45deg); }
@@ -200,38 +201,39 @@ html[dir="rtl"] .map-toolbar{ left:16px; right:auto; }
 .map-btn{ width:42px; height:42px; border-radius:50%; border:1px solid rgba(35,40,29,0.08); background:#dad8d8; color:var(--ink); font-size:1.05rem; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(35,40,29,0.14); transition:.15s; position:relative; }
 .map-btn:hover{ transform:translateY(-2px) scale(1.05); box-shadow:0 6px 14px rgba(35,40,29,0.22); }
 .map-btn.on{ background:var(--green-dark); color:#fff; border-color:var(--green-dark); }
-.map-btn .pulse-dot{ position:absolute; top:2px; inset-inline-end:2px; width:9px; height:9px; border-radius:50%; background:#EF4444; border:2px solid #fff; display:none; }
+.map-btn .pulse-dot{ position:absolute; top:2px; inset-inline-end:2px; width:9px; height:9px; border-radius:50%; background:#e70f0f; border:2px solid #fff; display:none; }
 .map-btn.on .pulse-dot{ display:block; animation:mePulse 1.6s ease-out infinite; }
 .map-mode-badge{ position:absolute; top:16px; right:16px; z-index:640; background:rgba(35,40,29,0.68); color:#fff; backdrop-filter:blur(6px); border-radius:999px; padding:0.32rem 0.85rem; font-size:0.7rem; font-weight:600; display:flex; align-items:center; gap:0.35rem; box-shadow:0 2px 10px rgba(35,40,29,0.08); pointer-events:none; }
 html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
-@media (max-width:760px){ #map{ min-height:440px; } .map-toolbar{ top:10px; padding:6px; gap:4px; } .map-btn{ width:37px; height:37px; font-size:0.92rem; } .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; } }
+@media (max-width:760px){ #map{ min-height:440px; } .map-toolbar{ top:10px; padding:6px; gap:4px; } .map-btn{ width:37px; height:37px; font-size:0.92rem; } .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; } .dest-map-wrap{ height:min(52vh,420px); } .dest-modal-card{ width:100%; } }
 
 /* جولات الحافلة */
-.bus-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.4rem; }
-.bus-card{ background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--glass-border); display:flex; flex-direction:column; transition:.2s; }
+.bus-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.4rem; }
+.bus-card{ background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--glass-border); display:flex; flex-direction:column; transition:.1s; }
 .bus-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-lg); }
 .bus-media{ height:150px; position:relative; background:linear-gradient(135deg,#00bcf5,var(--sky-dark)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
 .bus-media img{ width:100%; height:100%; object-fit:cover; }
 .bus-media .no-img-label{ color:#fff; font-size:0.75rem; background:rgba(0,0,0,0.25); padding:0.3rem 0.7rem; border-radius:999px; position:absolute; bottom:10px; }
-.bus-body{ padding:1.2rem 1.3rem 1.4rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; }
-.bus-body h3{ font-family:var(--font-display-ar); font-size:1.15rem; margin:0; }
+.bus-body{ padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; }
+.bus-body h3{ font-family:var(--font-display-ar); font-size:2rem; text-align:center; margin:0; }
 html[lang="en"] .bus-body h3{ font-family:var(--font-display-en); }
-.bus-body p{ font-size:0.85rem; color:var(--ink-soft); line-height:1.7; margin:0; flex:1; }
+.bus-body p{ font-size:0.5rem; color:#020000; line-height:1.7; margin:0; flex:1;text-align:center; margin:0; }
 .bus-meta{ display:flex; gap:0.6rem; flex-wrap:wrap; font-size:0.72rem; color:var(--ink-soft); }
-.bus-meta span{ background:var(--stone); padding:0.25rem 0.6rem; border-radius:999px; }
+.bus-meta span{ background:var(--stone); padding:0.25rem 0.6rem; border-radius:999px;text-align:center; margin:0; }
 
 /* فوتر */
 footer{ background:var(--stone); padding:0.5rem 0; border-top:1px solid var(--glass-border); flex-shrink:0; }
 footer p{ font-size:0.68rem; color:var(--ink); line-height:1.5; text-align:center; margin:0; }
 
 /* مودال */
-.modal-overlay{ position:fixed; inset:0; background:rgba(15,18,10,0.72); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:2000; padding:1.2rem; opacity:0; pointer-events:none; transition:opacity .18s; }
+.modal-overlay{ position:fixed; inset:0; background:rgba(18, 10, 10, 0.466); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:2000; padding:1.2rem; opacity:0; pointer-events:none; transition:opacity .18s; }
 .modal-overlay.open{ opacity:1; pointer-events:auto; }
-.modal-card, .dest-modal-card{ background:var(--paper); width:min(620px,100%); max-height:92vh; overflow-y:auto; border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,0.55); position:relative; }
+.modal-card{ background:var(--paper); width:min(620px,100%); max-height:92vh; overflow-y:auto; border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,0.55); position:relative; }
+.dest-modal-card{ background:var(--paper); width:min(980px,96vw); max-height:94vh; overflow-y:auto; border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,0.55); position:relative; }
 .modal-close{ position:absolute; top:12px; inset-inline-start:12px; z-index:5; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.35); font-size:1.3rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 .modal-close:hover{ background:rgba(255,255,255,0.35); }
-.modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--green-deeper),var(--green-dark)); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--path); }
-.modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#F4E9C6; margin:0 0 0.3rem; }
+.modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--sky-dark),#00bcf5); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--sky-dark); }
+.modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#FFF; margin:0 0 0.3rem; }
 html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
 .modal-subtitle{ font-size:0.85rem; color:rgba(255,255,255,0.85); }
 .modal-image{ height:210px; margin:1.1rem 1.1rem 0; border-radius:12px; overflow:hidden; background:linear-gradient(135deg,var(--green),var(--green-dark)); display:flex; align-items:center; justify-content:center; color:#fff; flex-direction:column; gap:0.3rem; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
@@ -241,23 +243,23 @@ html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
 .modal-meta-row{ display:flex; gap:0.6rem; flex-wrap:wrap; padding:1rem 1.3rem 0; }
 .modal-meta-row .mchip{ background:var(--stone); border-radius:999px; padding:0.35rem 0.85rem; font-size:0.74rem; color:var(--ink-soft); }
 .modal-body{ padding:1rem 1.3rem 1.5rem; }
-.modal-text{ font-size:0.93rem; line-height:1.95; color:var(--ink-soft); margin:0 0 1.1rem; white-space:pre-line; text-align:justify; }
+.modal-text{ font-size:1rem; line-height:1.95; color:var(--ink-soft); margin:0 0 1.1rem; white-space:pre-line; text-align:justify; }
 .modal-actions-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:0.7rem; }
 @media (max-width:480px){ .modal-actions-grid{ grid-template-columns:1fr; } }
 .act-btn{ padding:0.8rem 0.7rem; border-radius:8px; font-size:0.82rem; font-weight:700; border:1px solid var(--gray-soft); background:var(--white); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.4rem; transition:.18s; }
 .act-btn:hover{ background:var(--green); color:#fff; border-color:var(--green); }
 .modal-toggle{ width:100%; padding:0.75rem; background:var(--green); color:#fff; border:none; border-radius:8px; font-size:0.9rem; font-weight:700; cursor:pointer; margin-top:0.4rem; }
-.modal-toggle.remove{ background:#A24444; }
+.modal-toggle.remove{ background:#853030; }
 .dest-modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--sky-dark),#00bcf5); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--sky-dark); }
 .dest-modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#FFF; margin:0 0 0.3rem; }
-html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
+html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
 .dest-modal-body{ padding:1rem 1.3rem 1.5rem; }
-.dest-map-wrap{ width:100%; height:min(58vh,440px); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(35,40,29,0.08); position:relative; }
+.dest-map-wrap{ width:100%; height:min(72vh,640px); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(35,40,29,0.08); position:relative; }
 #destMap{ width:100%; height:100%; }
 .dest-map-loading{ position:absolute; inset:0; background:rgba(251,249,242,0.85); display:flex; align-items:center; justify-content:center; font-size:0.85rem; color:var(--ink-soft); z-index:400; transition:opacity .2s; }
 .dest-map-loading.hidden{ opacity:0; pointer-events:none; }
 .dest-info-row{ display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem; background:var(--paper); border:1px solid var(--glass-border); border-radius:var(--radius); padding:0.9rem 1rem; }
-.dest-info-row .mchip{ background:var(--stone); border-radius:999px; padding:0.4rem 0.95rem; font-size:0.78rem; color:var(--ink-soft); }
+.dest-info-row .mchip{ background:var(--stone); border-radius:999px; padding:0.4rem 0.95rem; font-size:1rem; color:var(--ink-soft); }
 .dest-note{ font-size:0.78rem; color:var(--ink-soft); margin-top:0.7rem; line-height:1.7; }
 .dest-hero-img{ width:100%; height:min(34vw,180px); border-radius:14px; overflow:hidden; margin-bottom:1rem; background:var(--stone); }
 .dest-hero-img img{ width:100%; height:100%; object-fit:cover; }
@@ -346,14 +348,15 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
       <a href="#home" class="btn btn-outline btn-sm page-back" id="mapHome">🏠 الرئيسية</a>
       <div class="section-head">
         <span id="mapEyebrow"></span>
-        <h2 class="section-title" id="mapTitle">خارطة دروب الزيتون</h2>
-        <p class="section-sub" id="mapSub"> </p>
+        <h2 class="section-title" id="mapTitle">مسار دروب الزيتون</h2>
+        <p class="section-sub" id="mapSub">محطات تروي تراث المكان و جذور العراقة و تنبض بالحكايات 
+تاريخنا لا يطوى مع الزمن بل يبعث حيا من دروبنا 
+</p>
       </div>
       <div class="map-stats-bar">
-        <div class="stat-chip"><b id="statCount">10</b><span id="statTrailsLabel">دروب</span></div>
-        <div class="stat-chip"><b id="statSelected">0</b><span id="statSelectedLabel">مختار</span></div>
-        <div class="stat-chip"><b id="statDist">—</b><span id="statDistLabel">طول المسار</span></div>
-        <div class="stat-chip"><b id="statTime">—</b><span id="statTimeLabel">وقت السير التقديري</span></div>
+        <div class="stat-chip"><b id="statCount">10</b><span id="statTrailsLabel">🗺️ دروب</span></div>
+        <div class="stat-chip"><b id="statDist">—</b><span id="statDistLabel"> 📏 طول المسار </span></div>
+        <div class="stat-chip"><b id="statTime">—</b><span id="statTimeLabel">⏱️ وقت السير التقديري  </span></div>
       </div>
       <div class="progress-panel" id="progressPanel">
         <div class="progress-top">
@@ -438,11 +441,23 @@ html[lang="en"] .dest-modal-title{ font-family:var(--font-display-en); }
     <div class="dest-modal-header"><h2 class="dest-modal-title" id="destModalTitle"></h2><div class="dest-modal-subtitle" id="destModalSubtitle"></div></div>
     <div class="dest-modal-body">
       <div class="dest-hero-img" id="destHeroImg" style="display:none;"></div>
-      <div class="dest-map-wrap"><div id="destMap"></div><div class="dest-map-loading" id="destMapLoading"><span id="destLoadingLabel">جارٍ رسم المسار عبر شبكة الطرق...</span></div></div>
+      <div class="dest-map-wrap">
+        <div id="destMap"></div>
+        <div class="map-mode-badge" id="destMapModeBadge">🛰️ <span id="destMapModeLabel">خريطة أساسية</span></div>
+        <div class="map-toolbar" role="toolbar" aria-label="أدوات خريطة درب الحافلة">
+          <button class="map-btn" id="destGpsBtn" title="بدء الملاحة المباشرة" aria-label="بدء الملاحة">🧭<span class="pulse-dot"></span></button>
+          <button class="map-btn" id="destSatBtn" title="تبديل نوع الخريطة" aria-label="تبديل نوع الخريطة">🗺️</button>
+          <div class="map-divider"></div>
+          <button class="map-btn" id="destZoomIn" title="تكبير" aria-label="تكبير">➕</button>
+          <button class="map-btn" id="destZoomOut" title="تصغير" aria-label="تصغير">➖</button>
+          <div class="map-divider"></div>
+          <button class="map-btn" id="destHomeBtn" title="توسيط الخريطة" aria-label="توسيط الخريطة">🏠</button>
+        </div>
+        <div class="dest-map-loading" id="destMapLoading"><span id="destLoadingLabel">جارٍ رسم المسار عبر شبكة الطرق...</span></div>
+      </div>
       <div class="dest-info-row" id="destInfoRow"></div>
       <p class="dest-desc" id="destDesc"></p>
       <div id="destVideo"></div>
-      <p class="dest-note" id="destNote">يبدأ هذا المسار من موقف الحافلات (نهاية درب التجمع والترفيه) ويتابع عبر شبكة الطرق الفعلية وصولاً إلى الوجهة المختارة.</p>
     </div>
   </div>
 </div>
@@ -488,7 +503,7 @@ const T = {
   stage2li3: { ar:'معلومات المسافة والوقت التقديري لكل وجهة', en:'Estimated distance and time for every destination' },
   mapHome: { ar:'🏠 الرئيسية', en:'🏠 Home' },
   mapEyebrow: { ar:'دروب الزيتون', en:'Olive Trails' },
-  mapTitle: { ar:'خارطة دروب الزيتون', en:'Olive Trails Map' },
+  mapTitle: { ar:'خارطة دروب الزيتون', en:'Olive Trails route' },
   mapSub: { ar:'', en:'' },
   statTrailsLabel: { ar:'دروب', en:'Trails' },
   statSelectedLabel: { ar:'مختار', en:'Selected' },
@@ -516,7 +531,7 @@ const T = {
   footerText: { ar:'<strong>الدليل التفاعلي الرسمي لدروب الزيتون</strong><br>إشراف: <strong>بلدية سلفيت</strong> | تصميم وتطوير: <strong>ديما ماضي</strong><br>جميع الحقوق محفوظة © {year} بلدية سلفيت',
     en:'<strong>The Official Interactive Guide to Olive Trails</strong><br>Supervised by: <strong>Salfeet Municipality</strong> | Design & Development: <strong>Dema Madi</strong><br>All rights reserved © {year} Salfeet Municipality' },
   stopNames: { 1:{ar:'بلدية سلفيت',en:'Salfeet Municipality'}, 2:{ar:'ديوان بلدية سلفيت',en:'Salfeet Municipal Hall'}, 3:{ar:'حديقة البلدية القديمة',en:'Old Town Garden'}, 4:{ar:'عين المغرفة',en:'Ain Al-Maghrafa Spring'}, 5:{ar:'زقاق الحواكير',en:"Hashem's Alley"}, 6:{ar:'دار عفانة',en:'Afana House'}, 7:{ar:'الصالة الرياضية',en:'Sports Hall'}, 8:{ar:'شارع أبو جهاد',en:'Abu Jihad Street'}, 9:{ar:'ساحة التوتة',en:'Tut Square'}, 10:{ar:'حديقة البلدية',en:'Municipal Park'} },
-  stopPaths: { 1:{ar:'درب الأساس',en:'Foundation Trail'}, 2:{ar:'درب ذاكرة الأجداد',en:'Ancestors Trail'}, 3:{ar:'درب عبق الياسمين',en:'Jasmine Trail'}, 4:{ar:'درب عين المغرفة',en:'Ain Al-Maghrafa Trail'}, 5:{ar:'درب الحواكير',en:'Orchards Trail'}, 6:{ar:'درب الأصالة',en:'Heritage Trail'}, 7:{ar:'درب التحدي',en:'Challenge Trail'}, 8:{ar:'درب النقاء',en:'Purity Trail'}, 9:{ar:'درب ميدان التوتة',en:'Tut Square Trail'}, 10:{ar:'درب اللقاء والترفيه',en:'Gathering & Leisure Trail'} },
+  stopPaths: { 1:{ar:'درب الأساس',en:'Foundation Trail'}, 2:{ar:'درب الأجداد',en:'Ancestors Trail'}, 3:{ar:'درب عبق الياسمين',en:'Jasmine Trail'}, 4:{ar:'درب عين المغرفة',en:'Ain Al-Maghrafa Trail'}, 5:{ar:'درب الحواكير',en:'Orchards Trail'}, 6:{ar:'درب الأصالة',en:'Heritage Trail'}, 7:{ar:'درب التحدي',en:'Challenge Trail'}, 8:{ar:'درب النقاء',en:'Purity Trail'}, 9:{ar:'درب ميدان التوتة',en:'Tut Square Trail'}, 10:{ar:'درب اللقاء والترفيه',en:'Gathering & Leisure Trail'} },
   stopTexts: { 1:{ar:'محطة الانطلاق\nأمام مبنى بلدية سلفيت تبدأ رحلة دروب الزيتون، حيث تلتقي الدروبوتنطلق الحكايات.\n\nتُعد بلدية سلفيت، التي تأسست عام 1882، من أقدم الهيئات المحلية في فلسطين.\n\nتقع مدينة سلفيت في قلب الضفة الغربية، وتتميز بطبيعتها الجبلية وينابيعها العذبة وأراضيها الزراعية الخصبة.',
     en:'Starting Point\nIn front of Salfeet Municipality building begins the Olive Trails journey, where routes meet and stories unfold.\n\nFounded in 1882, Salfeet Municipality is one of the oldest local authorities in Palestine.\n\nSalfeet sits at the heart of the West Bank, known for its mountainous landscape, fresh springs, and fertile agricultural land.' },
   2:{ar:'ديوان بلدية سلفيت\nيُعد ديوان بلدية سلفيت من المرافق المجتمعية المهمة، يستضيف الفعاليات الرسمية والثقافية والاجتماعية على مدار العام.\n\nيجسد الديوان رؤية بلدية سلفيت في تعزيز التواصل مع المواطنين ودعم المبادرات المجتمعية.',
@@ -537,8 +552,11 @@ const T = {
     en:'Tut Square\nEstablished in 1965, the beating heart of Salfeet and once a main market for agricultural equipment.\n\nA historic mulberry tree at its center gives the square its name.' },
   10:{ar:'محطة إضافية للاستجمام، يوفر متنفسًا طبيعيًا يجمع المساحات الخضراء والأجواء الهادئة قبل الوصول إلى موقف الحافلات.',
     en:'A bonus leisure stop offering green spaces and a calm atmosphere just before reaching the Bus Station.' } },
-  busTourNames: { 1:{ar:'عين فريج',en:'Nature Tour'}, 2:{ar:'عين عدس',en:'Olive & Agriculture Tour'}, 3:{ar:'خربة قيس',en:'Investment & Industrial Tour'}, 4:{ar:'وادي الشاعر',en:'Cultural & Heritage Tour'} },
-  busTourDescs: { 1:{ar:'استكشاف الوديان والينابيع والغطاء النباتي الطبيعي حول المدينة.',en:'Explore the valleys, springs, and natural vegetation surrounding the city.'}, 2:{ar:'زيارة مزارع الزيتون التاريخية والتعرف على صناعة زيت الزيتون المحلية.',en:'Visit historic olive farms and learn about local olive oil production.'}, 3:{ar:'استعراض المنطقة الصناعية وفرص الاستثمار المتاحة في سلفيت.',en:'Overview of the industrial zone and available investment opportunities in Salfeet.'}, 4:{ar:'جولة معمقة في المواقع الأثرية والمباني التراثية المحيطة بالمدينة.',en:'An in-depth tour of archaeological sites and heritage buildings surrounding the city.'} },
+  busTourNames: { 1:{ar:'درب عين فريج',en:'Nature Tour'}, 2:{ar:' درب عين عدس',en:'Olive & Agriculture Tour'}, 3:{ar:'درب الخير ',en:'Investment & Industrial Tour'}, 4:{ar:'درب الطبيعة المتنوعة',en:'Cultural & Heritage Tour'} },
+  busTourDescs: { 1:{ar:'عين فريج تقع جنوب غرب مدينة سلفيت، وتتميز بصفاء مياهها وبرودتها الشديدة، إذ تنبع من صخر عميق يُعرف محليًا باسم «الدست». وبجوارها يقع متنزه حديث يوفر للزوار مساحة للاستراحة والاستمتاع بجمال الطبيعة، كما توجد بالقرب منها آثار معصرة عنب قديمة تضيف للمكان قيمة تاريخية وتراثية. وترتبط العين في الذاكرة الشعبية بروايات محلية تتحدث عن الخصائص العلاجية لمياهها وقدرتها على المساعدة في علاج بعض الأمراض، مما يعكس مكانتها في التراث الشعبي لأهالي سلفيت. عين فريج... ماء بارد صافٍ، وطبيعة تحكي حكاية سلفيت.',en:'Explore the valleys, springs, and natural vegetation surrounding the city.'}, 
+  2:{ar:'تقع عين عدس عند سفح الجبل الذي يحمل اسمها، حيث تنبع مياهها من أسفل الجبل وتصب في بركة دائرية يبلغ عمقها نحو 1.5 متر، شُيّدت في خمسينيات القرن الماضي. وتحيط بالعين أشجار الزيتون والليمون، إلى جانب المساحات المزروعة بالخضروات، لتشكّل مشهدًا طبيعيًا يجمع بين الماء والزراعة وجمال الريف السلفيتي. وتُعد عين عدس من الأماكن التي تعكس ارتباط أهالي سلفيت بالأرض والماء، وتمنح الزائر فرصة للاستمتاع بهدوء الطبيعة وجمال المشهد الزراعي المحيط بها.',en:'Visit historic olive farms and learn about local olive oil production.'},
+  3:{ar:'خربة قيس تقع جنوب مدينة سلفيت، وهي ضاحية تتميز بطبيعتها الريفية الهادئة وأراضيها الزراعية وحقول الزيتون، وتحتضن عددًا من عيون المياه والمعالم التراثية التي تعكس تاريخ المكان وارتباط أهالي سلفيت بأرضهم. وتنتشر فيها آثار ومواقع قديمة تحكي جانبًا من الحياة الريفية التي عاشها السكان عبر الأجيال، فيما تضفي أشجار الزيتون والمساحات الخضراء المحيطة بالمكان جمالًا خاصًا على المشهد. وتمنح خربة قيس زوارها فرصة للتجول بين مساراتها الطبيعية، واكتشاف معالمها التراثية، والاستمتاع بجمال الريف السلفيتي وهدوء المكان',en:'Overview of the industrial zone and available investment opportunities in Salfeet.'},
+  4:{ar:' عين الشاعر  تعد من  الينابيع الغزيرة في منطقة سلفيت، حيث تنبع مياهها من ملتقى جبلين، في مشهد طبيعي يجمع بين جمال الجبال ووفرة المياه. وقد شكّلت العين مصدرًا مهمًا للمياه لأهالي المنطقة والقرى المجاورة، ومنها قرية الساوية، حيث تُستخدم مياهها في سقاية المواشي. وتُجسّد عين الشاعر أهمية الينابيع في الحياة الريفية، ودورها في دعم الزراعة وتربية المواشي، إلى جانب ما تضفيه من جمال طبيعي على المنطقة.',en:'An in-depth tour of archaeological sites and heritage buildings surrounding the city.'} },
   busStart: { ar:'ابدأ الجولة', en:'Start Tour' },
   discoverTrail: { ar:'اكتشف درب', en:'Discover trail' },
   imHere: { ar:'أنا هنا', en:"I'm here" },
@@ -548,7 +566,6 @@ const T = {
   noBusVideo: { ar:'لا يوجد فيديو لهذا المسار حالياً', en:'No video available for this route yet' },
   watchRouteVideo: { ar:'شاهد فيديو المسار', en:'Watch route video' },
   busTourSelected: { ar:'تم اختيار: {name} — المسار قيد الإعداد', en:'Selected: {name} — route coming soon' },
-  destinationRoute: { ar:'المسار من موقف الحافلات إلى الوجهة', en:'Route from the Bus Station to the destination' },
   busStationPopup: { ar:'موقف حافلات سلفيت', en:'Salfeet Bus Station' },
   busStationLabel: { ar:'موقف الحافلات', en:'Bus Station' },
   yourLocation: { ar:'موقعك الحالي', en:'Your location' },
@@ -658,16 +675,16 @@ proj4.defs("EPSG:28191","+proj=cass +lat_0=31.73409694444445 +lon_0=35.212080555
 function toWGS(x,y){ return proj4("EPSG:28191","WGS84",[x,y]); }
 
 const rawSites = [
-  {id:1, x:166891.10890000034, y:165413.87219999917, image:"https://lh3.googleusercontent.com/gps-cs-s/APNQkAHX_ueiHsx1hMRQjaBchHn6xeiT7KbgbthI9lVYdI_Kpn2wtKZZA1en_jYNavVYdO3RNYqkvL0ddabS5PiV_pTh_VP0dKKJFr8uc_QFMS2KumXVfZos_lLwutmwu8DyGqQzL_GS=s1360-w1360-h1020-rw", video:"https://youtu.be/bn2GYJtC3gM?si=8XTyM-j8_2x5x9MO"},
-  {id:2, x:166833.53799999971, y:165404.23589999974, image:"https://scontent.fjrs10-1.fna.fbcdn.net/v/t39.30808-6/469077290_1640060163388510_1253017649012326766_n.jpg", video:""},
-  {id:3, x:166928.55350000039, y:165295.10309999995, image:"https://scontent.fjrs25-1.fna.fbcdn.net/v/t39.30808-6/484516558_660855609662863_3393275251732979649_n.jpg", video:""},
+  {id:1, x:166891.10890000034, y:165413.87219999917, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVevgbTD-slyStjKj7dXGeYRlj--GJvud7OKAXjNH-b8KwBfKKa9RrqhDf&s=10", video:"https://youtu.be/bn2GYJtC3gM?si=8XTyM-j8_2x5x9MO"},
+  {id:2, x:166833.53799999971, y:165404.23589999974, image:"https://scontent.fjrs29-1.fna.fbcdn.net/v/t39.30808-6/469077290_1640060163388510_1253017649012326766_n.jpg?stp=dst-jpg_tt6&cstp=mx1080x700&ctp=p180x540&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=0-7eXSq_xb8Q7kNvwHtwknj&_nc_oc=AdplWn6M4d0RB7KS7HHpbDznK0acnmzOo0MDWgaCbTg7ci0lCHK213Eu_642Vu-tKJU&_nc_zt=23&_nc_ht=scontent.fjrs29-1.fna&_nc_gid=14wpCR3UP_cPCHgvJ70LjA&_nc_ss=7a289&oh=00_AQEcGSG-fy9rdvoL62MM95Gft1r-m4a5dyYiZ0foxNapiw&oe=6A88AB82", video:""},
+  {id:3, x:166928.55350000039, y:165295.10309999995, image:"https://salfeet.org/web/image/695-a6d09194/6-1.webp", video:""},
   {id:4, x:166920.10539999977, y:165096.63529999927, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAC1QbAvvgzZ7r08PELUlDPiQIpPGRGvAyLnFUWRp9aQ&s", video:"https://youtu.be/Q7sZbtf5Z_I?si=sv3hDr49vI0EELCX"},
-  {id:9, x:167072.94959999993, y:165365.39860000089, image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Salfeet_06.jpg/250px-Salfeet_06.jpg", video:""},
+  {id:9, x:167072.94959999993, y:165365.39860000089, image:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Salfit_06.jpg/250px-Salfit_06.jpg", video:""},
   {id:5, x:167213.73, y:165450.93, image:"https://www.maan-ctr.org/magazine/files/image/photos/issue92/alrased/2/deirIstia/2.jpg", video:""},
-  {id:6, x:167235.80, y:165438.41, image:"https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/Afaneh.png", video:"https://www.facebook.com/watch/?v=825782240589842"},
+  {id:6, x:167235.80, y:165438.41, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZjqtp6b7cQQ62l-pC-F-zsvOUSAlN3o_3IhBhSPwj01Wpkc5ylAgyaTZn&s=10", video:"https://www.facebook.com/watch/?v=825782240589842"},
   {id:7, x:167382.58059999999, y:165430.92180000059, image:"https://palinfo.com/wp-content/uploads/models/media/images/2018/9/17/374208717.jpg", video:""},
   {id:8, x:167459.94240000006, y:165472.45670000091, image:"", video:""},
-  {id:10, x:167510.53849999979, y:166018.53350000083, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGjdF3P-MxHGbT8hVnxWSiYyLGFlY0pSCHmLWwb0SwnOfo1vuMFjLREYG&s=10", video:""}
+  {id:10, x:167510.53849999979, y:166018.53350000083, image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzGjdF3P-MxHGbT8hVnxWSiYyLGFlY0pSCHmLWwb0SwnOfo1vuMFjLREYG&s=10", video:"https://www.facebook.com/watch/?v=916881887367665"}
 ];
 const sites = rawSites.map(s => { const [lon,lat] = toWGS(s.x,s.y); return {...s,lat,lon}; });
 
@@ -691,16 +708,23 @@ const busTours = [
 const BUS_ROUTE_COLOR = '#00bcf5';
 const DEFAULT_ROUTE = [1,2,3,4,9,5,6,7,8,10];
 let selected = [...DEFAULT_ROUTE];
-let currentStopId = null;
+let currentStopId = [];
 let routeLayers = [];
 const markers = {};
-let meMarker = null;
-let watchId = null;
+let meMarker = {};
+let watchId = [];
 let currentModalSiteId = null;
-let ttsUtterance = null;
+let ttsUtterance = {};
 let destMap = null;
 let destRouteLayers = [];
 let destMarkers = [];
+let destBaseLayer = null;
+let destSatLayer = null;
+let destMapMode = 'base';
+let destLastBounds = null;
+let destWatchId = null;
+let destMeMarker = null;
+let destAccCircle = null;
 
 function escapeAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function youtubeEmbedUrl(url){ if(!url) return ''; if(url.includes('/embed/')) return url; try{ const u=new URL(url); let id=''; if(u.hostname.includes('youtu.be')) id=u.pathname.slice(1); else if(u.searchParams.get('v')) id=u.searchParams.get('v'); if(id) return `https://www.youtube.com/embed/${id}`; return url; }catch(e){ return url; } }
@@ -739,8 +763,14 @@ function setCurrentStop(id){ currentStopId=id; render(); showToast(t('currentSto
 function fitMapToRoute(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding:[50,50],maxZoom:18}); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon],16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding:[40,40]}); } }
 function render(){ sites.forEach(site=>{ const idx=selected.indexOf(site.id); const isCurrent=site.id===currentStopId; markers[site.id].setIcon(pinIcon(idx>-1?idx+1:null, idx>-1, isCurrent)); markers[site.id].setTooltipContent(stopLabelHtml(site,idx)); const tt=markers[site.id].getTooltip(); if(tt){ const el=tt.getElement(); if(el){ el.classList.toggle('label-current',isCurrent); el.classList.toggle('label-selected',!isCurrent&&idx>-1); } } }); routeLayers.forEach(l=>map.removeLayer(l)); routeLayers=[]; if(selected.length>1){ const segs=buildFollowSegments(selected); segs.forEach(({latlngs})=>{ routeLayers.push(L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.55}).addTo(map)); routeLayers.push(L.polyline(latlngs,{color:'#ff0000',weight:4,opacity:0.95}).addTo(map)); const {point,bearing}=midOfPolyline(latlngs); routeLayers.push(L.marker(point,{ icon:L.divIcon({className:'', html:`<div class="route-arrow" style="transform:rotate(${bearing}deg)">▲</div>`, iconSize:[18,18], iconAnchor:[9,9]}), interactive:false }).addTo(map)); }); } renderStopList(); updateProgress(); fitMapToRoute(); }
 function renderStopList(){ const list=document.getElementById('stopList'); list.innerHTML=''; sites.forEach(site=>{ const idx=selected.indexOf(site.id); const card=document.createElement('div'); card.className='stop-card'+(idx>-1?' active':'')+(site.id===currentStopId?' current':''); card.dataset.id=site.id; card.tabIndex=0; const pathName=T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id; const siteName=T.stopNames[site.id]?T.stopNames[site.id][lang]:''; card.innerHTML=`<div class="badge">${idx>-1?(idx+1):''}</div><div class="stop-info"><b>${pathName}</b><span class="desc-tag">${siteName}</span><button type="button" class="info-btn" data-id="${site.id}">${t('discoverTrail')}</button><button type="button" class="here-btn" data-here="${site.id}">📍 ${t('imHere')}</button><button type="button" class="map-pin-btn" data-pan="${site.id}">🗺️ ${t('showOnMap')}</button></div>`; card.querySelector('.badge').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.stop-info b').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.info-btn').onclick=e=>{e.stopPropagation(); openModal(site.id);}; card.querySelector('.here-btn').onclick=e=>{e.stopPropagation(); setCurrentStop(site.id);}; card.querySelector('.map-pin-btn').onclick=e=>{e.stopPropagation(); panToSite(site.id);}; card.onclick=()=>toggleSite(site.id); list.appendChild(card); }); }
-function updateProgress(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); const total=totalDistance(); const walkSpeedKmh=4.5; document.getElementById('statSelected').textContent=selected.length; const distText=total>0?total.toFixed(2)+' '+(lang==='ar'?'كم':'km'):'—'; document.getElementById('statDist').textContent=distText; document.getElementById('summaryDist').textContent=distText; document.getElementById('statTime').textContent=total>0?fmtTime((total/walkSpeedKmh)*60):'—'; if(!currentStopId||orderedSites.length<2){ document.getElementById('progressFill').style.width='0%'; document.getElementById('progressPct').textContent='0%'; document.getElementById('curStopLbl').textContent='—'; document.getElementById('nextStopLbl').textContent='—'; document.getElementById('remDistLbl').textContent='—'; document.getElementById('remTimeLbl').textContent='—'; return; } const curIdx=orderedSites.findIndex(s=>s.id===currentStopId); if(curIdx===-1) return; const pct=Math.round((curIdx/(orderedSites.length-1))*100); document.getElementById('progressFill').style.width=pct+'%'; document.getElementById('progressPct').textContent=pct+'%'; updateProgressLabel(); const cur=orderedSites[curIdx]; const next=orderedSites[curIdx+1]; const curName=T.stopPaths[cur.id]?T.stopPaths[cur.id][lang]:cur.id; const nextName=next?(T.stopPaths[next.id]?T.stopPaths[next.id][lang]:next.id):t('endOfTrail'); document.getElementById('curStopLbl').textContent=curName; document.getElementById('nextStopLbl').textContent=nextName; let remDist=0; const remainingIds=selected.slice(curIdx); if(remainingIds.length>1){ const segs=buildFollowSegments(remainingIds); segs.forEach(({latlngs})=>{ for(let i=0;i<latlngs.length-1;i++) remDist+=haversineLL(latlngs[i],latlngs[i+1]); }); } document.getElementById('remDistLbl').textContent=remDist>0?remDist.toFixed(2)+' '+(lang==='ar'?'كم':'km'):t('arrived'); document.getElementById('remTimeLbl').textContent=remDist>0?fmtTime((remDist/walkSpeedKmh)*60):'—'; }
-function renderBus(){ const grid=document.getElementById('busGrid'); grid.innerHTML=''; busTours.forEach(tour=>{ const card=document.createElement('div'); card.className='bus-card'; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; const hasImg=tour.img&&/^https?:\/\//.test(tour.img); const mediaInner=hasImg?`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`:`<span class="no-img-label">${name}</span>`; card.innerHTML=`<div class="bus-media" style="background:linear-gradient(135deg, ${BUS_ROUTE_COLOR}, var(--sky-dark));">${mediaInner}</div><div class="bus-body"><h3>${name}</h3><p>${desc}</p><div class="bus-meta"><span>⏱ ${tour.duration}</span><span>📏 ${tour.dist}</span></div><button class="btn btn-bus btn-sm start-bus-btn" style="width:100%;justify-content:center;margin-top:0.4rem;">${t('busStart')}</button></div>`; card.querySelector('.start-bus-btn').onclick=()=>{ if(tour.stops_geo&&tour.stops_geo.length){ openDestMap(tour); } else { showToast(t('busTourSelected',{name})); } }; grid.appendChild(card); }); }
+function updateProgress(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); const total=totalDistance(); const walkSpeedKmh=4.5; const statSelected = document.getElementById('statSelected');
+if (statSelected) statSelected.textContent = selected.length;; const distText=total>0?total.toFixed(2)+' '+(lang==='ar'?'كم':'km'):'—'; document.getElementById('statDist').textContent=distText; document.getElementById('summaryDist').textContent=distText; document.getElementById('statTime').textContent=total>0?fmtTime((total/walkSpeedKmh)*60):'—'; if(!currentStopId||orderedSites.length<2){ document.getElementById('progressFill').style.width='0%'; document.getElementById('progressPct').textContent='0%'; document.getElementById('curStopLbl').textContent='—'; document.getElementById('nextStopLbl').textContent='—'; document.getElementById('remDistLbl').textContent='—'; document.getElementById('remTimeLbl').textContent='—'; return; } const curIdx=orderedSites.findIndex(s=>s.id===currentStopId); if(curIdx===-1) return; const pct=Math.round((curIdx/(orderedSites.length-1))*100); document.getElementById('progressFill').style.width=pct+'%'; document.getElementById('progressPct').textContent=pct+'%'; updateProgressLabel(); const cur=orderedSites[curIdx]; const next=orderedSites[curIdx+1]; const curName=T.stopPaths[cur.id]?T.stopPaths[cur.id][lang]:cur.id; const nextName=next?(T.stopPaths[next.id]?T.stopPaths[next.id][lang]:next.id):t('endOfTrail'); document.getElementById('curStopLbl').textContent=curName; document.getElementById('nextStopLbl').textContent=nextName; let remDist=0; const remainingIds=selected.slice(curIdx); if(remainingIds.length>1){ const segs=buildFollowSegments(remainingIds); segs.forEach(({latlngs})=>{ for(let i=0;i<latlngs.length-1;i++) remDist+=haversineLL(latlngs[i],latlngs[i+1]); }); } document.getElementById('remDistLbl').textContent=remDist>0?remDist.toFixed(2)+' '+(lang==='ar'?'كم':'km'):t('arrived'); document.getElementById('remTimeLbl').textContent=remDist>0?fmtTime((remDist/walkSpeedKmh)*60):'—'; }
+function renderBus(){ const grid=document.getElementById('busGrid'); grid.innerHTML=''; busTours.forEach(tour=>{ const card=document.createElement('div'); card.className='bus-card'; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; const hasImg=tour.img&&/^https?:\/\//.test(tour.img); const mediaInner=hasImg?`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`:`<span class="no-img-label">${name}</span>`; card.innerHTML=`<div class="bus-media" style="background:linear-gradient(135deg, ${BUS_ROUTE_COLOR}, var(--sky-dark));">${mediaInner}</div><div class="bus-body">
+    <h3>${name}</h3>
+    <div class="bus-meta">
+        <span>⏱ ${tour.duration}</span>
+        <span>📏 ${tour.dist}</span>
+    </div><button class="btn btn-bus btn-sm start-bus-btn" style="width:100%;justify-content:center;margin-top:0.4rem;">${t('busStart')}</button></div>`; card.querySelector('.start-bus-btn').onclick=()=>{ if(tour.stops_geo&&tour.stops_geo.length){ openDestMap(tour); } else { showToast(t('busTourSelected',{name})); } }; grid.appendChild(card); }); }
 function openModal(id){ currentModalSiteId=id; fillModal(id); document.getElementById('siteModal').classList.add('open'); }
 function fillModal(id){ const site=sites.find(s=>s.id===id); if(!site) return; currentModalSiteId=id; document.getElementById('modalPathName').textContent=T.stopPaths[id]?T.stopPaths[id][lang]:id; document.getElementById('modalPathName').dataset.siteId=id; document.getElementById('modalSiteName').textContent=T.stopNames[id]?T.stopNames[id][lang]:''; const imgContainer=document.getElementById('modalMedia'); if(site.image&&/^https?:\/\//.test(site.image)){ imgContainer.innerHTML=`<img src="${escapeAttr(site.image)}" alt="${escapeAttr(T.stopNames[id]?T.stopNames[id][lang]:id)}" loading="lazy">`; } else { imgContainer.innerHTML=`<div class="emoji">${site.id===1?'🏛️':site.id===2?'📋':site.id===3?'🌳':site.id===4?'💧':site.id===5?'🫒':site.id===6?'🏠':site.id===7?'🏃':site.id===8?'🛤️':site.id===9?'🌳':'🎡'}</div><div class="cap">${t('imagePending')}</div>`; } const text=T.stopTexts[id]?T.stopTexts[id][lang]:''; document.getElementById('modalText').innerHTML=text.replace(/\n/g,'<br>'); renderModalVideo(site); const km=(0.15+(id%5)*0.12).toFixed(2); const mins=Math.round((km/4.5)*60)+3; document.getElementById('modalMetaRow').innerHTML=`<span class="mchip">⏱ ${fmtTime(mins)}</span><span class="mchip">📏 ${km} ${lang==='ar'?'كم':'km'}</span><span class="mchip">⛰ ${site.difficulty==='easy'?(lang==='ar'?'سهل':'Easy'):(lang==='ar'?'متوسط':'Moderate')}</span>`; document.getElementById('audioBtn').onclick=()=>playAudioGuide(site); document.getElementById('gpsBtn').onclick=()=>window.open(`https://www.google.com/maps/dir/?api=1&destination=${site.lat},${site.lon}`,'_blank'); document.getElementById('qrBtn').onclick=()=>showToast(t('qrMessage')); document.getElementById('nextStopBtn').onclick=()=>{ const idxInDefault=DEFAULT_ROUTE.indexOf(id); const nextId=idxInDefault>-1&&idxInDefault<DEFAULT_ROUTE.length-1?DEFAULT_ROUTE[idxInDefault+1]:DEFAULT_ROUTE[0]; fillModal(nextId); }; const btn=document.getElementById('modalToggleBtn'); const isSel=selected.includes(id); btn.textContent=isSel?t('modalRemove'):t('modalAdd'); btn.className='modal-toggle'+(isSel?' remove':''); btn.onclick=()=>{ toggleSite(id); fillModal(id); }; }
 function renderModalVideo(site){ const box=document.getElementById('modalVideo'); if(site.video&&/^https?:\/\//.test(site.video)){ box.innerHTML=`<button type="button" class="video-btn" id="videoPlayBtn"><span>▶</span><span>${t('watchVideo')}</span></button>`; document.getElementById('videoPlayBtn').onclick=()=>{ const base=youtubeEmbedUrl(site.video); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; box.innerHTML=`<div class="video-frame"><iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id)}"></iframe></div>`; }; } else { box.innerHTML=`<div class="video-placeholder">${t('noVideo')}</div>`; } }
@@ -748,31 +778,37 @@ function playAudioGuide(site){ if(!('speechSynthesis' in window)){ showToast(t('
 function stopTracking(){ if(watchId!==null){ navigator.geolocation.clearWatch(watchId); watchId=null; } const btn=document.getElementById('mapGpsBtn'); btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; if(meMarker){ const el=meMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(accCircle){ map.removeLayer(accCircle); accCircle=null; } }
 function startTracking(){ if(!navigator.geolocation){ showToast(t('gpsNotSupported')); return; } showToast(t('gpsStarting')); const btn=document.getElementById('mapGpsBtn'); btn.classList.add('on'); btn.title=lang==='ar'?'إيقاف الملاحة المباشرة':'Stop live navigation'; watchId=navigator.geolocation.watchPosition((pos)=>{ const {latitude,longitude}=pos.coords; if(meMarker) map.removeLayer(meMarker); meMarker=L.marker([latitude,longitude],{ icon:L.divIcon({className:'', html:'<div class="me-pin tracking"></div>', iconSize:[22,22], iconAnchor:[11,11]}), zIndexOffset:1000 }).addTo(map).bindPopup(t('yourLocation')); if(accCircle){ map.removeLayer(accCircle); accCircle=null; } let nearest=null,best=Infinity; sites.forEach(s=>{ const d=haversineLL([latitude,longitude],[s.lat,s.lon]); if(d<best){ best=d; nearest=s; } }); if(nearest&&nearest.id!==lastNearestId&&best<0.06){ lastNearestId=nearest.id; setCurrentStop(nearest.id); const name=T.stopNames[nearest.id]?T.stopNames[nearest.id][lang]:nearest.id; showToast(t('nearestStop',{name})); } }, ()=> { showToast(t('gpsError')); stopTracking(); }, {enableHighAccuracy:true, maximumAge:3000, timeout:10000}); }
 let accCircle=null, lastNearestId=null;
-function ensureDestMap(){ if(destMap) return destMap; destMap=L.map('destMap',{scrollWheelZoom:true}); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors', maxZoom:19, minZoom:6}).addTo(destMap); return destMap; }
+function ensureDestMap(){ if(destMap) return destMap; destMap=L.map('destMap',{scrollWheelZoom:true, zoomControl:false}); destBaseLayer=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors', maxZoom:21, minZoom:2}); destSatLayer=L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{attribution:'Google Satellite', maxZoom:21, minZoom:2}); destBaseLayer.addTo(destMap); return destMap; }
 function clearDestLayers(){ destRouteLayers.forEach(l=>destMap.removeLayer(l)); destRouteLayers=[]; destMarkers.forEach(m=>destMap.removeLayer(m)); destMarkers=[]; }
+function destFitBounds(b){ destLastBounds=b; destMap.fitBounds(b,{padding:[40,40]}); }
+function stopDestTracking(){ if(destWatchId!==null){ navigator.geolocation.clearWatch(destWatchId); destWatchId=null; } const btn=document.getElementById('destGpsBtn'); if(btn){ btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; } if(destMeMarker){ const el=destMeMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(destAccCircle){ destMap.removeLayer(destAccCircle); destAccCircle=null; } }
+function startDestTracking(){ if(!navigator.geolocation){ showToast(t('gpsNotSupported')); return; } if(!destMap) ensureDestMap(); showToast(t('gpsStarting')); const btn=document.getElementById('destGpsBtn'); btn.classList.add('on'); btn.title=lang==='ar'?'إيقاف الملاحة المباشرة':'Stop live navigation'; destWatchId=navigator.geolocation.watchPosition((pos)=>{ const {latitude,longitude}=pos.coords; if(destMeMarker) destMap.removeLayer(destMeMarker); destMeMarker=L.marker([latitude,longitude],{ icon:L.divIcon({className:'', html:'<div class="me-pin tracking"></div>', iconSize:[22,22], iconAnchor:[11,11]}), zIndexOffset:1000 }).addTo(destMap).bindPopup(t('yourLocation')); }, ()=>{ showToast(t('gpsError')); stopDestTracking(); }, {enableHighAccuracy:true, maximumAge:3000, timeout:10000}); }
 async function fetchRoadRoute(latlngPoints){ const coordsStr=latlngPoints.map(([lat,lon])=>`${lon},${lat}`).join(';'); const url=`https://router.project-osrm.org/route/v1/driving/${coordsStr}?overview=full&geometries=geojson`; const res=await fetch(url); if(!res.ok) throw new Error('routing failed'); const data=await res.json(); if(!data.routes||!data.routes.length) throw new Error('no route'); const route=data.routes[0]; const latlngs=route.geometry.coordinates.map(([lon,lat])=>[lat,lon]); return {latlngs, distance:route.distance, duration:route.duration}; }
-async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t('destinationRoute'); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; const heroBox=document.getElementById('destHeroImg'); if(tour.img&&/^https?:\/\//.test(tour.img)){ heroBox.style.display='block'; heroBox.innerHTML=`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`; } else { heroBox.style.display='none'; heroBox.innerHTML=''; } const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ const base=youtubeEmbedUrl(tour.video); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; videoBox.innerHTML=`<div class="video-frame"><iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(name)}"></iframe></div>`; }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); dMap.fitBounds(bounds,{padding:[40,40]}); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); dMap.fitBounds(combined.getBounds(),{padding:[40,40]}); } else { dMap.fitBounds(roadLine2.getBounds(),{padding:[40,40]}); } infoRow.innerHTML=`<span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم إجمالاً':'km total'}</span><span class="mchip">⏱ ${fmtTime(totalMins)}</span>${hasFixedTrail?`<span class="mchip">🥾 ${lang==='ar'?'من البداية للنهاية: المسار الفعلي المساح':'Start to end: actual surveyed trail'}</span>`:''}`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
+async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; const heroBox=document.getElementById('destHeroImg'); if(/^https?:\/\//.test()){ heroBox.style.display='block'; heroBox.innerHTML=`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`; } else { heroBox.style.display='none'; heroBox.innerHTML=''; } const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ const base=youtubeEmbedUrl(tour.video); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; videoBox.innerHTML=`<div class="video-frame"><iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(name)}"></iframe></div>`; }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML=`
+  <span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم إجمالاً':'km total'}</span>
+  <span class="mchip">⏱ ${fmtTime(totalMins)}</span>
+`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
 
 // ============================================================
 //   تهيئة الخريطة الرئيسية
 // ============================================================
 const center = sites.reduce((a,s)=>[a[0]+s.lat/sites.length, a[1]+s.lon/sites.length], [0,0]);
-const map = L.map('map', { scrollWheelZoom:true, zoomControl:false }).setView(center, 15);
-const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap contributors', maxZoom:21, minZoom:6 });
-const satelliteLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { attribution:'Google Satellite', maxZoom:21, minZoom:6 });
+const map = L.map('map', { scrollWheelZoom:true, zoomControl:false }).setView(center, 10);
+const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap contributors', maxZoom:21, minZoom:-100 });
+const satelliteLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { attribution:'Google Satellite', maxZoom:21, minZoom:-100 });
 let mapMode = 'base';
 baseLayer.addTo(map);
 
 const transitLatLngs = routePartsXY.map(part => part.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }));
 L.polyline(transitLatLngs, { color:'#ffffff', weight:6, opacity:0.85 }).addTo(map);
-L.polyline(transitLatLngs, { color:'#FFC93C', weight:3.4, opacity:0.95 }).addTo(map);
+L.polyline(transitLatLngs, { color:'#ff1111', weight:3.4, opacity:0.95 }).addTo(map);
 
 let busMarker = L.marker([busLat,busLon], { icon:L.divIcon({ className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45] }) }).addTo(map).bindPopup(`<b>${t('busStationPopup')}</b>`);
 window.busMarker = busMarker;
 
 sites.forEach(site => {
   const marker = L.marker([site.lat, site.lon], { icon: pinIcon(null,false,false) }).addTo(map);
-  marker.bindTooltip(stopLabelHtml(site,-1), { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:true });
+  marker.bindTooltip(stopLabelHtml(site,-1), { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false });
   marker.on('click', ()=>{ flashStopCard(site.id); openModal(site.id); });
   markers[site.id] = marker;
 });
@@ -784,7 +820,7 @@ renderBus();
 
 document.getElementById('homeBtn').onclick = ()=>{
   const bounds = L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]]));
-  map.flyToBounds(bounds, { padding:[40,40], duration:0.6 });
+  map.flyToBounds(bounds, { padding:[20,20], duration:0.6 });
   showToast(t('mapCentered'));
 };
 document.getElementById('zoomIn').onclick = ()=>map.zoomIn();
@@ -825,10 +861,47 @@ document.getElementById('mapGpsBtn').onclick = ()=>{
   if(watchId !== null){ stopTracking(); } else { startTracking(); }
 };
 
+// ============================================================
+//   أدوات خريطة درب الحافلة (destMap)
+// ============================================================
+const destSatBtn = document.getElementById('destSatBtn');
+const destModeBadge = document.getElementById('destMapModeBadge');
+const destModeLabel = document.getElementById('destMapModeLabel');
+function setDestMapMode(mode){
+  if(!destMap) ensureDestMap();
+  destMapMode = mode;
+  if(mode === 'base'){
+    if(destMap.hasLayer(destSatLayer)) destMap.removeLayer(destSatLayer);
+    if(!destMap.hasLayer(destBaseLayer)) destBaseLayer.addTo(destMap);
+    destSatBtn.textContent = '🛰️';
+    destSatBtn.title = lang==='ar' ? 'التبديل إلى القمر الصناعي' : 'Switch to satellite view';
+    destModeBadge.firstChild.textContent = '🗺️ ';
+    destModeLabel.textContent = t('mapBasemap');
+  } else {
+    if(destMap.hasLayer(destBaseLayer)) destMap.removeLayer(destBaseLayer);
+    if(!destMap.hasLayer(destSatLayer)) destSatLayer.addTo(destMap);
+    destSatBtn.textContent = '🗺️';
+    destSatBtn.title = lang==='ar' ? 'التبديل إلى الخريطة الأساسية' : 'Switch to basemap view';
+    destModeBadge.firstChild.textContent = '🛰️ ';
+    destModeLabel.textContent = t('mapSatellite');
+  }
+}
+destSatBtn.onclick = ()=>setDestMapMode(destMapMode === 'base' ? 'satellite' : 'base');
+
+document.getElementById('destZoomIn').onclick = ()=>{ if(destMap) destMap.zoomIn(); };
+document.getElementById('destZoomOut').onclick = ()=>{ if(destMap) destMap.zoomOut(); };
+document.getElementById('destHomeBtn').onclick = ()=>{
+  if(destMap && destLastBounds){ destMap.flyToBounds(destLastBounds, { padding:[20,20], duration:0.6 }); }
+  showToast(t('mapCentered'));
+};
+document.getElementById('destGpsBtn').onclick = ()=>{
+  if(destWatchId !== null){ stopDestTracking(); } else { startDestTracking(); }
+};
+
 document.getElementById('modalClose').onclick = ()=>{ document.getElementById('siteModal').classList.remove('open'); window.speechSynthesis?.cancel(); };
 document.getElementById('siteModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('siteModal')) { document.getElementById('siteModal').classList.remove('open'); window.speechSynthesis?.cancel(); } });
-document.getElementById('destModalClose').onclick = ()=>document.getElementById('destModal').classList.remove('open');
-document.getElementById('destModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('destModal')) document.getElementById('destModal').classList.remove('open'); });
+document.getElementById('destModalClose').onclick = ()=>{ document.getElementById('destModal').classList.remove('open'); stopDestTracking(); };
+document.getElementById('destModal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('destModal')) { document.getElementById('destModal').classList.remove('open'); stopDestTracking(); } });
 
 function initClock(){
   function tick(){
