@@ -941,25 +941,46 @@ document.getElementById('brandHome').addEventListener('click', ()=>showPage('hom
 showPage('home');
 
 console.log('✅ تم تحميل الموقع بالكامل مع تأثير الوميض والحركة.');
-// تشغيل الصوت التمهيدي عند فتح الصفحة
+// محاولة تشغيل الصوت فوراً بدون أي تفاعل
 (function() {
   const audio = new Audio('https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/int.mp3');
   audio.volume = 0.7;
+  audio.loop = false;
+  let played = false;
 
-  function playAudio() {
-    audio.play().catch(e => console.log('التشغيل التلقائي مُنع، سيتم التشغيل عند أول تفاعل.'));
+  function play() {
+    if (played) return;
+    audio.play().then(() => {
+      played = true;
+      console.log('✅ تم تشغيل الصوت تلقائياً');
+    }).catch(() => {
+      // فشل التشغيل، سنحاول مرة أخرى بعد 100ms
+      if (!played) {
+        setTimeout(play, 100);
+      }
+    });
   }
 
-  // محاولة فورية
-  playAudio();
+  // المحاولة الأولى فوراً
+  play();
 
-  // في حال منع المتصفح، نعيد المحاولة عند أي تفاعل من المستخدم
-  const events = ['click', 'touchstart', 'keydown'];
-  function onInteraction() {
-    playAudio();
-    events.forEach(ev => document.removeEventListener(ev, onInteraction));
-  }
-  events.forEach(ev => document.addEventListener(ev, onInteraction, { once: true }));
+  // إعادة المحاولة عند تحميل الصفحة بالكامل
+  window.addEventListener('load', () => {
+    setTimeout(play, 200);
+  });
+
+  // نكرر المحاولة كل 200ms لمدة 5 ثواني كحد أقصى
+  let attempts = 0;
+  const interval = setInterval(() => {
+    attempts++;
+    if (played || attempts > 25) {
+      clearInterval(interval);
+      return;
+    }
+    play();
+  }, 200);
+
+  // لا يوجد أي مستمع لأحداث النقر أو اللمس نهائياً
 })();
 </script>
 </body>
