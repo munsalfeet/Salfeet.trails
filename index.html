@@ -212,22 +212,67 @@ html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
 @media (max-width:760px){ #map{ min-height:440px; } .map-toolbar{ top:10px; padding:6px; gap:4px; } .map-btn{ width:37px; height:37px; font-size:0.92rem; } .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; } .dest-map-wrap{ height:min(52vh,420px); } .dest-modal-card{ width:100%; } }
 
 /* جولات الحافلة */
-.bus-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.4rem; }
+.bus-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,2fr)); gap:2.4rem; }
 .bus-card{ background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--glass-border); display:flex; flex-direction:column; transition:.1s; }
 .bus-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-lg); }
 .bus-media{ height:150px; position:relative; background:linear-gradient(135deg,#00bcf5,var(--sky-dark)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
-.bus-media img{ width:100%; height:100%; object-fit:cover; }
-.bus-media .no-img-label{ color:#fff; font-size:0.75rem; background:rgba(0,0,0,0.25); padding:0.3rem 0.7rem; border-radius:999px; position:absolute; bottom:10px; }
+.bus-media img{ width:100%; height:200%; object-fit:cover; }
+.bus-media .no-img-label{ color:#fff; font-size:0.75rem; background:rgba(0,0,0,0.25); padding:1.3rem 1.7rem; border-radius:2000px; position:absolute; bottom:1px; }
 .bus-body{ padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; }
-.bus-body h3{ font-family:var(--font-display-ar); font-size:2rem; text-align:center; margin:0; }
+.bus-body h3{ font-family:var(--font-display-ar); font-size:2.2rem; text-align:center; margin:0; }
 html[lang="en"] .bus-body h3{ font-family:var(--font-display-en); }
-.bus-body p{ font-size:0.5rem; color:#020000; line-height:1.7; margin:0; flex:1;text-align:center; margin:0; }
-.bus-meta{ display:flex; gap:0.7rem; }
-.bus-meta-chip{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.15rem; background:var(--stone); border:1px solid var(--glass-border); border-radius:var(--radius); padding:0.65rem 0.5rem; text-align:center; }
-.bus-meta-chip .bmc-ic{ font-size:1.1rem; line-height:1; }
-.bus-meta-chip .bmc-num{ font-family:var(--font-display-ar); font-weight:700; font-size:1.25rem; color:var(--green-dark); line-height:1.2; }
-html[lang="en"] .bus-meta-chip .bmc-num{ font-family:var(--font-display-en); }
-.bus-meta-chip .bmc-unit{ font-size:0.72rem; color:var(--ink-soft); }
+.bus-body p{ font-size:1.5rem; color:#c00a0a; line-height:1.7; margin:0; flex:1;text-align:center; margin:0; }
+.bus-meta{ display:flex; gap:0.6rem; flex-wrap:wrap; font-size:0.72rem; }
+.bus-meta{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:0.5rem;
+    flex-wrap:nowrap;
+    width:100%;
+    margin:0 auto;
+    font-size:0.72rem;
+}
+
+.bus-meta-chip{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:0.25rem;
+
+    background:var(--stone);
+    border:1px solid var(--glass-border);
+    border-radius:7px;
+
+    padding:0.35rem 0.55rem;
+    text-align:center;
+    white-space:nowrap;
+}
+
+.bus-meta-chip .bmc-ic{
+    font-size:0.8rem;
+    line-height:1;
+}
+
+.bus-meta-chip .bmc-num{
+    font-family:var(--font-display-ar);
+    font-weight:500;
+    font-size:0.85rem;
+    color:var(--green-dark);
+    line-height:1;
+}
+
+html[lang="en"] .bus-meta-chip .bmc-num{
+    font-family:var(--font-display-en);
+}
+
+.bus-meta-chip .bmc-unit{
+    font-size:0.58rem;
+    color:var(--ink-soft);
+    line-height:1;
+}
 
 /* فوتر */
 footer{ background:var(--stone); padding:0.5rem 0; border-top:1px solid var(--glass-border); flex-shrink:0; }
@@ -269,9 +314,21 @@ html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
 #destMap{ width:100%; height:100%; }
 .dest-map-loading{ position:absolute; inset:0; background:rgba(251,249,242,0.85); display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--ink-soft); z-index:400; transition:opacity .2s; }
 .dest-map-loading.hidden{ opacity:0; pointer-events:none; }
-.dest-info-row{ display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1rem; background:var(--paper); border:1px solid var(--glass-border); border-radius:var(--radius); padding:0.9rem 1rem; }
-.dest-info-row .mchip{ background:var(--stone); border-radius:999px; padding:0.4rem 0.95rem; font-size:1rem; color:var(--ink-soft); }
+.dest-info-row{ display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.7rem; background:var(--paper); border:1px solid var(--glass-border); border-radius:12px; padding:0.5rem 0.6rem; }
+.dest-info-row .mchip{ display:inline-flex; align-items:center; gap:0.3rem; background:var(--stone); border-radius:999px; padding:0.28rem 0.65rem; font-size:0.74rem; font-weight:600; color:var(--ink-soft); line-height:1.3; }
 .dest-note{ font-size:0.78rem; color:var(--ink-soft); margin-top:0.7rem; line-height:1.7; }
+
+/* لوحة وصف الاتجاهات (بديل عن دائرة تحديد الموقع) */
+.loc-directions{ position:absolute; bottom:14px; inset-inline-start:14px; inset-inline-end:14px; z-index:700; max-width:340px; margin-inline-start:auto; margin-inline-end:auto; background:rgba(251,249,242,0.97); backdrop-filter:blur(10px); border:1px solid var(--glass-border); border-radius:14px; box-shadow:var(--shadow-lg); padding:0.7rem 0.85rem; max-height:46%; overflow-y:auto; display:none; }
+.loc-directions.show{ display:block; }
+.loc-directions-head{ display:flex; align-items:center; justify-content:space-between; gap:0.5rem; margin-bottom:0.35rem; }
+.loc-directions-head b{ font-size:0.8rem; }
+.loc-dir-close{ width:22px; height:22px; border-radius:50%; border:none; background:var(--stone); cursor:pointer; font-size:0.8rem; line-height:1; flex-shrink:0; }
+.loc-directions-summary{ display:flex; gap:0.35rem; flex-wrap:wrap; margin-bottom:0.4rem; }
+.loc-directions-summary .mchip{ background:var(--stone); border-radius:999px; padding:0.22rem 0.6rem; font-size:0.68rem; font-weight:700; color:var(--ink-soft); }
+.loc-directions-steps{ margin:0; padding-inline-start:1.1rem; display:flex; flex-direction:column; gap:0.3rem; }
+.loc-directions-steps li{ font-size:0.72rem; line-height:1.5; color:var(--ink-soft); }
+@media (max-width:600px){ .loc-directions{ max-width:none; inset-inline-start:8px; inset-inline-end:8px; bottom:8px; } }
 .dest-hero-img{ width:100%; height:min(34vw,180px); border-radius:14px; overflow:hidden; margin-bottom:1rem; background:var(--stone); }
 .dest-hero-img img{ width:100%; height:100%; object-fit:cover; }
 .dest-desc{ font-size:0.88rem; color:var(--ink); line-height:1.8; margin:0.9rem 0; }
@@ -451,6 +508,11 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
             <div class="map-divider"></div>
             <button class="map-btn" id="homeBtn" title="توسيط الخريطة" aria-label="توسيط الخريطة" data-title-ar="توسيط الخريطة" data-title-en="Center map" data-aria-ar="توسيط الخريطة" data-aria-en="Center map">🏠</button>
           </div>
+          <div class="loc-directions" id="mapDirections">
+            <div class="loc-directions-head"><b id="mapDirTitle"></b><button class="loc-dir-close" id="mapDirClose" type="button">×</button></div>
+            <div class="loc-directions-summary" id="mapDirSummary"></div>
+            <ol class="loc-directions-steps" id="mapDirSteps"></ol>
+          </div>
         </div>
       </div>
     </div>
@@ -521,6 +583,11 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
           <button class="map-btn" id="destHomeBtn" title="توسيط الخريطة" aria-label="توسيط الخريطة" data-title-ar="توسيط الخريطة" data-title-en="Center map" data-aria-ar="توسيط الخريطة" data-aria-en="Center map">🏠</button>
         </div>
         <div class="dest-map-loading" id="destMapLoading"><span id="destLoadingLabel">جارٍ رسم المسار عبر شبكة الطرق...</span></div>
+        <div class="loc-directions" id="destDirections">
+          <div class="loc-directions-head"><b id="destDirTitle"></b><button class="loc-dir-close" id="destDirClose" type="button">×</button></div>
+          <div class="loc-directions-summary" id="destDirSummary"></div>
+          <ol class="loc-directions-steps" id="destDirSteps"></ol>
+        </div>
       </div>
       <div class="dest-info-row" id="destInfoRow"></div>
       <p class="dest-desc" id="destDesc"></p>
@@ -533,15 +600,7 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 <div class="toast" id="toast"></div>
 <button class="back-to-top" id="backToTop">↑</button>
 
-<!-- ============ شريط الدليل الصوتي الترحيبي ============ -->
-<div class="intro-audio-bar" id="introAudioBar" style="display:none;">
-  <button class="intro-audio-btn" id="introAudioPlayBtn"><span>🔊</span><span id="introAudioPlayLabel">اضغط لتشغيل الدليل الصوتي</span></button>
-  <div class="intro-audio-controls" id="introAudioControls" style="display:none;">
-    <button class="ac-btn" id="introAudioToggleBtn" title="إيقاف مؤقت">⏸</button>
-    <button class="ac-btn" id="introAudioMuteBtn" title="كتم الصوت">🔊</button>
-    <button class="ac-btn" id="introAudioReplayBtn" title="إعادة التشغيل">🔁</button>
-  </div>
-</div>
+<!-- الصوت الترحيبي يعمل تلقائياً بدون أي لوحة تحكم ظاهرة -->
 
 <!-- ============ السكربتات ============ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -931,11 +990,25 @@ document.getElementById('siteAudioPause').onclick = ()=>{
 document.getElementById('siteAudioReplay').onclick = ()=>{ if(lastSpokenText) speakText(lastSpokenText); };
 document.getElementById('siteAudioStop').onclick = ()=>{ window.speechSynthesis.cancel(); document.getElementById('siteAudioControls').style.display='none'; };
 function playDestAudioGuide(tour){ const text=(T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:'').replace(/<[^>]+>/g,''); speakText(text); }
-function stopTracking(){ if(watchId!==null){ navigator.geolocation.clearWatch(watchId); watchId=null; } const btn=document.getElementById('mapGpsBtn'); btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; if(meMarker){ const el=meMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(accCircle){ map.removeLayer(accCircle); accCircle=null; } }
+function stopTracking(){ if(watchId!==null){ navigator.geolocation.clearWatch(watchId); watchId=null; } const btn=document.getElementById('mapGpsBtn'); btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; if(meMarker){ const el=meMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(userRouteLine){ map.removeLayer(userRouteLine); userRouteLine=null; } hideDirections('map'); directionsFetchedMap=false; }
 function locateErrorMessage(err){
   if(err && err.code===1) return lang==='ar' ? 'تم رفض إذن الوصول إلى موقعك، فعّل إذن الموقع من إعدادات المتصفح' : 'Location permission denied. Please enable location access in your browser settings.';
   if(err && err.code===3) return lang==='ar' ? 'انتهت مهلة تحديد الموقع، تأكد من تفعيل GPS وحاول في مكان مفتوح' : 'Location request timed out. Make sure GPS is enabled and try again in an open area.';
   return t('gpsError');
+}
+let userRouteLine=null, directionsFetchedMap=false;
+async function showRouteDirectionsToTrail(latitude,longitude){
+  if(directionsFetchedMap) return; directionsFetchedMap=true;
+  try{
+    const {latlngs,distance,duration,steps}=await fetchRoadRouteWithSteps([latitude,longitude],[busLat,busLon]);
+    if(userRouteLine) map.removeLayer(userRouteLine);
+    userRouteLine=L.polyline(latlngs,{color:'#2563EB',weight:5,opacity:0.9,dashArray:'1,8',lineCap:'round'}).addTo(map);
+    const busNote = lang==='ar'
+      ? `<li>اركب الحافلة من ${t('busStationLabel')} حتى بداية درب الأساس، ثم أكمل السير على الدرب حسب اللوحات</li>`
+      : `<li>Take the bus from the ${t('busStationLabel')} to the start of the main trail, then continue on foot following the trail signs</li>`;
+    const title = lang==='ar' ? 'الاتجاهات إلى درب الأساس عبر الحافلة' : 'Directions to the main trail via the bus';
+    renderDirections('map', distance, duration, steps, title, busNote);
+  } catch(e){ /* تجاهل بصمت إن تعذّر جلب المسار */ }
 }
 function startTracking(){
   if(!navigator.geolocation){ showToast(t('gpsNotSupported')); return; }
@@ -945,20 +1018,30 @@ function startTracking(){
   btn.title=lang==='ar'?'إيقاف الملاحة المباشرة':'Stop live navigation';
   let centered=false;
   watchId=navigator.geolocation.watchPosition((pos)=>{
-    const {latitude,longitude,accuracy}=pos.coords;
+    const {latitude,longitude}=pos.coords;
     if(meMarker) map.removeLayer(meMarker);
     meMarker=L.marker([latitude,longitude],{ icon:L.divIcon({className:'', html:'<div class="me-pin tracking"></div>', iconSize:[22,22], iconAnchor:[11,11]}), zIndexOffset:1000 }).addTo(map).bindPopup(t('yourLocation'));
-    if(accCircle){ map.removeLayer(accCircle); accCircle=null; }
-    if(accuracy){ accCircle=L.circle([latitude,longitude],{ radius:accuracy, color:'#2563EB', weight:1, fillColor:'#2563EB', fillOpacity:0.12, interactive:false }).addTo(map); }
     if(!centered){ centered=true; map.flyTo([latitude,longitude], Math.max(map.getZoom(),17), {animate:true, duration:0.8}); }
+    showRouteDirectionsToTrail(latitude,longitude);
     let nearest=null,best=Infinity; sites.forEach(s=>{ const d=haversineLL([latitude,longitude],[s.lat,s.lon]); if(d<best){ best=d; nearest=s; } });
     if(nearest&&nearest.id!==lastNearestId&&best<0.06){ lastNearestId=nearest.id; setCurrentStop(nearest.id); const name=T.stopNames[nearest.id]?T.stopNames[nearest.id][lang]:nearest.id; showToast(t('nearestStop',{name})); }
   }, (err)=> { showToast(locateErrorMessage(err)); stopTracking(); }, {enableHighAccuracy:true, maximumAge:0, timeout:15000}); }
-let accCircle=null, lastNearestId=null;
+let lastNearestId=null;
 function ensureDestMap(){ if(destMap) return destMap; destMap=L.map('destMap',{scrollWheelZoom:true, zoomControl:false}); destBaseLayer=L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'© OpenStreetMap contributors', maxZoom:21, minZoom:2}); destSatLayer=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'Google Satellite', maxZoom:21, minZoom:2}); destBaseLayer.addTo(destMap); return destMap; }
 function clearDestLayers(){ destRouteLayers.forEach(l=>destMap.removeLayer(l)); destRouteLayers=[]; destMarkers.forEach(m=>destMap.removeLayer(m)); destMarkers=[]; }
 function destFitBounds(b){ destLastBounds=b; destMap.fitBounds(b,{padding:[40,40]}); }
-function stopDestTracking(){ if(destWatchId!==null){ navigator.geolocation.clearWatch(destWatchId); destWatchId=null; } const btn=document.getElementById('destGpsBtn'); if(btn){ btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; } if(destMeMarker){ const el=destMeMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(destAccCircle){ destMap.removeLayer(destAccCircle); destAccCircle=null; } }
+function stopDestTracking(){ if(destWatchId!==null){ navigator.geolocation.clearWatch(destWatchId); destWatchId=null; } const btn=document.getElementById('destGpsBtn'); if(btn){ btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; } if(destMeMarker){ const el=destMeMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(destUserRouteLine){ destMap.removeLayer(destUserRouteLine); destUserRouteLine=null; } hideDirections('dest'); directionsFetchedDest=false; }
+let destUserRouteLine=null, directionsFetchedDest=false;
+async function showRouteDirectionsToBus(latitude,longitude){
+  if(directionsFetchedDest) return; directionsFetchedDest=true;
+  try{
+    const {latlngs,distance,duration,steps}=await fetchRoadRouteWithSteps([latitude,longitude],[busLat,busLon]);
+    if(destUserRouteLine) destMap.removeLayer(destUserRouteLine);
+    destUserRouteLine=L.polyline(latlngs,{color:'#2563EB',weight:5,opacity:0.9,dashArray:'1,8',lineCap:'round'}).addTo(destMap);
+    const title = lang==='ar' ? `الاتجاهات إلى ${t('busStationLabel')}` : `Directions to the ${t('busStationLabel')}`;
+    renderDirections('dest', distance, duration, steps, title, '');
+  } catch(e){ /* تجاهل بصمت إن تعذّر جلب المسار */ }
+}
 function startDestTracking(){
   if(!navigator.geolocation){ showToast(t('gpsNotSupported')); return; }
   if(!destMap) ensureDestMap();
@@ -968,16 +1051,60 @@ function startDestTracking(){
   btn.title=lang==='ar'?'إيقاف الملاحة المباشرة':'Stop live navigation';
   let centered=false;
   destWatchId=navigator.geolocation.watchPosition((pos)=>{
-    const {latitude,longitude,accuracy}=pos.coords;
+    const {latitude,longitude}=pos.coords;
     if(destMeMarker) destMap.removeLayer(destMeMarker);
     destMeMarker=L.marker([latitude,longitude],{ icon:L.divIcon({className:'', html:'<div class="me-pin tracking"></div>', iconSize:[22,22], iconAnchor:[11,11]}), zIndexOffset:1000 }).addTo(destMap).bindPopup(t('yourLocation'));
-    if(destAccCircle){ destMap.removeLayer(destAccCircle); destAccCircle=null; }
-    if(accuracy){ destAccCircle=L.circle([latitude,longitude],{ radius:accuracy, color:'#2563EB', weight:1, fillColor:'#2563EB', fillOpacity:0.12, interactive:false }).addTo(destMap); }
     if(!centered){ centered=true; destMap.flyTo([latitude,longitude], Math.max(destMap.getZoom(),17), {animate:true, duration:0.8}); }
+    showRouteDirectionsToBus(latitude,longitude);
   }, (err)=>{ showToast(locateErrorMessage(err)); stopDestTracking(); }, {enableHighAccuracy:true, maximumAge:0, timeout:15000}); }
 async function fetchRoadRoute(latlngPoints){ const coordsStr=latlngPoints.map(([lat,lon])=>`${lon},${lat}`).join(';'); const url=`https://router.project-osrm.org/route/v1/driving/${coordsStr}?overview=full&geometries=geojson`; const res=await fetch(url); if(!res.ok) throw new Error('routing failed'); const data=await res.json(); if(!data.routes||!data.routes.length) throw new Error('no route'); const route=data.routes[0]; const latlngs=route.geometry.coordinates.map(([lon,lat])=>[lat,lon]); return {latlngs, distance:route.distance, duration:route.duration}; }
-async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; document.getElementById('destAudioBtn').onclick=()=>playDestAudioGuide(tour); const heroBox=document.getElementById('destHeroImg'); if(/^https?:\/\//.test()){ heroBox.style.display='block'; heroBox.innerHTML=`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`; } else { heroBox.style.display='none'; heroBox.innerHTML=''; } const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ const base=youtubeEmbedUrl(tour.video); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; videoBox.innerHTML=`<div class="video-frame"><iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(name)}"></iframe></div>`; }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML=`
-`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
+
+// ============================================================
+//   وصف الاتجاهات من موقع المستخدم (بديل عن دائرة الدقة)
+// ============================================================
+async function fetchRoadRouteWithSteps(fromLatLng, toLatLng){
+  const coordsStr = `${fromLatLng[1]},${fromLatLng[0]};${toLatLng[1]},${toLatLng[0]}`;
+  const url = `https://router.project-osrm.org/route/v1/driving/${coordsStr}?overview=full&geometries=geojson&steps=true`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('routing failed');
+  const data = await res.json();
+  if(!data.routes || !data.routes.length) throw new Error('no route');
+  const route = data.routes[0];
+  const latlngs = route.geometry.coordinates.map(([lon,lat])=>[lat,lon]);
+  const steps = (route.legs && route.legs[0] && route.legs[0].steps) ? route.legs[0].steps : [];
+  return { latlngs, distance:route.distance, duration:route.duration, steps };
+}
+function formatDist(m){ return m>=1000 ? (m/1000).toFixed(1)+(lang==='ar'?' كم':' km') : Math.round(m)+(lang==='ar'?' م':' m'); }
+function formatMinutes(s){ const mins=Math.max(1,Math.round(s/60)); return mins+(lang==='ar'?' د':' min'); }
+function maneuverText(step){
+  const type=step.maneuver&&step.maneuver.type, modifier=step.maneuver&&step.maneuver.modifier;
+  const dist=formatDist(step.distance||0);
+  const dirWords = lang==='ar'
+    ? {left:'اليسار', right:'اليمين','slight left':'يسارًا قليلاً','slight right':'يمينًا قليلاً','sharp left':'يسارًا بشدة','sharp right':'يمينًا بشدة', straight:'مباشرة', uturn:'استدارة كاملة'}
+    : {left:'left', right:'right','slight left':'slightly left','slight right':'slightly right','sharp left':'sharply left','sharp right':'sharply right', straight:'straight ahead', uturn:'a U-turn'};
+  const dw = dirWords[modifier] || '';
+  if(type==='depart') return lang==='ar' ? `انطلق واستمر بالسير مسافة ${dist}` : `Head out and continue for ${dist}`;
+  if(type==='arrive') return lang==='ar' ? 'وصلت إلى وجهتك' : 'You have arrived at your destination';
+  if(type==='roundabout' || type==='rotary') return lang==='ar' ? `ادخل الدوّار واستمر ${dist}` : `Enter the roundabout and continue for ${dist}`;
+  if(['turn','end of road','fork','merge','on ramp','off ramp'].includes(type)) return lang==='ar' ? `انعطف ${dw} ثم استمر ${dist}` : `Turn ${dw} then continue for ${dist}`;
+  return lang==='ar' ? `استمر بالسير ${dist}` : `Continue for ${dist}`;
+}
+function renderDirections(prefix, distanceM, durationS, steps, titleText, extraStepsHtml){
+  const panel=document.getElementById(prefix+'Directions');
+  const titleEl=document.getElementById(prefix+'DirTitle');
+  const summaryEl=document.getElementById(prefix+'DirSummary');
+  const stepsEl=document.getElementById(prefix+'DirSteps');
+  if(!panel) return;
+  titleEl.textContent = titleText;
+  summaryEl.innerHTML = `<span class="mchip">📏 ${formatDist(distanceM)}</span><span class="mchip">⏱ ${formatMinutes(durationS)}</span>`;
+  const stepsHtml = steps.map(s=>`<li>${escapeAttr(maneuverText(s))}</li>`).join('');
+  stepsEl.innerHTML = stepsHtml + (extraStepsHtml||'');
+  panel.classList.add('show');
+}
+function hideDirections(prefix){ const panel=document.getElementById(prefix+'Directions'); if(panel) panel.classList.remove('show'); }
+document.getElementById('mapDirClose')?.addEventListener('click', ()=>hideDirections('map'));
+document.getElementById('destDirClose')?.addEventListener('click', ()=>hideDirections('dest'));
+async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; document.getElementById('destAudioBtn').onclick=()=>playDestAudioGuide(tour); const heroBox=document.getElementById('destHeroImg'); if(/^https?:\/\//.test()){ heroBox.style.display='block'; heroBox.innerHTML=`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`; } else { heroBox.style.display='none'; heroBox.innerHTML=''; } const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ const base=youtubeEmbedUrl(tour.video); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; videoBox.innerHTML=`<div class="video-frame"><iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(name)}"></iframe></div>`; }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; hideDirections('dest'); directionsFetchedDest=false; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); stops.forEach((s,i)=>{ const stopMarker=L.marker([s.lat,s.lon],{ icon: pinIcon(i+1,false,false) }).addTo(dMap); stopMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(s.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(stopMarker); }); if(hasFixedTrail && endStop){ const endMarker=L.marker([endStop.lat,endStop.lon],{ icon: pinIcon(stops.length+1,false,false) }).addTo(dMap); endMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(endStop.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(endMarker); } const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML = `<span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم':'km'}</span><span class="mchip">⏱ ${totalMins} ${lang==='ar'?'د':'min'}</span>`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
 
 // ============================================================
 //   تهيئة الخريطة الرئيسية
@@ -1181,6 +1308,7 @@ function showPage(id){
   document.body.dataset.page = id;
   window.scrollTo({ top:0, behavior:'auto' });
   if(id === 'map-section' && typeof map !== 'undefined') setTimeout(()=>{ map.invalidateSize(); fitMapToRoute(); }, 80);
+  if(window.introAudioEl){ if(id === 'home'){ if(window.introAudioEl.paused) window.introAudioEl.play().catch(()=>{}); } else { window.introAudioEl.pause(); } }
 }
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => { e.preventDefault(); showPage(a.getAttribute('href').slice(1)); });
@@ -1196,62 +1324,33 @@ console.log('✅ تم تحميل الموقع بالكامل.');
 //   وأدوات تحكم كاملة: تشغيل / إيقاف مؤقت / كتم / إعادة تشغيل
 // ============================================================
 (function() {
+  // صوت ترحيبي يعمل تلقائياً في صفحة البداية فقط، بدون أي لوحة تحكم ظاهرة للمستخدم.
   const AUDIO_URL = 'https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/int.mp3';
-  const bar = document.getElementById('introAudioBar');
-  const playBtn = document.getElementById('introAudioPlayBtn');
-  const playLabel = document.getElementById('introAudioPlayLabel');
-  const controls = document.getElementById('introAudioControls');
-  const toggleBtn = document.getElementById('introAudioToggleBtn');
-  const muteBtn = document.getElementById('introAudioMuteBtn');
-  const replayBtn = document.getElementById('introAudioReplayBtn');
-  if (!bar) return;
-
   const audioEl = new Audio(AUDIO_URL);
   audioEl.preload = 'auto';
   audioEl.setAttribute('playsinline', '');
-  let hasPlayedOnce = false;
-
-  function showControls() {
-    playBtn.style.display = 'none';
-    controls.style.display = 'flex';
-  }
-  function showFallbackButton() {
-    playLabel.textContent = t('introAudioPlay');
-    playBtn.style.display = 'flex';
-    controls.style.display = 'none';
-  }
+  window.introAudioEl = audioEl;
+  let triedUnlock = false;
 
   function tryAutoplay() {
     if (document.body.dataset.page !== 'home') return; // الصوت الترحيبي لصفحة الرئيسية فقط
+    if (!audioEl.paused) return;
     const p = audioEl.play();
-    if (p && typeof p.then === 'function') {
-      p.then(() => { hasPlayedOnce = true; bar.style.display = 'flex'; showControls(); })
-       .catch(() => { bar.style.display = 'flex'; showFallbackButton(); });
-    }
+    if (p && typeof p.catch === 'function') p.catch(() => {});
   }
 
-  playBtn.onclick = () => {
-    audioEl.play().then(() => { hasPlayedOnce = true; showControls(); }).catch(() => {});
-  };
-  toggleBtn.onclick = () => {
-    if (audioEl.paused) { audioEl.play(); toggleBtn.textContent = '⏸'; }
-    else { audioEl.pause(); toggleBtn.textContent = '▶'; }
-  };
-  muteBtn.onclick = () => {
-    audioEl.muted = !audioEl.muted;
-    muteBtn.textContent = audioEl.muted ? '🔇' : '🔊';
-  };
-  replayBtn.onclick = () => {
-    audioEl.currentTime = 0;
-    audioEl.play();
-    toggleBtn.textContent = '⏸';
-  };
-  audioEl.addEventListener('ended', () => { toggleBtn.textContent = '▶'; });
-
-  // محاولة تشغيل تلقائي واحدة عند التحميل (بدون إلحاح أو تكرار مزعج)
-  if (document.body.dataset.page === 'home' || document.readyState !== 'complete') {
-    window.addEventListener('load', tryAutoplay, { once:true });
+  // بعض المتصفحات تمنع التشغيل التلقائي بصوت قبل أول تفاعل من المستخدم؛
+  // في هذه الحالة نستمع لأول لمسة/نقرة/مفتاح في الصفحة ونشغّل الصوت تلقائياً حينها، دون أي زر ظاهر.
+  function unlockOnFirstInteraction() {
+    if (triedUnlock) return;
+    triedUnlock = true;
+    tryAutoplay();
   }
+  ['pointerdown','keydown','touchstart'].forEach(evt => {
+    window.addEventListener(evt, unlockOnFirstInteraction, { once:true, passive:true });
+  });
+
+  window.addEventListener('load', tryAutoplay, { once:true });
 })();
 </script>
 </body>
