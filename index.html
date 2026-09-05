@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>دروب الزيتون</title>
-<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCl4deI84ZCCdkUD1yyM9GnKWayG_iIUuD5sjbGJlrmgrcwysQ3bnjpy5H&s=10">
+<link rel="icon" href="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/logoS.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
@@ -40,7 +40,7 @@ html[lang="en"] body{ font-family:var(--font-body-en); }
 .nav{ position:sticky; top:0; z-index:300; padding:0.7rem 0; background:var(--glass); backdrop-filter:blur(100px); border-bottom:1px solid var(--glass-border); }
 .nav-inner{ display:flex; align-items:center; gap:1rem; }
 .brand{ display:flex; align-items:center; gap:1.7rem; cursor:pointer; }
-.brand img{ width:56px; height:56px; border-radius:12px; background:#000000; padding:0.4px; }
+.brand img{ width:50px; height:50px; border-radius:12px; background:#e7e1cf; padding:0.4px; }
 .brand-text b{ font-family:var(--font-display-ar); font-size:1.2rem; display:block; line-height:1.4; }
 html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 .brand-text span{ font-family:var(--font-display-ar); font-size:0.8rem; display:block; line-height:1.0;}
@@ -59,16 +59,18 @@ html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 .page-nav-row{ display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.4rem; }
 
 /* الهيرو */
-.hero{ position:relative; min-height:84vh; display:flex; align-items:center; background:linear-gradient(180deg,rgba(20,25,15,0.35),rgba(16,20,12,0.78)), url('https://www.travelpalestine.ps/public/files/image/destinations/salfeet%20old%20city.jpg') center/cover no-repeat; color:#F6F3E6; overflow:hidden; }
-.hero-content{ position:relative; padding:4.2rem 0 8.5rem; width:100%; min-height:60vh; display:flex; flex-direction:column; justify-content:center; }
+.hero{ position:relative; min-height:84vh; display:flex; align-items:center; background:#141912; color:#F6F3E6; overflow:hidden; }
+.hero::before{ content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,25,15,0.10) 0%,rgba(16,20,12,0.15) 45%,rgba(12,16,10,0.72) 100%); z-index:1; }
+.hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; background:#0e120b; z-index:0; pointer-events:none; }
+.hero-content{ position:relative; z-index:2; padding:4.2rem 0 8.5rem; width:100%; min-height:60vh; display:flex; flex-direction:column; justify-content:center; }
 .hero-eyebrow{ display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.28); padding:0.4rem 0.9rem; border-radius:999px; margin-bottom:1.4rem; backdrop-filter:blur(6px); width:fit-content; }
-.hero h1{ font-family:var(--font-display-ar); font-size:clamp(2.4rem,6vw,4.6rem); color:#FBF7E8; text-shadow:0 4px 24px rgba(0,0,0,0.35); margin:0 0 0.2rem; position:relative; z-index:2; }
+.hero h1{ font-family:var(--font-display-ar); font-size:clamp(0.6rem,6vw,2.6rem); color:#FBF7E8; text-shadow:0 4px 24px rgba(0,0,0,0.35); margin:0 0 0.2rem; position:relative; z-index:2; }
 html[lang="en"] .hero h1{ font-family:var(--font-display-en); font-weight:600; }
-.hero-subtitle{ font-size:clamp(1.1rem,2vw,1.4rem); font-weight:300; color:#EFEADA; margin:-0.1rem 0 1.2rem; position:relative; z-index:2; }
+.hero-subtitle{ font-size:clamp(0.1rem,2vw,1.4rem); font-weight:300; color:#EFEADA; margin:-0.1rem 0 1.2rem; position:relative; z-index:2; }
 
 /* ===== النص الترحيبي - موحد للغتين ===== */
 .hero p.lede {
-  font-size: 1.08rem;
+  font-size: 0.9rem;
   max-width: 650px;
   width: 100%;
   line-height: 2.0;
@@ -98,21 +100,21 @@ html[lang="en"] .hero p.lede {
 }
 
 /* الأزرار والعناصر الأخرى */
-.hero-ctas{ display:flex; gap:0.9rem; flex-wrap:wrap; margin-bottom:2.6rem; position:relative; z-index:2; margin-top:auto; }
-.btn{ display:inline-flex; align-items:center; gap:0.55rem; padding:0.95rem 1.7rem; border-radius:999px; font-weight:700; font-size:0.95rem; cursor:pointer; border:none; transition:.2s; text-decoration:none; }
-.btn-ghost{ background:rgba(255,255,255,0.1); color:#fff; border:1.5px solid rgba(255,255,255,0.55); backdrop-filter:blur(6px); }
-.btn-ghost:hover{ background:rgba(255,255,255,0.22); transform:translateY(-2px); }
-.btn-outline{ background:transparent; border:1.5px solid var(--green); color:var(--green-dark); }
-.btn-outline:hover{ background:var(--green); color:#fff; }
-.btn-map-highlight{ background:var(--green-dark); color:#fff; box-shadow:0 10px 26px rgba(49, 83, 86, 0.5); padding:1rem 2.4rem; font-size:1.1rem; }
-.btn-map-highlight:hover{ background:var(--green); transform:translateY(-2px); }
+.hero-ctas{ display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2.0rem; position:relative; z-index:6; margin-top:auto; }
+.btn{ display:inline-flex; align-items:center; gap:0.55rem; padding:0.95rem 1.7rem; border-radius:999px; font-weight:600; font-size:0.95rem; cursor:pointer; border:none; transition:.2s; text-decoration:none; }
+.btn-ghost{ background:rgba(255,255,255,0.1); color:#fff; border:2.0px solid rgba(255,255,255,0.55); backdrop-filter:blur(10px); }
+.btn-ghost:hover{ background:rgba(255,255,255,0.22); transform:translateY(-8px); }
+.btn-outline{ background:rgba(255,255,255,0.1); color:#0c0303; border:2.0px solid rgba(14, 6, 6, 0.55); backdrop-filter:blur(10px); }
+.btn-outline:hover{ background:#fdf9eb; color:#000000; }
+.btn-map-highlight{ background:var(--green-dark); color:#fff; box-shadow:0 20px 26px rgba(49, 83, 86, 0.5); padding:10.5rem 2.4rem; font-size:0.8rem; }
+.btn-map-highlight:hover{ background:var(--green); transform:translateY(-8px); }
 .btn-sm{ padding:0.55rem 1.1rem; font-size:0.8rem; }
-.btn-bus{ background:#50c9ee; color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); }
+.btn-bus{ background:#50c9ee; color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); gap:0.5rem; }
 .btn-bus:hover{ background:var(--sky-dark); transform:translateY(0%); }
 .hero-meta{ display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.5rem; position:relative; z-index:2; }
-.meta-chip{ display:flex; align-items:center; gap:0.6rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:var(--radius); padding:0.7rem 1.05rem; backdrop-filter:blur(10px); min-width:132px; }
-.meta-chip .ic{ font-size:1.35rem; }
-.meta-chip b{ display:block; font-size:1.05rem; font-family:var(--font-display-ar); }
+.meta-chip{ display:flex; align-items:center; gap:0.55rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); border-radius:var(--radius); padding:0.7rem 1.05rem; backdrop-filter:blur(10px); min-width:132px; }
+.meta-chip .ic{ font-size:1.45rem; }
+.meta-chip b{ display:block; font-size:0.8rem; font-family:var(--font-display-ar); }
 html[lang="en"] .meta-chip b{ font-family:var(--font-display-en); }
 .meta-chip span{ font-size:0.88rem; color:#D8D4C0; }
 
@@ -309,7 +311,15 @@ html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
 .dest-modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--sky-dark),#00bcf5); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--sky-dark); }
 .dest-modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#FFF; margin:0 0 0.3rem; }
 html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
-.dest-modal-body{ padding:3rem 1.3rem 1.5rem; }
+.dest-modal-body{
+    padding:1rem 1.3rem 1.5rem;
+}
+
+.dest-modal-body p{
+    font-size:1rem !important;
+    line-height:1.7;
+    text-align:right;
+}
 .dest-map-wrap{ width:100%; height:min(72vh,640px); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(35,40,29,0.08); position:relative; }
 #destMap{ width:100%; height:100%; }
 .dest-map-loading{ position:absolute; inset:0; background:rgba(251,249,242,0.85); display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--ink-soft); z-index:400; transition:opacity .2s; }
@@ -379,7 +389,7 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 <nav class="nav">
   <div class="container nav-inner">
     <div class="brand" id="brandHome" role="link" tabindex="0" aria-label="الرئيسية">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCl4deI84ZCCdkUD1yyM9GnKWayG_iIUuD5sjbGJlrmgrcwysQ3bnjpy5H&s=10" alt="شعار بلدية سلفيت">
+      <img src="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/logoS.jpg" alt="شعار بلدية سلفيت">
       <div class="brand-text">
         <b id="brandTitle">دروب الزيتون</b>
         <span id="brandSub">بلدية سلفيت</span>
@@ -408,6 +418,10 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 <main>
   <!-- الهيرو -->
   <header class="hero" id="home">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+      <source src="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/int.mov" type="video/quicktime">
+      <source src="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/int.mov" type="video/mp4">
+    </video>
     <div class="container hero-content">
       <div class="hero-eyebrow"><span>🌿</span><span id="heroEyebrow">دروب الزيتون</span></div>
       <h1 id="heroTitle">اكتشف مدينة سلفيت</h1>
@@ -498,7 +512,6 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
         </aside>
         <div class="map-wrap">
           <div id="map"></div>
-          <div class="map-mode-badge" id="mapModeBadge">🗺️ <span id="mapModeLabel">خريطة أساسية</span></div>
           <div class="map-toolbar" role="toolbar" aria-label="أدوات الخريطة" data-aria-ar="أدوات الخريطة" data-aria-en="Map tools">
             <button class="map-btn" id="mapGpsBtn" title="بدء الملاحة المباشرة" aria-label="بدء الملاحة">🧭<span class="pulse-dot"></span></button>
             <button class="map-btn" id="satBtn" title="تبديل نوع الخريطة" aria-label="تبديل نوع الخريطة">🗺️</button>
@@ -572,7 +585,6 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
       <div class="dest-hero-img" id="destHeroImg" style="display:none;"></div>
       <div class="dest-map-wrap">
         <div id="destMap"></div>
-        <div class="map-mode-badge" id="destMapModeBadge">🗺️ <span id="destMapModeLabel">خريطة أساسية</span></div>
         <div class="map-toolbar" role="toolbar" aria-label="أدوات خريطة درب الحافلة" data-aria-ar="أدوات خريطة درب الحافلة" data-aria-en="Bus route map tools">
           <button class="map-btn" id="destGpsBtn" title="بدء الملاحة المباشرة" aria-label="بدء الملاحة">🧭<span class="pulse-dot"></span></button>
           <button class="map-btn" id="destSatBtn" title="تبديل نوع الخريطة" aria-label="تبديل نوع الخريطة">🗺️</button>
