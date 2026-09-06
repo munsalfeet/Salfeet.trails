@@ -101,8 +101,30 @@ html[lang="en"] .hero p.lede {
 }
 
 /* الأزرار والعناصر الأخرى */
-.hero-ctas{ display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:2.0rem; position:relative; z-index:6; margin-top:auto; transform:translateX(-60px); transform:translateY(60px); }
-.btn{ display:inline-flex; align-items:center; gap:0.55rem; padding:0.8rem 0.8rem; border-radius:999px; font-weight:600; font-size:0.95rem; cursor:pointer; border:none; transition:.2s; text-decoration:none; }
+.hero-ctas{
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    margin-bottom:1rem;
+    position:relative;
+    z-index:2;
+    margin-top:auto;
+    transform:translate(-80px, 60px);
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.6rem 0.6rem;
+    border-radius:600px;
+    font-weight:600;
+    font-size:0.7rem;
+    cursor:pointer;
+    border:none;
+    transition:0.6s;
+    text-decoration:none;
+}
 .btn-ghost{ background:rgba(255,255,255,0.1); color:#fff; border:2.0px solid rgba(255,255,255,0.55); backdrop-filter:blur(10px); }
 .btn-ghost:hover{ background:rgba(255,255,255,0.22); transform:translateY(-8px); }
 .btn-outline{ background:rgba(255,255,255,0.1); color:#0c0303; border:2.0px solid rgba(14, 6, 6, 0.55); backdrop-filter:blur(10px); }
@@ -112,12 +134,46 @@ html[lang="en"] .hero p.lede {
 .btn-sm{ padding:0.55rem 1.1rem; font-size:0.8rem; }
 .btn-bus{ background:#50c9ee; color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); gap:0.5rem; }
 .btn-bus:hover{ background:var(--sky-dark); transform:translateY(0%); }
-.hero-meta{ display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem; position:relative; z-index:2; transform:translateX(-100px); transform:translateY(50px);}
-.meta-chip{ display:flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.1); border:0.5px solid rgba(255,255,255,0.25); border-radius:var(--radius); padding:0.8rem 0.8rem; backdrop-filter:blur(2px); min-width:15px; }
-.meta-chip .ic{ font-size:1.45rem; }
-.meta-chip b{ display:block; font-size:0.8rem; font-family:var(--font-display-ar); }
-html[lang="en"] .meta-chip b{ font-family:var(--font-display-en); }
-.meta-chip span{ font-size:0.88rem; color:#D8D4C0; }
+.hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+    margin-top:0.5rem;
+    position:relative;
+    z-index:2;
+    transform:translate(-80px, 60px);
+}
+
+.meta-chip{
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+    background:rgba(255,255,255,0.1);
+    border:0.5px solid rgba(255,255,255,0.25);
+    border-radius:var(--radius);
+    padding:0.55rem 0.65rem;
+    backdrop-filter:blur(2px);
+    min-width:15px;
+}
+
+.meta-chip .ic{
+    font-size:1.2rem;
+}
+
+.meta-chip b{
+    display:block;
+    font-size:0.72rem;
+    font-family:var(--font-display-ar);
+}
+
+html[lang="en"] .meta-chip b{
+    font-family:var(--font-display-en);
+}
+
+.meta-chip span{
+    font-size:0.78rem;
+    color:#D8D4C0;
+}
 
 /* باقي الأنماط */
 section{ padding:5.5rem 0; }
