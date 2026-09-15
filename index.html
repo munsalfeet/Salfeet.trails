@@ -2,7 +2,12 @@
 <html lang="ar" dir="rtl" data-font="base">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#141912">
+<meta name="format-detection" content="telephone=no">
 <title>دروب الزيتون</title>
 <link rel="icon" href="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/logoS.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -32,7 +37,7 @@
 html[data-font="lg"]{ --scale:1.14; }
 html[data-font="xl"]{ --scale:1.3; }
 html{ scroll-behavior:smooth; font-size:calc(16px * var(--scale)); }
-body{ display:flex; flex-direction:column; min-height:100vh; background:var(--stone-deep); color:var(--ink); font-family:var(--font-body-ar); transition:.2s; margin:0; }
+body{ display:flex; flex-direction:column; min-height:100vh; min-height:100dvh; background:var(--stone-deep); color:var(--ink); font-family:var(--font-body-ar); transition:.2s; margin:0; }
 html[lang="en"] body{ font-family:var(--font-body-en); }
 .container{ max-width:1220px; margin:0 auto; padding:0 10vw; }
 
@@ -195,10 +200,10 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 /* الخريطة */
 /* شاشة الخريطة الجديدة: الخريطة بملء الشاشة + أزرار عائمة فوقها + Footer */
 #map-section{ padding:0; }
-#map-section.is-active{ display:flex; flex-direction:column; min-height:calc(100vh - 70px); }
+#map-section.is-active{ display:flex; flex-direction:column; min-height:calc(100vh - 70px); min-height:calc(100dvh - 70px); }
 #map-section .map-hidden-refs{ display:none !important; }
 .map-full-wrap{ position:relative; flex:1 1 auto; min-height:70vh; width:100%; }
-@media (max-width:760px){ #map-section.is-active{ min-height:calc(100vh - 64px); } .map-full-wrap{ min-height:60vh; } }
+@media (max-width:760px){ #map-section.is-active{ min-height:calc(100vh - 64px); min-height:calc(100dvh - 64px); } .map-full-wrap{ min-height:60vh; min-height:60dvh; } }
 
 /* أزرار الوصول السريع العائمة فوق الخريطة (بدون إطار/خلفية بيج) */
 .map-access-row{ position:absolute; top:30px; right:30px; left:auto; z-index:660; display:flex; gap:0.5rem; flex-wrap:wrap; }
@@ -433,9 +438,9 @@ html[lang="en"] .video-lightbox-title{ font-family:var(--font-display-en); font-
 .video-lightbox-close:hover{ background:rgba(255,255,255,0.28); transform:scale(1.06); }
 @media (max-width:700px){ .video-lightbox-close{ top:-2.6rem; width:36px; height:36px; font-size:1.2rem; } .video-lightbox{ padding:2vh 2vw; } .video-lightbox-inner{ max-width:92vw; } .video-lightbox-inner video{ max-width:92vw; } .video-lightbox-inner iframe{ width:90vw; } }
 .video-placeholder{ text-align:center; color:var(--ink-soft); font-size:0.82rem; padding:0.9rem; border:1px dashed var(--gray-soft); border-radius:8px; background:var(--stone); margin-top:0.7rem; }
-.toast{ position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px); z-index:3000; background:var(--green-deeper); color:#F4EFE2; padding:0.8rem 1.4rem; border-radius:999px; font-size:0.85rem; box-shadow:var(--shadow-lg); opacity:0; pointer-events:none; transition:all .25s; }
+.toast{ position:fixed; bottom:calc(22px + env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%) translateY(20px); z-index:3000; background:var(--green-deeper); color:#F4EFE2; padding:0.8rem 1.4rem; border-radius:999px; font-size:0.85rem; box-shadow:var(--shadow-lg); opacity:0; pointer-events:none; transition:all .25s; max-width:92vw; text-align:center; }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
-.back-to-top{ position:fixed; bottom:22px; inset-inline-end:22px; z-index:800; width:44px; height:44px; border-radius:50%; background:var(--green); color:#fff; border:none; font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transform:translateY(10px); transition:all .25s; }
+.back-to-top{ position:fixed; bottom:calc(22px + env(safe-area-inset-bottom)); inset-inline-end:calc(22px + env(safe-area-inset-right)); z-index:800; width:44px; height:44px; border-radius:50%; background:var(--green); color:#fff; border:none; font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transform:translateY(10px); transition:all .25s; }
 .back-to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
 .back-to-top:hover{ background:var(--green-dark); }
 
@@ -461,12 +466,93 @@ html[data-motion="reduced"] *{ animation:none !important; transition:none !impor
 a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focus-visible{ outline:3px solid var(--sky-dark); outline-offset:2px; }
 
 /* شريط الدليل الصوتي الترحيبي */
-.intro-audio-bar{ position:fixed; bottom:22px; inset-inline-start:22px; z-index:800; display:flex; align-items:center; gap:0.4rem; }
+.intro-audio-bar{ position:fixed; bottom:calc(22px + env(safe-area-inset-bottom)); inset-inline-start:calc(22px + env(safe-area-inset-left)); z-index:800; display:flex; align-items:center; gap:0.4rem; }
 .intro-audio-btn{ display:flex; align-items:center; gap:0.5rem; background:var(--green-dark); color:#fff; border:none; border-radius:999px; padding:0.75rem 1.2rem; font-size:0.85rem; font-weight:700; cursor:pointer; box-shadow:var(--shadow-lg); }
 .intro-audio-btn:hover{ background:var(--green); }
 .intro-audio-controls{ display:flex; gap:0.4rem; background:var(--white); border-radius:999px; padding:0.4rem; box-shadow:var(--shadow); }
 .intro-audio-controls .ac-btn{ width:38px; height:38px; }
-@media (max-width:600px){ .intro-audio-bar{ inset-inline-start:12px; bottom:12px; } .intro-audio-btn span:last-child{ display:none; } }
+@media (max-width:600px){ .intro-audio-bar{ inset-inline-start:calc(12px + env(safe-area-inset-left)); bottom:calc(12px + env(safe-area-inset-bottom)); } .intro-audio-btn span:last-child{ display:none; } }
+
+/* ============================================================
+   تحسين شامل لعرض الجوال — إضافات فقط، لا حذف لأي تصميم أساسي
+   ============================================================ */
+html, body{ max-width:100%; overflow-x:hidden; }
+*{ -webkit-tap-highlight-color:transparent; }
+img, video, iframe{ max-width:100%; }
+.sidebar, .modal-card, .dest-modal-card, .a11y-panel, .loc-directions-steps{ -webkit-overflow-scrolling:touch; }
+
+@media (max-width:900px){
+  .container{ padding:0 5vw; }
+}
+
+@media (max-width:760px){
+  .container{ padding:0 1.25rem; }
+
+  /* شريط التنقل: أزرار أكبر مناسبة للمس */
+  .nav{ padding:0.55rem 0; }
+  .tool-btn{ width:40px; height:40px; }
+  .lang-toggle{ font-size:0.68rem; padding:0 0.6rem; min-height:32px; }
+  .brand img{ width:42px; height:42px; }
+  .brand-text b{ font-size:0.9rem; }
+  .brand-text span{ font-size:0.56rem; }
+  .a11y-panel{ min-width:200px; }
+
+  /* الهيرو: إلغاء الإزاحات الثابتة بالبكسل التي كانت تُخرج العناصر عن حدود شاشة الجوال */
+  .hero{ min-height:88vh; min-height:88dvh; }
+  .hero-content{ padding:2.6rem 0 3.2rem; min-height:auto; }
+  .hero-eyebrow, .hero h1{ transform:none; }
+  .hero h1{ font-size:clamp(1.5rem,7vw,2.1rem); margin-top:0.8rem; }
+  .hero-subtitle{ font-size:clamp(0.95rem,3.6vw,1.15rem); }
+  .hero p.lede{ font-size:0.86rem; line-height:1.85; margin:0 0 1.6rem; }
+  .hero-ctas{ transform:none; margin-top:1.4rem; flex-direction:column; align-items:stretch; gap:0.65rem; }
+  .hero-ctas .btn{ width:100%; justify-content:center; min-height:48px; }
+  .hero-meta{ transform:none; margin-top:0.6rem; gap:0.5rem; }
+  .meta-chip{ padding:0.5rem 0.6rem; }
+
+  /* الأقسام: تقليل المسافات الرأسية على الجوال دون حذف أي محتوى */
+  section{ padding:3rem 0; }
+  .section-head{ margin-bottom:1.8rem; }
+  .stage-card{ padding:1.4rem; }
+  .about-grid{ gap:1.1rem; }
+
+  /* أزرار عامة بحجم مناسب للمس (٤٤ بكسل كحد أدنى) */
+  .btn{ min-height:44px; padding:0.85rem 1.2rem; }
+  .btn-sm{ min-height:40px; padding:0.55rem 0.85rem; font-size:0.78rem; }
+
+  /* بطاقات جولات الحافلة: تصحيح خطوط كانت أكبر من اللازم فتسبب تجاوز حدود البطاقة على الجوال */
+  .bus-grid{ grid-template-columns:1fr; gap:1.4rem; }
+  .bus-body h3{ font-size:1.35rem; }
+  .bus-body p{ font-size:0.92rem; line-height:1.6; }
+  .bus-media{ height:130px; font-size:2rem; }
+
+  /* المودالات: تصحيح حجم العنوان الفرعي الكبير جداً وتحسين القراءة على الجوال */
+  .modal-subtitle{ font-size:1.15rem; }
+  .dest-modal-subtitle{ font-size:1.05rem; }
+  .modal-title, .dest-modal-title{ font-size:1.45rem; }
+  .modal-image{ height:190px; margin:1rem 1rem 0; }
+  .modal-header, .dest-modal-header{ padding:1.5rem 1rem 1rem; }
+  .modal-body, .dest-modal-body{ padding:0.9rem 1rem 1.2rem; }
+  .modal-text{ font-size:0.95rem; line-height:1.8; }
+  .dest-modal-body p{ font-size:0.92rem !important; }
+  .act-btn{ min-height:44px; }
+  .ac-btn{ width:44px; height:44px; }
+
+  /* الخريطة: توضيح المسافات بين الأزرار العائمة ومنع تداخلها */
+  .map-access-row .btn{ min-height:34px; }
+  .map-route-info{ gap:6px; }
+}
+
+@media (max-width:600px){
+  /* رفع صناديق معلومات المسار قليلاً لتفادي تداخلها مع أزرار الوصول السريع */
+  .map-route-info{ top:64px; }
+  .stop-label .lbl-pill{ padding:2px 8px; }
+  .stop-label .lbl-text{ font-size:0.72rem; max-width:110px; }
+}
+
+@media (max-width:420px){
+  .hero h1{ font-size:1.55rem; }
+  .container{ padding:0 1rem; }
+}
 </style>
 </head>
 <body>
@@ -503,7 +589,7 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 <main>
   <!-- الهيرو -->
   <header class="hero" id="home">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline webkit-playsinline="true" x5-playsinline="true" preload="auto" disablePictureInPicture>
       <source src="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/int.mp4" type="video/mp4">
     </video>
     <div class="container hero-content">
@@ -1082,7 +1168,7 @@ function panToSite(id){ const site=sites.find(s=>s.id===id); if(!site) return; m
 function flashStopCard(id){ const card=document.querySelector(`.stop-card[data-id="${id}"]`); if(!card) return; card.scrollIntoView({behavior:'smooth',block:'center'}); card.classList.add('flash'); setTimeout(()=>card.classList.remove('flash'),1600); }
 function toggleSite(id){ const idx=selected.indexOf(id); if(idx>-1) selected.splice(idx,1); else selected.push(id); render(); }
 function setCurrentStop(id){ currentStopId=id; render(); showToast(t('currentStopSet')); }
-function fitMapToRoute(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding:[50,50],maxZoom:18}); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon],16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding:[40,40]}); } }
+function fitMapToRoute(){ const isMob=window.innerWidth<=760; const routePad=isMob?26:50; const fullPad=isMob?18:40; const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding:[routePad,routePad],maxZoom:18}); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon], isMob?15:16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding:[fullPad,fullPad],maxZoom:16}); } }
 function render(){ sites.forEach(site=>{ const idx=selected.indexOf(site.id); const isCurrent=site.id===currentStopId; markers[site.id].setIcon(pinIcon(idx>-1?idx+1:null, idx>-1, isCurrent)); markers[site.id].setTooltipContent(stopLabelHtml(site,idx)); const tt=markers[site.id].getTooltip(); if(tt){ const el=tt.getElement(); if(el){ el.classList.toggle('label-current',isCurrent); el.classList.toggle('label-selected',!isCurrent&&idx>-1); } } }); routeLayers.forEach(l=>map.removeLayer(l)); routeLayers=[]; if(selected.length>1){ const segs=buildFollowSegments(selected); segs.forEach(({latlngs})=>{ routeLayers.push(L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.55}).addTo(map)); routeLayers.push(L.polyline(latlngs,{color:'#ff0000',weight:4,opacity:0.95}).addTo(map)); const {point,bearing}=midOfPolyline(latlngs); routeLayers.push(L.marker(point,{ icon:L.divIcon({className:'', html:`<div class="route-arrow" style="transform:rotate(${bearing}deg)">▲</div>`, iconSize:[18,18], iconAnchor:[9,9]}), interactive:false }).addTo(map)); }); } renderStopList(); updateProgress(); fitMapToRoute(); }
 function renderStopList(){ const list=document.getElementById('stopList'); list.innerHTML=''; sites.forEach(site=>{ const idx=selected.indexOf(site.id); const card=document.createElement('div'); card.className='stop-card'+(idx>-1?' active':'')+(site.id===currentStopId?' current':''); card.dataset.id=site.id; card.tabIndex=0; const pathName=T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id; card.innerHTML=`<div class="badge">${idx>-1?(idx+1):''}</div><div class="stop-info"><b>${pathName}</b><button type="button" class="info-btn" data-id="${site.id}">${t('discoverTrail')}</button><button type="button" class="here-btn" data-here="${site.id}">📍 ${t('imHere')}</button><button type="button" class="map-pin-btn" data-pan="${site.id}">🗺️ ${t('showOnMap')}</button></div>`; card.querySelector('.badge').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.stop-info b').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.info-btn').onclick=e=>{e.stopPropagation(); openModal(site.id);}; card.querySelector('.here-btn').onclick=e=>{e.stopPropagation(); setCurrentStop(site.id);}; card.querySelector('.map-pin-btn').onclick=e=>{e.stopPropagation(); panToSite(site.id);}; card.onclick=()=>toggleSite(site.id); list.appendChild(card); }); }
 function updateProgress(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); const total=totalDistance(); const walkSpeedKmh=4.5; const statSelected = document.getElementById('statSelected');
@@ -1158,9 +1244,9 @@ function startTracking(){
     if(nearest&&nearest.id!==lastNearestId&&best<0.06){ lastNearestId=nearest.id; setCurrentStop(nearest.id); const name=T.stopNames[nearest.id]?T.stopNames[nearest.id][lang]:nearest.id; showToast(t('nearestStop',{name})); }
   }, (err)=> { showToast(locateErrorMessage(err)); stopTracking(); }, {enableHighAccuracy:true, maximumAge:0, timeout:15000}); }
 let lastNearestId=null;
-function ensureDestMap(){ if(destMap) return destMap; destMap=L.map('destMap',{scrollWheelZoom:true, zoomControl:false}); destBaseLayer=L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'© OpenStreetMap contributors', maxZoom:21, minZoom:2}); destSatLayer=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'Google Satellite', maxZoom:21, minZoom:2}); destBaseLayer.addTo(destMap); return destMap; }
+function ensureDestMap(){ if(destMap) return destMap; destMap=L.map('destMap',{scrollWheelZoom:true, zoomControl:false, tap:true, touchZoom:true, bounceAtZoomLimits:true}); destMap.setMinZoom(12); destMap.setMaxZoom(20); destBaseLayer=L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'© OpenStreetMap contributors', maxZoom:21, minZoom:2}); destSatLayer=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'Google Satellite', maxZoom:21, minZoom:2}); destBaseLayer.addTo(destMap); return destMap; }
 function clearDestLayers(){ destRouteLayers.forEach(l=>destMap.removeLayer(l)); destRouteLayers=[]; destMarkers.forEach(m=>destMap.removeLayer(m)); destMarkers=[]; }
-function destFitBounds(b){ destLastBounds=b; destMap.fitBounds(b,{padding:[40,40]}); }
+function destFitBounds(b){ destLastBounds=b; const isMob=window.innerWidth<=760; destMap.fitBounds(b,{padding: isMob?[20,20]:[40,40], maxZoom:17}); }
 function stopDestTracking(){ if(destWatchId!==null){ navigator.geolocation.clearWatch(destWatchId); destWatchId=null; } const btn=document.getElementById('destGpsBtn'); if(btn){ btn.classList.remove('on'); btn.title=lang==='ar'?'بدء الملاحة المباشرة':'Start live navigation'; } if(destMeMarker){ const el=destMeMarker.getElement(); if(el) el.querySelector('.me-pin')?.classList.remove('tracking'); } if(destUserRouteLine){ destMap.removeLayer(destUserRouteLine); destUserRouteLine=null; } hideDirections('dest'); directionsFetchedDest=false; }
 let destUserRouteLine=null, directionsFetchedDest=false;
 async function showRouteDirectionsToBus(latitude,longitude){
@@ -1235,13 +1321,15 @@ function renderDirections(prefix, distanceM, durationS, steps, titleText, extraS
 function hideDirections(prefix){ const panel=document.getElementById(prefix+'Directions'); if(panel) panel.classList.remove('show'); }
 document.getElementById('mapDirClose')?.addEventListener('click', ()=>hideDirections('map'));
 document.getElementById('destDirClose')?.addEventListener('click', ()=>hideDirections('dest'));
-async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; document.getElementById('destAudioBtn').onclick=()=>playDestAudioGuide(tour); const heroBox=document.getElementById('destHeroImg'); if(/^https?:\/\//.test()){ heroBox.style.display='block'; heroBox.innerHTML=`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`; } else { heroBox.style.display='none'; heroBox.innerHTML=''; } const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ openVideoLightbox(tour.video,name); }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; hideDirections('dest'); directionsFetchedDest=false; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); stops.forEach((s,i)=>{ const stopMarker=L.marker([s.lat,s.lon],{ icon: pinIcon(i+1,false,false) }).addTo(dMap); stopMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(s.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(stopMarker); }); if(hasFixedTrail && endStop){ const endMarker=L.marker([endStop.lat,endStop.lon],{ icon: pinIcon(stops.length+1,false,false) }).addTo(dMap); endMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(endStop.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(endMarker); } const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML = `<span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم':'km'}</span><span class="mchip">⏱ ${totalMins} ${lang==='ar'?'د':'min'}</span>`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
+async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; document.getElementById('destAudioBtn').onclick=()=>playDestAudioGuide(tour); const heroBox=document.getElementById('destHeroImg'); if(tour.img&&/^https?:\/\//.test(tour.img)){ heroBox.style.display='block'; heroBox.innerHTML=`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`; } else { heroBox.style.display='none'; heroBox.innerHTML=''; } const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ openVideoLightbox(tour.video,name); }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; hideDirections('dest'); directionsFetchedDest=false; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); stops.forEach((s,i)=>{ const stopMarker=L.marker([s.lat,s.lon],{ icon: pinIcon(i+1,false,false) }).addTo(dMap); stopMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(s.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(stopMarker); }); if(hasFixedTrail && endStop){ const endMarker=L.marker([endStop.lat,endStop.lon],{ icon: pinIcon(stops.length+1,false,false) }).addTo(dMap); endMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(endStop.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(endMarker); } const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML = `<span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم':'km'}</span><span class="mchip">⏱ ${totalMins} ${lang==='ar'?'د':'min'}</span>`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
 
 // ============================================================
 //   تهيئة الخريطة الرئيسية
 // ============================================================
 const center = sites.reduce((a,s)=>[a[0]+s.lat/sites.length, a[1]+s.lon/sites.length], [0,0]);
-const map = L.map('map', { scrollWheelZoom:true, zoomControl:false }).setView(center, 10);
+const map = L.map('map', { scrollWheelZoom:true, zoomControl:false, tap:true, touchZoom:true, bounceAtZoomLimits:true }).setView(center, 10);
+map.setMinZoom(12);
+map.setMaxZoom(20);
 const baseLayer = L.tileLayer(
     'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
     {
@@ -1483,6 +1571,40 @@ console.log('✅ تم تحميل الموقع بالكامل.');
   });
 
   window.addEventListener('load', tryAutoplay, { once:true });
+})();
+
+// ============================================================
+//   فيديو الهيرو — ضمان التشغيل التلقائي على متصفحات الجوال
+//   (بعض متصفحات الجوال تحتاج محاولة إعادة تشغيل بعد أول تفاعل
+//   أو بعد عودة علامة التبويب إلى الواجهة)
+// ============================================================
+(function() {
+  const heroVideo = document.getElementById('heroVideo');
+  if (!heroVideo) return;
+  let triedUnlock = false;
+
+  function tryPlayHeroVideo() {
+    if (document.body.dataset.page !== 'home') return;
+    if (!heroVideo.paused) return;
+    const p = heroVideo.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  }
+
+  function unlockHeroVideoOnFirstInteraction() {
+    if (triedUnlock) return;
+    triedUnlock = true;
+    tryPlayHeroVideo();
+  }
+  ['pointerdown','keydown','touchstart'].forEach(evt => {
+    window.addEventListener(evt, unlockHeroVideoOnFirstInteraction, { once:true, passive:true });
+  });
+
+  heroVideo.addEventListener('loadedmetadata', tryPlayHeroVideo);
+  heroVideo.addEventListener('canplay', tryPlayHeroVideo);
+  window.addEventListener('load', tryPlayHeroVideo, { once:true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) tryPlayHeroVideo();
+  });
 })();
 </script>
 </body>
