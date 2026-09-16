@@ -1388,15 +1388,15 @@ function setMapMode(mode){
     if(!map.hasLayer(baseLayer)) baseLayer.addTo(map);
     satBtn.textContent = '🛰️';
     satBtn.title = lang==='ar' ? 'التبديل إلى خارطة الشوارع' : 'Switch to satellite view';
-    modeBadge.firstChild.textContent = '🗺️ ';
-    modeLabel.textContent = t('mapBasemap');
+    if(modeBadge && modeBadge.firstChild) modeBadge.firstChild.textContent = '🗺️ ';
+    if(modeLabel) modeLabel.textContent = t('mapBasemap');
   } else {
     if(map.hasLayer(baseLayer)) map.removeLayer(baseLayer);
     if(!map.hasLayer(satelliteLayer)) satelliteLayer.addTo(map);
     satBtn.textContent = '🗺️';
     satBtn.title = lang==='ar' ? 'التبديل إلى الخريطة الأساسية' : 'Switch to basemap view';
-    modeBadge.firstChild.textContent = '🛰️ ';
-    modeLabel.textContent = t('mapSatellite');
+    if(modeBadge && modeBadge.firstChild) modeBadge.firstChild.textContent = '🛰️ ';
+    if(modeLabel) modeLabel.textContent = t('mapSatellite');
   }
 }
 satBtn.onclick = ()=>setMapMode(mapMode === 'base' ? 'satellite' : 'base');
@@ -1426,15 +1426,15 @@ function setDestMapMode(mode){
     if(!destMap.hasLayer(destBaseLayer)) destBaseLayer.addTo(destMap);
     destSatBtn.textContent = '🛰️';
     destSatBtn.title = lang==='ar' ? 'التبديل إلى خارطة الشوارع' : 'Switch to street map';
-    destModeBadge.firstChild.textContent = '🗺️ ';
-    destModeLabel.textContent = t('mapBasemap');
+    if(destModeBadge && destModeBadge.firstChild) destModeBadge.firstChild.textContent = '🗺️ ';
+    if(destModeLabel) destModeLabel.textContent = t('mapBasemap');
   } else {
     if(destMap.hasLayer(destBaseLayer)) destMap.removeLayer(destBaseLayer);
     if(!destMap.hasLayer(destSatLayer)) destSatLayer.addTo(destMap);
     destSatBtn.textContent = '🗺️';
     destSatBtn.title = lang==='ar' ? 'التبديل إلى الخريطة الأساسية' : 'Switch to basemap view';
-    destModeBadge.firstChild.textContent = '🛰️ ';
-    destModeLabel.textContent = t('mapSatellite');
+    if(destModeBadge && destModeBadge.firstChild) destModeBadge.firstChild.textContent = '🛰️ ';
+    if(destModeLabel) destModeLabel.textContent = t('mapSatellite');
   }
 }
 destSatBtn.onclick = ()=>setDestMapMode(destMapMode === 'base' ? 'satellite' : 'base');
@@ -1544,37 +1544,18 @@ console.log('✅ تم تحميل الموقع بالكامل.');
   window.introAudioEl = audioEl;
   let triedUnlock = false;
 
-  // ===== مؤشر تصحيح مؤقت: يوريك بالضبط وش صار مع الصوت (احذفه لاحقاً بعد التأكد) =====
-  const dbg = document.createElement('div');
-  dbg.style.cssText = 'position:fixed; bottom:8px; inset-inline-start:8px; z-index:99999; background:rgba(0,0,0,0.85); color:#0f0; font:11px/1.4 monospace; padding:6px 9px; border-radius:6px; max-width:90vw; direction:ltr; text-align:left; white-space:pre-wrap;';
-  dbg.textContent = 'audio debug: init...';
-  document.body.appendChild(dbg);
-  function dbgLog(msg) { dbg.textContent = 'audio debug: ' + msg; console.log('[audio debug]', msg); }
-
-  audioEl.addEventListener('error', () => {
-    const codes = {1:'MEDIA_ERR_ABORTED',2:'MEDIA_ERR_NETWORK',3:'MEDIA_ERR_DECODE',4:'MEDIA_ERR_SRC_NOT_SUPPORTED'};
-    const code = audioEl.error ? audioEl.error.code : '?';
-    dbgLog('فشل تحميل الملف — كود الخطأ: ' + code + ' (' + (codes[code]||'unknown') + ')');
-  });
-  audioEl.addEventListener('playing', () => dbgLog('✅ الصوت يشتغل الآن فعلياً!'));
-  audioEl.addEventListener('canplaythrough', () => dbgLog('الملف جاهز للتشغيل (canplaythrough)'));
-
   function tryAutoplay() {
-    if (document.body.dataset.page !== 'home') { dbgLog('تخطي: مو بصفحة الرئيسية'); return; }
-    if (!audioEl.paused) { dbgLog('الصوت أصلاً شغّال'); return; }
-    dbgLog('محاولة تشغيل...');
+    if (document.body.dataset.page !== 'home') return; // الصوت الترحيبي لصفحة الرئيسية فقط
+    if (!audioEl.paused) return;
     const p = audioEl.play();
-    if (p && typeof p.then === 'function') {
-      p.then(() => dbgLog('✅ play() نجح')).catch(err => dbgLog('❌ play() فشل: ' + err.name + ' — ' + err.message));
-    }
+    if (p && typeof p.catch === 'function') p.catch(() => {});
   }
 
   // بعض المتصفحات تمنع التشغيل التلقائي بصوت قبل أول تفاعل من المستخدم؛
   // في هذه الحالة نستمع لأول لمسة/نقرة/مفتاح في الصفحة ونشغّل الصوت تلقائياً حينها، دون أي زر ظاهر.
-  function unlockOnFirstInteraction(e) {
+  function unlockOnFirstInteraction() {
     if (triedUnlock) return;
     triedUnlock = true;
-    dbgLog('أول تفاعل: ' + e.type + ' على ' + (e.target && e.target.tagName));
     tryAutoplay();
   }
   ['pointerdown','keydown','touchstart'].forEach(evt => {
