@@ -212,12 +212,12 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 @media (max-width:760px){ .map-access-row{ top:8px; right:8px; left:auto; gap:0.35rem; } .map-access-row .btn{ padding:0.2rem 0.5rem; font-size:0.72rem; } #map-section .map-toolbar{ top:54px; right:auto; left:8px; } }
 /* صناديق معلومات المسار العائمة (كل معلومة في إطار منفصل) */
 .map-route-info{ position:absolute; top:200px; right:30px; z-index:420; display:flex; flex-direction:column; gap:10px; pointer-events:none; }
-.map-route-info .stat-chip{ background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border:1px solid var(--glass-border); border-radius:9px; padding:3px 8px; box-shadow:var(--shadow); flex-direction:row; align-items:center; justify-content:flex-start; gap:5px; text-align:start; }
-.map-route-info .stat-chip .sc-ic{ font-size:1rem; line-height:1; flex:0 0 auto; text-align:center; }
-.map-route-info .stat-chip b{ display:block; font-family:var(--font-display-ar); font-size:0.72rem; color:var(--green-dark); line-height:1.1; text-align:center; }
+.map-route-info .stat-chip{ background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border:1px solid var(--glass-border); border-radius:100px; padding:6px 6px; box-shadow:var(--shadow); flex-direction:row; align-items:center; justify-content:flex-start; gap:5px; text-align:start; }
+.map-route-info .stat-chip .sc-ic{ font-size:0.8rem; line-height:1; flex:0 0 auto; text-align:center; }
+.map-route-info .stat-chip b{ display:block; font-family:var(--font-display-ar); font-size:0.9rem; color:var(--green-dark); line-height:1.1; text-align:center; }
 html[lang="en"] .map-route-info .stat-chip b{ font-family:var(--font-display-en); }
-.map-route-info .stat-chip span{ font-size:0.52rem; color:var(--ink-soft); line-height:1.1; display:block; text-align:center; }
-@media (max-width:600px){ .map-route-info{ top:30px; right:10px; gap:6px; } .map-route-info .stat-chip{ padding:4px 8px; border-radius:8px; } .map-route-info .stat-chip b{ font-size:0.74rem; } .map-route-info .stat-chip span{ font-size:0.56rem; } }
+.map-route-info .stat-chip span{ font-size:0.48rem; color:var(--ink-soft); line-height:1.1; display:block; text-align:center; }
+@media (max-width:400px){ .map-route-info{ top:auto; bottom:16px; right:10px; left:auto; gap:6px; } .map-route-info .stat-chip{ padding:5px 9px; border-radius:10px; } .map-route-info .stat-chip .sc-ic{ font-size:1rem; } .map-route-info .stat-chip b{ font-size:0.74rem; } .map-route-info .stat-chip span{ font-size:0.56rem; } }
 .progress-panel{ display:none; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:1.3rem 1.5rem; margin-bottom:1.4rem; border:1px solid var(--glass-border); }
 .progress-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:0.7rem; flex-wrap:wrap; gap:0.6rem; }
 .progress-top b{ font-family:var(--font-display-ar); font-size:1.05rem; }
