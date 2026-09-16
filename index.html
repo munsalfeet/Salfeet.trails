@@ -188,12 +188,12 @@ html[lang="en"] h2.section-title{ font-family:var(--font-display-en); font-weigh
 .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
 @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
 .stage-card{ background:var(--white); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow); border:1px solid var(--glass-border); position:relative; overflow:hidden; }
-.stage-num{ position:absolute; top:-14px; inset-inline-end:-8px; font-family:var(--font-display-ar); font-size:6rem; color:var(--stone-deep); font-weight:700; z-index:0; line-height:1; user-select:none; }
+.stage-num{ position:absolute; top:-14px; inset-inline-end:-150px; font-family:var(--font-display-ar); font-size:5rem; color:var(--stone-deep); font-weight:700; z-index:0; line-height:1; user-select:none; }
 .stage-card>*{ position:relative; z-index:1; }
-.stage-icon{ font-size:2.1rem; margin-bottom:0.8rem; }
-.stage-card h3{ font-family:var(--font-display-ar); font-size:1.4rem; margin:0 0 0.6rem; }
+.stage-icon{ font-size:3rem; margin-bottom:0.8rem; inset-inline-end:-130px; }
+.stage-card h3{ font-family:var(--font-display-ar); font-size:1.4rem; margin:0 0 0.6rem; text-align:center; }
 html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
-.stage-card p{ font-size:0.92rem; color:var(--ink-soft); line-height:1.85; margin:0 0 1rem; }
+.stage-card p{ font-size:0.92rem; color:var(--ink-soft); line-height:1.85; margin:0 0 2rem; }
 .stage-card ul{ margin:0; padding-inline-start:1.2rem; font-size:0.85rem; color:var(--ink-soft); line-height:2; }
 
 /* الخريطة */
@@ -559,18 +559,15 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
         <a href="#map-section" class="btn btn-outline btn-sm" id="aboutQuickMap">🗺️ <span id="aboutQuickMapLabel">الخريطة</span></a>
         <a href="#bus" class="btn btn-outline btn-sm" id="aboutQuickBus">🚌 <span id="aboutQuickBusLabel">دروب الحافلة</span></a>
       </div>
-      <div class="section-head">
-        <h2 class="section-title" id="aboutTitle">مرحلتان، تجربة واحدة متكاملة</h2>
-      </div>
       <div class="about-grid">
         <div class="stage-card">
-          <div class="stage-num">01</div>
+          <div class="stage-num">1</div>
           <div class="stage-icon">🚶</div>
           <h3 id="stage1Title">استكشف الدروب سيراً على الأقدام</h3>
           <p id="stage1Desc">ليست مجرد جولة، بل رحلة تروي حكاية سلفيت. تنقلكم عبر تسعة دروب مترابطة بين تاريخ المدينة وتراثها وطبيعتها، لتكتشفوا معالمها وساحاتها وينابيعها في تجربة تفاعلية ثرية تجمع بين المعرفة ومتعة الاستكشاف.</p>
         </div>
         <div class="stage-card">
-          <div class="stage-num">02</div>
+          <div class="stage-num">2</div>
           <div class="stage-icon">🚌</div>
           <h3 id="stage2Title">واصل رحلتك عبر جولات الحافلة</h3>
           <p id="stage2Desc">عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد الدروب بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريدة من نوعها.</p>
