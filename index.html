@@ -262,10 +262,13 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 @media (max-width:760px){
 
   .map-access-row{
-    top:8px;
-    right:8px;
+    position:absolute;
+    top:20px;
+    right:30px;
     left:auto;
-    gap:0.35rem;
+    z-index:660;
+     display:flex;
+    gap:0.5rem;
   }
 
   .map-access-row .btn{
@@ -276,19 +279,22 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 
     background:rgba(255,255,255,0.1);
     color:#59ACF9;
-
     border:2px solid rgba(255,255,255,0.55);
-
     backdrop-filter:blur(20px);
-
-    box-shadow:
-      0 4px 12px rgba(0,0,0,0.18),
-      inset 0 1px 0 rgba(255,255,255,0.25);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25);
+     ; justify-content:center; 
+     text-align:center; 
+    } 
+    .map-access-row .btn:hover{ background:rgba(255,255,255,0.1);
+       color:#000000;
+       border:2px solid rgba(255,255,255,0.55); 
+       backdrop-filter:blur(20px); box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25);
+       } 
+       #map-section .map-toolbar{ top:80px; right:auto; 
+      left:16px;
   }
 
 }
-
-
 /* ================================
    أزرار الخريطة - الجوال
    أعلى يسار الخريطة
@@ -296,7 +302,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 @media (max-width:760px){
 
   #map-section .map-toolbar{
-top:90px;
+top:10px;
 right:auto;
 left:16px;
 transform:none !important;
