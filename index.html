@@ -211,28 +211,33 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 #map-section .map-toolbar{ top:66px; right:auto; left:16px; }
 @media (max-width:760px){
 
-  .map-access-row{
-    top:8px;
-    right:8px;
-    left:auto;
-    gap:0.35rem;
-  }
+.map-access-row{
+  top:8px;
+  right:8px;
+  left:auto;
+  gap:0.35rem;
+}
 
-  .map-access-row .btn{
-    padding:0.2rem 0.5rem;
-    font-size:0.72rem;
-  }
+.map-access-row .btn{
+  padding:0.2rem 0.5rem;
+  font-size:0.72rem;
 
-  #map-section .map-toolbar{
-    top:54px;
-    right:auto;
-    left:8px;
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.55);
+  backdrop-filter:blur(20px);
+}
 
-    background:rgba(255,255,255,0.1);
-    color:#fff;
-    border:2.5px solid rgba(255,255,255,0.55);
-    backdrop-filter:blur(20px);
-  }
+#map-section .map-toolbar{
+  top:60px;
+  right:auto;
+  left:8px;
+
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.55);
+  backdrop-filter:blur(20px);
+}
 }
 /* صناديق معلومات المسار العائمة (كل معلومة في إطار منفصل) */
 .map-route-info{
