@@ -259,6 +259,9 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 #map-section .map-toolbar{ top:20px; right:auto; left:16px; transform:none !important; padding:5px !important; gap:5px !important; background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.55); backdrop-filter:blur(12px); border-radius:14px !important; } /* كل زر يصبح دائرة */ #map-section .map-toolbar .map-btn{ width:38px !important; height:38px !important; min-width:38px !important; min-height:38px !important; padding:0 !important; display:flex !important; align-items:center !important; justify-content:center !important; font-size:1rem !important; border-radius:50% !important; background:rgba(164, 211, 255, 0.46) !important;; border:1px solid rgba(255,255,255,0.55) !important; box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25); }
 ================================ */
 
+/* ================================
+   أزرار الوصول - الجوال
+================================ */
 @media (max-width:760px){
 
   .map-access-row{
@@ -267,7 +270,8 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     right:30px;
     left:auto;
     z-index:660;
-     display:flex;
+
+    display:flex;
     gap:0.5rem;
   }
 
@@ -281,40 +285,47 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     color:#59ACF9;
     border:2px solid rgba(255,255,255,0.55);
     backdrop-filter:blur(20px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25);
-     ; justify-content:center; 
-     text-align:center; 
-    } 
-    .map-access-row .btn:hover{ background:rgba(255,255,255,0.1);
-       color:#000000;
-       border:2px solid rgba(255,255,255,0.55); 
-       backdrop-filter:blur(20px); box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25);
-       } 
-       #map-section .map-toolbar{ top:80px; right:auto; 
-      left:16px;
+
+    box-shadow:
+      0 4px 12px rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.25);
   }
 
-}
-/* ================================
-   أزرار الخريطة - الجوال
-   أعلى يسار الخريطة
-================================ */
-@media (max-width:760px){
+  .map-access-row .btn:hover{
+    background:rgba(255,255,255,0.1);
+    color:#000000;
+    border:2px solid rgba(255,255,255,0.55);
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+      0 4px 12px rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+
+
+  /* ================================
+     أزرار الخريطة - أعلى اليسار
+  ================================= */
 
   #map-section .map-toolbar{
-top:10px;
-right:auto;
-left:16px;
-transform:none !important;
-padding:3px !important;
-gap:3px !important;
-background:rgba(255,255,255,0.10);
-border:1px solid rgba(255,255,255,0.55);
-backdrop-filter:blur(12px);
-border-radius:14px !important;
-flex-direction:column !important;
-}
+    position:absolute;
 
+    top:10px !important;
+    left:16px !important;
+    right:auto !important;
+
+    transform:none !important;
+
+    padding:3px !important;
+    gap:3px !important;
+
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.55);
+    backdrop-filter:blur(12px);
+    border-radius:14px !important;
+
+    flex-direction:column !important;
+  }
   /* تصغير أزرار الخريطة */
   #map-section .map-toolbar .map-btn{
     width:32px !important;
@@ -328,8 +339,6 @@ flex-direction:column !important;
 
     border-radius:50% !important;
   }
-
-
 }
 /* صناديق معلومات المسار العائمة (كل معلومة في إطار منفصل) */
 .map-route-info{
