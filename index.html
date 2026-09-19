@@ -274,7 +274,6 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
    أزرار الوصول - الجوال
 ================================ */
 @media (max-width:760px){
-
   .map-access-row{
     position:absolute;
     top:8px;
@@ -286,11 +285,14 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
   }
 
   .map-access-row .btn{
-    padding:0.15rem 0.4rem !important;
-    font-size:0.62rem !important;
+    /* ← الحل: إلغاء الحد الأدنى */
+    min-width:auto !important;
+    min-height:auto !important;
+    width:auto !important;
+    height:auto !important;
 
-    height:22px !important;
-    min-height:22px !important;
+    padding:0.3rem 0.6rem !important;
+    font-size:0.62rem !important;
 
     justify-content:center;
     align-items:center;
@@ -317,7 +319,6 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 
   .map-access-row .btn{ gap:0.22rem !important; }
 }
-
 /* تصغير أزرار "الرئيسية" و"دروب الحافلة" وما شابهها في شريط تنقل الصفحات على الجوال */
 @media (max-width:760px){
   .page-nav-row{ gap:0.4rem; margin-bottom:1rem; }
