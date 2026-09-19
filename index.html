@@ -336,7 +336,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     padding: 0.35rem 0.7rem !important;
 
     /* ✅ تصغير الخط */
-    font-size: 0.72rem !important;
+    font-size: 0.82rem !important;
     font-weight: 600;
 
     background: rgba(255,255,255,0.15);
@@ -408,85 +408,141 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
   }
 }
 /* صناديق معلومات المسار العائمة (كل معلومة في إطار منفصل) */
+/* ✅ الصندوق الخارجي الموحّد */
 .map-route-info{
   position:absolute;
   top:auto;
-  bottom:40px;
+  bottom:24px;
   left:50%;
   right:auto;
   transform:translateX(-50%);
   z-index:420;
+
   display:flex;
   flex-direction:row;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   gap:6px;
-  pointer-events:none;
-}
-.map-route-info .stat-chip{
+
+  /* ✅ الخلفية البيضاء للصندوق الخارجي */
   background:rgba(255,255,255,0.94);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,0.65);
-  border-radius:20px;
-  padding:7px 14px 7px 7px;
-  box-shadow:0 10px 22px rgba(35,40,29,0.16), inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.7);
+  border-radius:999px;           /* ← حبة دواء كاملة */
+  padding:6px;
+
+  box-shadow:
+    0 12px 28px rgba(35,40,29,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+
+  pointer-events:none;
+  max-width:calc(100% - 24px);
+}
+
+/* ✅ كل شريحة داخلية */
+.map-route-info .stat-chip{
+  /* خلفية داخلية فاتحة مميزة */
+  background:rgba(245,245,245,0.95);
+  border:1px solid rgba(0,0,0,0.04);
+  border-radius:999px;
+  padding:5px 12px 5px 5px;
+
+  display:flex;
   flex-direction:row;
   align-items:center;
   justify-content:flex-start;
-  gap:8px;
+  gap:7px;
+
   text-align:start;
+  white-space:nowrap;
+  min-width:0;
+  flex:0 0 auto;
+
+  box-shadow:inset 0 1px 2px rgba(0,0,0,0.03);
+
   transition:transform .25s ease, box-shadow .25s ease;
   pointer-events:auto;
 }
-.map-route-info .stat-chip:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(35,40,29,0.24), inset 0 1px 0 rgba(255,255,255,0.7); }
+
+.map-route-info .stat-chip:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 1px 2px rgba(0,0,0,0.03),
+    0 4px 10px rgba(35,40,29,0.1);
+}
+
+/* ✅ أيقونة دائرية ملوّنة */
 .map-route-info .stat-chip .sc-ic{
-  font-size:0.95rem;
+  font-size:0.85rem;
   line-height:1;
   flex:0 0 auto;
-  width:30px;
-  height:30px;
+  width:26px;
+  height:26px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   color:#fff;
-  box-shadow:inset 0 1px 2px rgba(255,255,255,0.35), 0 3px 8px rgba(0,0,0,0.15);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.12);
 }
-.map-route-info .stat-chip b{ display:block; font-family:var(--font-display-ar); font-size:0.95rem; color:var(--green-dark); line-height:1.15; text-align:start; }
-html[lang="en"] .map-route-info .stat-chip b{ font-family:var(--font-display-en); }
-.map-route-info .stat-chip span{ font-size:0.5rem; color:var(--ink-soft); line-height:1.1; display:block; text-align:start; }
-/* لون مميز لأيقونة كل صندوق، مع الحفاظ على نفس شكل الحواف ونفس المستوى للجميع */
-.map-route-info .stat-chip:nth-child(1) .sc-ic{ background:linear-gradient(135deg,var(--green-dark),var(--green)); }
-.map-route-info .stat-chip:nth-child(2) .sc-ic{ background:linear-gradient(135deg,var(--path),#c98e00); }
-.map-route-info .stat-chip:nth-child(3) .sc-ic{ background:linear-gradient(135deg,var(--sky),var(--sky-dark)); }
+
+/* ✅ القيمة (الرقم) */
+.map-route-info .stat-chip b{
+  display:block;
+  font-family:var(--font-display-ar);
+  font-size:0.9rem;
+  color:#1a1a1a;
+  line-height:1.1;
+  text-align:start;
+  font-weight:700;
+}
+
+html[lang="en"] .map-route-info .stat-chip b{
+  font-family:var(--font-display-en);
+}
+
+/* ✅ المسمى (دروب/كم/د) */
+.map-route-info .stat-chip span{
+  font-size:0.55rem;
+  color:#666;
+  line-height:1.1;
+  display:block;
+  text-align:start;
+}
+
+/* ✅ ألوان الأيقونات */
+.map-route-info .stat-chip:nth-child(1) .sc-ic{
+  background:#5a9e4a;   /* ← أخضر */
+}
+.map-route-info .stat-chip:nth-child(2) .sc-ic{
+  background:#3b82f6;   /* ← أزرق */
+}
+.map-route-info .stat-chip:nth-child(3) .sc-ic{
+  background:#f59e0b;   /* ← أصفر/برتقالي */
+}
+
+/* ✅ الجوال */
 @media (max-width:760px){
   .map-route-info{
-    top:auto;
-    bottom:22px;
-    left:50%;
-    right:auto;
-    transform:translateX(-50%);
-    width:max-content;
-    max-width:calc(100% - 70px);
-    gap:5px;
+    bottom:16px;
+    gap:4px;
+    padding:5px;
+    max-width:calc(100% - 16px);
   }
 
   .map-route-info .stat-chip{
-    padding:5px 10px 5px 5px;
-    border-radius:14px !important;
-    gap:6px;
-    transform:none !important;
-    box-shadow:0 8px 18px rgba(35,40,29,0.18), inset 0 1px 0 rgba(255,255,255,0.6) !important;
+    padding:4px 9px 4px 4px;
+    gap:5px;
   }
 
   .map-route-info .stat-chip .sc-ic{
-    width:24px;
-    height:24px;
-    font-size:0.78rem;
+    width:22px;
+    height:22px;
+    font-size:0.7rem;
   }
 
   .map-route-info .stat-chip b{
-    font-size:0.72rem;
+    font-size:0.75rem;
   }
 
   .map-route-info .stat-chip span{
