@@ -379,41 +379,9 @@ html[dir="rtl"] .map-toolbar{ left:16px; right:auto; }
 html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
 @media (max-width:760px){
   #map{ min-height:62vh; }
-  /* شريط أدوات الخريطة - أعلى يسار الخريطة */
-.map-toolbar{
-  top:90px;
-  bottom:auto;
-
-  left:16px;
-  right:auto;
-
-  transform:none !important;
-
-  display:flex;
-  flex-direction:column;
-
-  padding:5px;
-  gap:4px;
-
-  border-radius:20px;
-
-  z-index:670;
-}
-
-html[dir="rtl"] .map-toolbar{
-  left:16px;
-  right:auto;
-}
-
-#map-section .map-toolbar{
-  top:90px;
-  bottom:auto;
-
-  left:16px;
-  right:auto;
-
-  transform:none !important;
- }
+  .map-toolbar{ top:auto; bottom:14px; left:50%; right:auto; transform:translateX(-50%); flex-direction:row; padding:7px; gap:6px; border-radius:999px; }
+  html[dir="rtl"] .map-toolbar{ left:50%; right:auto; }
+  #map-section .map-toolbar{ top:auto; bottom:14px; left:50%; }
   .map-btn{ width:44px; height:44px; font-size:1.05rem; }
   .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; }
   .dest-map-wrap{ height:min(60vh,520px); border-radius:0; }
