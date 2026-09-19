@@ -376,13 +376,13 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 @media (max-width:760px){
   #map-section .map-toolbar{
     position:absolute;
-    top:40px !important;
+    top:30px !important;
     bottom:auto !important;
     left:16px !important;
     right:auto !important;
     transform:none !important;
     padding:3px !important;
-    gap:3px !important;
+    gap:4px !important;
     background:rgba(255,255,255,0.10);
     border:1px solid rgba(255,255,255,0.55);
     backdrop-filter:blur(12px);
@@ -390,16 +390,26 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     flex-direction:column !important;
   }
   /* تصغير أزرار الخريطة */
-  #map-section .map-toolbar .map-btn{
-    width:32px !important;
-    height:32px !important;
-    min-width:32px !important;
-    min-height:32px !important;
+#map-section .map-toolbar .map-btn{
+    width:52px !important;        /* ← عرض أكبر من الطول */
+    height:30px !important;       /* ← الطول أصغر */
+    min-width:52px !important;
+    min-height:30px !important;
+    max-width:52px !important;
+    max-height:30px !important;
+
     padding:0 !important;
-    font-size:0.8rem !important;
+    font-size:0.85rem !important;
+
+    /* ✅ حواف دائرية كاملة = حبة دواء */
     border-radius:999px !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
   }
 }
+
 /* صناديق معلومات المسار العائمة (كل معلومة في إطار منفصل) */
 .map-route-info{
   position:absolute;
@@ -455,7 +465,7 @@ html[lang="en"] .map-route-info .stat-chip b{ font-family:var(--font-display-en)
 @media (max-width:760px){
   .map-route-info{
     top:auto;
-    bottom:12px;
+    bottom:30px;
     left:50%;
     right:auto;
     transform:translateX(-50%);
