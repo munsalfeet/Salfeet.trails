@@ -35,6 +35,7 @@ html{ scroll-behavior:smooth; font-size:calc(16px * var(--scale)); }
 body{ display:flex; flex-direction:column; min-height:100vh; background:var(--stone-deep); color:var(--ink); font-family:var(--font-body-ar); transition:.2s; margin:0; }
 html[lang="en"] body{ font-family:var(--font-body-en); }
 .container{ max-width:1220px; margin:0 auto; padding:0 10vw; }
+@media (max-width:760px){ .container{ padding:0 1.2rem; } }
 
 /* شريط التنقل */
 .nav{ position:sticky; top:0; z-index:300; padding:0.7rem 0; background:var(--glass); backdrop-filter:blur(100px); border-bottom:1px solid var(--glass-border); }
@@ -66,8 +67,18 @@ html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 .sound-toggle.show{ display:flex; }
 .sound-toggle:hover{ background:rgba(20,25,15,0.8); transform:translateY(-2px); }
 @media (max-width:760px){ .sound-toggle{ bottom:12px; inset-inline-end:12px; width:38px; height:38px; font-size:1rem; } }
+@media (max-width:760px){
+  .hero{ min-height:auto; }
+  .hero-content{ padding:2.4rem 0 2.2rem; min-height:auto; }
+  .hero-eyebrow{ transform:none; margin-inline-start:0; }
+  .hero h1{ transform:none; margin:14px 0 0.4rem; }
+  .hero-ctas{ transform:none; margin-top:1.2rem; margin-bottom:1.4rem; }
+  .hero-meta{ transform:none; margin-top:0.8rem; }
+  .btn{ padding:0.8rem 1.2rem; font-size:0.85rem; }
+  .btn-map-highlight{ padding:0.9rem 1.6rem; font-size:0.8rem; }
+}
 .hero-content{ position:relative; z-index:2; padding:4.2rem 0 8.5rem; width:100%; min-height:60vh; display:flex; flex-direction:column; justify-content:center; }
-.hero-eyebrow{ display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.28); padding:0.4rem 0.9rem; border-radius:999px; margin-bottom:0.4rem; backdrop-filter:blur(6px); width:fit-content; transform:translateX(-30px); }
+.hero-eyebrow{ display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; background:rgba(255,255,255,0.12); border:2.5px solid rgba(255,255,255,0.28); padding:0.4rem 0.9rem; border-radius:1509px; margin-bottom:0.2rem; backdrop-filter:blur(1000px); width:fit-content; transform:translateX(-40px); }
 .hero h1{ font-family:var(--font-display-ar); font-size:clamp(0.6rem,6vw,2.6rem); color:#FBF7E8; text-shadow:0 4px 24px rgba(0,0,0,0.35); margin:20px 0 0.rem ; position:relative; z-index:2; transform:translateX(-30px); }
 html[lang="en"] .hero h1{ font-family:var(--font-display-en); font-weight:600; }
 .hero-subtitle{ font-size:clamp(0.1rem,2vw,1.4rem); font-weight:300; color:#EFEADA; margin:-0.1rem 0 1.2rem; position:relative; z-index:2; }
@@ -129,9 +140,9 @@ html[lang="en"] .hero p.lede {
     transition:0.6s;
     text-decoration:none;
 }
-.btn-ghost{ background:rgba(255,255,255,0.1); color:#fff; border:2.0px solid rgba(255,255,255,0.55); backdrop-filter:blur(10px); }
+.btn-ghost{ background:rgba(255,255,255,0.1); color:#fff; border:2.5px solid rgba(255,255,255,0.55); backdrop-filter:blur(20px); }
 .btn-ghost:hover{ background:rgba(255,255,255,0.22); transform:translateY(-12px); }
-.btn-outline{ background:rgba(255,255,255,0.1); color:#0c0303; border:1.5px solid rgba(14, 6, 6, 0.55); backdrop-filter:blur(10px); }
+.btn-outline{ background:rgba(255,255,255,0.1); color:#0c0303; border:1.5px solid rgba(14, 6, 6, 0.55); backdrop-filter:blur(20px); }
 .btn-outline:hover{ background:#fdf9eb; color:#000000; }
 .btn-map-highlight{ background:var(--green-dark); color:#fff; box-shadow:0 20px 26px rgba(49, 83, 86, 0.5); padding:10.5rem 2.4rem; font-size:0.8rem; }
 .btn-map-highlight:hover{ background:var(--green); transform:translateY(-12px); }
@@ -188,12 +199,12 @@ html[lang="en"] h2.section-title{ font-family:var(--font-display-en); font-weigh
 .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
 @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
 .stage-card{ background:var(--white); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow); border:1px solid var(--glass-border); position:relative; overflow:hidden; }
-.stage-num{ position:absolute; top:-14px; inset-inline-end:-8px; font-family:var(--font-display-ar); font-size:6rem; color:var(--stone-deep); font-weight:700; z-index:0; line-height:1; user-select:none; }
+.stage-num{ position:absolute; top:-14px; inset-inline-end:-120px; font-family:var(--font-display-ar); font-size:5rem; color:var(--stone-deep); font-weight:700; z-index:0; line-height:1; user-select:none; }
 .stage-card>*{ position:relative; z-index:1; }
-.stage-icon{ font-size:2.1rem; margin-bottom:0.8rem; }
-.stage-card h3{ font-family:var(--font-display-ar); font-size:1.4rem; margin:0 0 0.6rem; }
+.stage-icon{ font-size:3rem; margin-bottom:0.8rem; inset-inline-end:-120px; }
+.stage-card h3{ font-family:var(--font-display-ar); font-size:1.4rem; margin:0 0 0.6rem; text-align:center; }
 html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
-.stage-card p{ font-size:0.92rem; color:var(--ink-soft); line-height:1.85; margin:0 0 1rem; }
+.stage-card p{ font-size:0.92rem; color:var(--ink-soft); line-height:1.85; margin:0 0 2rem; }
 .stage-card ul{ margin:0; padding-inline-start:1.2rem; font-size:0.85rem; color:var(--ink-soft); line-height:2; }
 
 /* الخريطة */
@@ -205,19 +216,189 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 @media (max-width:760px){ #map-section.is-active{ min-height:calc(100vh - 64px); } .map-full-wrap{ min-height:66vh; } }
 
 /* أزرار الوصول السريع العائمة فوق الخريطة (بدون إطار/خلفية بيج) */
-.map-access-row{ position:absolute; top:30px; right:30px; left:auto; z-index:660; display:flex; gap:0.5rem; flex-wrap:wrap; }
-.map-access-row .btn{ background:rgba(255,255,255,0.92); color:var(--ink); border:1px solid var(--glass-border); backdrop-filter:blur(8px); box-shadow:var(--shadow); }
-.map-access-row .btn:hover{ background:#fff; }
-#map-section .map-toolbar{ top:66px; right:auto; left:16px; }
-@media (max-width:760px){ .map-access-row{ top:8px; right:8px; left:auto; gap:0.35rem; } .map-access-row .btn{ padding:0.2rem 0.5rem; font-size:0.72rem; } #map-section .map-toolbar{ top:54px; right:auto; left:8px; } }
+.map-access-row{
+  position:absolute;
+  top:20px;
+  right:30px;
+  left:auto;
+  z-index:660;
+
+  display:flex;
+  gap:0.6rem;
+  flex-wrap:wrap;
+}
+
+.map-access-row .btn{
+  min-width:100px;
+  min-height:40px;
+
+  padding:0.55rem 1rem;
+  font-size:0.85rem;
+  font-weight:600;
+
+  background:rgba(255,255,255,0.15);
+  color:#59ACF9;
+
+  border:2px solid rgba(255,255,255,0.65);
+  border-radius:100px;
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+
+  justify-content:center;
+  text-align:center;
+}
+
+.map-access-row .btn:hover{
+  background:rgba(255,255,255,0.25);
+  color:#ffffff;
+
+  border:2px solid rgba(255,255,255,0.8);
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+
+/* أزرار الخريطة */
+#map-section .map-toolbar{ top:20px; right:auto; left:16px; transform:none !important; padding:5px !important; gap:5px !important; background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.55); backdrop-filter:blur(12px); border-radius:14px !important; } /* كل زر يصبح دائرة */ #map-section .map-toolbar .map-btn{ width:38px !important; height:38px !important; min-width:38px !important; min-height:38px !important; padding:0 !important; display:flex !important; align-items:center !important; justify-content:center !important; font-size:1rem !important; border-radius:50% !important; background:rgba(164, 211, 255, 0.46) !important;; border:1px solid rgba(255,255,255,0.55) !important; box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25); }
+================================ */
+
+/* ================================
+   أزرار الوصول - الجوال
+================================ */
+@media (max-width:760px){
+
+  .map-access-row{
+    position:absolute;
+    top:8px;
+    right:8px;
+    left:auto;
+    z-index:660;
+    display:flex;
+    gap:0.35rem !important;
+  }
+
+  .map-access-row .btn{
+    padding:0.2rem 0.5rem !important;
+    font-size:0.75rem !important;
+
+    height:26px !important;
+    min-height:26px !important;
+
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    background:rgba(255,255,255,0.1);
+    color:#59ACF9;
+
+    border:1px solid rgba(255,255,255,0.55) !important;
+    border-radius:8px !important;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+      0 2px 7px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .map-access-row .btn:hover{
+    background:rgba(255,255,255,0.1);
+    color:#000000;
+    border:1px solid rgba(255,255,255,0.55) !important;
+  }
+}
+  /* ================================
+     أزرار الخريطة - أعلى اليسار
+  ================================= */
+@media (max-width:760px){
+  .map-section .map-toolbar{
+    position:absolute;
+    top:90px !important;
+    bottom:auto !important;
+    left:16px !important;
+    right:auto !important;
+    transform:none !important;
+    padding:3px !important;
+    gap:3px !important;
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.55);
+    backdrop-filter:blur(12px);
+    border-radius:14px !important;
+    flex-direction:column !important;
+  }
+  /* تصغير أزرار الخريطة */
+  #map-section .map-toolbar .map-btn{
+    top:90px;
+    bottom:auto;
+    left:16px;
+    right:auto;
+    width:32px !important;
+    height:32px !important;
+    min-width:32px !important;
+    min-height:32px !important;
+    padding:0 !important;
+    font-size:0.8rem !important;
+    border-radius:50% !important;
+  }
+}
 /* صناديق معلومات المسار العائمة (كل معلومة في إطار منفصل) */
-.map-route-info{ position:absolute; top:200px; right:30px; z-index:420; display:flex; flex-direction:column; gap:10px; pointer-events:none; }
-.map-route-info .stat-chip{ background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border:1px solid var(--glass-border); border-radius:9px; padding:3px 8px; box-shadow:var(--shadow); flex-direction:row; align-items:center; justify-content:flex-start; gap:5px; text-align:start; }
-.map-route-info .stat-chip .sc-ic{ font-size:1rem; line-height:1; flex:0 0 auto; text-align:center; }
-.map-route-info .stat-chip b{ display:block; font-family:var(--font-display-ar); font-size:0.72rem; color:var(--green-dark); line-height:1.1; text-align:center; }
+.map-route-info{
+  position:absolute;
+  top:auto;
+  bottom:20px;
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
+  z-index:420;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  pointer-events:none;
+}
+.map-route-info .stat-chip{ background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border:1px solid var(--glass-border); border-radius:100px; padding:6px 6px; box-shadow:var(--shadow); flex-direction:row; align-items:center; justify-content:flex-start; gap:5px; text-align:start; }
+.map-route-info .stat-chip .sc-ic{ font-size:0.8rem; line-height:1; flex:0 0 auto; text-align:center; }
+.map-route-info .stat-chip b{ display:block; font-family:var(--font-display-ar); font-size:0.9rem; color:var(--green-dark); line-height:1.1; text-align:center; }
 html[lang="en"] .map-route-info .stat-chip b{ font-family:var(--font-display-en); }
-.map-route-info .stat-chip span{ font-size:0.52rem; color:var(--ink-soft); line-height:1.1; display:block; text-align:center; }
-@media (max-width:600px){ .map-route-info{ top:30px; right:10px; gap:6px; } .map-route-info .stat-chip{ padding:4px 8px; border-radius:8px; } .map-route-info .stat-chip b{ font-size:0.74rem; } .map-route-info .stat-chip span{ font-size:0.56rem; } }
+.map-route-info .stat-chip span{ font-size:0.48rem; color:var(--ink-soft); line-height:1.1; display:block; text-align:center; }
+@media (max-width:760px){
+  .map-route-info{
+    top:auto;
+    bottom:12px;
+    left:50%;
+    right:auto;
+    transform:translateX(-50%);
+    width:max-content;
+    max-width:calc(100% - 70px);
+    gap:5px;
+  }
+
+  .map-route-info .stat-chip{
+    padding:6px 8px;
+    border-radius:10px;
+  }
+
+  .map-route-info .stat-chip .sc-ic{
+    font-size:0.9rem;
+  }
+
+  .map-route-info .stat-chip b{
+    font-size:0.72rem;
+  }
+
+  .map-route-info .stat-chip span{
+    font-size:0.5rem;
+  }
+}
 .progress-panel{ display:none; background:var(--white); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:1.3rem 1.5rem; margin-bottom:1.4rem; border:1px solid var(--glass-border); }
 .progress-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:0.7rem; flex-wrap:wrap; gap:0.6rem; }
 .progress-top b{ font-family:var(--font-display-ar); font-size:1.05rem; }
@@ -229,11 +410,11 @@ html[lang="en"] .progress-top b{ font-family:var(--font-display-en); }
 .progress-details b{ display:block; color:var(--ink); font-size:0.95rem; }
 .layout{ display:grid; grid-template-columns:1fr; min-height:640px; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); }
 .sidebar{ display:none !important; }
-@media (max-width:900px){ .layout{ grid-template-columns:1fr; } }
+@media (max-width:760px){ .layout{ grid-template-columns:1fr; } }
 .sidebar{ background:var(--paper); border-left:1px solid var(--glass-border); padding:1.4rem 1.2rem 1.6rem; overflow-y:auto; max-height:640px; }
 html[dir="rtl"] .sidebar{ border-left:1px solid var(--glass-border); border-right:none; }
 html[lang="en"] .sidebar{ border-left:none; border-right:1px solid var(--glass-border); }
-@media (max-width:900px){ .sidebar{ border:none; border-bottom:1px solid var(--glass-border); max-height:none; } }
+@media (max-width:760px){ .sidebar{ border:none; border-bottom:1px solid var(--glass-border); max-height:none; } }
 .sidebar h3{ font-family:var(--font-display-ar); font-size:1.05rem; margin:0 0 0.9rem; }
 html[lang="en"] .sidebar h3{ font-family:var(--font-display-en); }
 .route-summary{ display:flex; justify-content:space-between; align-items:center; background:var(--stone); border:1px dashed var(--gray-soft); border-radius:8px; padding:0.6rem 0.85rem; margin-bottom:1rem; }
@@ -289,16 +470,57 @@ html[dir="rtl"] .map-toolbar{ left:16px; right:auto; }
 html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
 @media (max-width:760px){
   #map{ min-height:62vh; }
-  .map-toolbar{ top:auto; bottom:14px; left:50%; right:auto; transform:translateX(-50%); flex-direction:row; padding:7px; gap:6px; border-radius:999px; }
-  html[dir="rtl"] .map-toolbar{ left:50%; right:auto; }
-  #map-section .map-toolbar{ top:auto; bottom:14px; left:50%; }
-  .map-btn{ width:44px; height:44px; font-size:1.05rem; }
+  @media (max-width:760px){
+
+  #map{
+    min-height:62vh;
+  }
+
+  /* أزرار الخريطة: يسار + منتصف الشاشة */
+  .map-toolbar{
+    top:50%;
+    bottom:auto;
+    left:10px;
+    right:auto;
+    transform:translateY(-50%);
+
+    flex-direction:column;
+    padding:6px;
+    gap:6px;
+    border-radius:14px;
+  }
+
+  html[dir="rtl"] .map-toolbar{
+    left:10px;
+    right:auto;
+  }
+
+  #map-section .map-toolbar{
+    top:50%;
+    bottom:auto;
+    left:10px;
+    right:auto;
+    transform:translateY(-50%);
+  }
+
+  .map-btn{
+    width:44px;
+    height:44px;
+    font-size:1.05rem;
+  }
+
+  .map-mode-badge{
+    top:10px;
+    font-size:0.64rem;
+    padding:0.26rem 0.65rem;
+  }
+}
   .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; }
   .dest-map-wrap{ height:min(60vh,520px); border-radius:0; }
   .dest-modal-card{ width:100%; max-height:100vh; height:100vh; border-radius:0; }
   .dest-modal-body{ padding-bottom:2rem; }
 }
-@media (max-width:420px){
+@media (max-width:760px){
   #map{ min-height:66vh; }
   .map-btn{ width:46px; height:46px; }
 }
@@ -390,7 +612,7 @@ html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
 .modal-body{ padding:1rem 1.3rem 1.5rem; }
 .modal-text{ font-size:1.1rem; line-height:1.95; color:var(--ink-soft); margin:0 0 1.1rem; white-space:pre-line; text-align:justify; }
 .modal-actions-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:0.7rem; }
-@media (max-width:480px){ .modal-actions-grid{ grid-template-columns:1fr; } }
+@media (max-width:760px){ .modal-actions-grid{ grid-template-columns:1fr; } }
 .act-btn{ padding:0.8rem 0.7rem; border-radius:8px; font-size:0.82rem; font-weight:700; border:1px solid var(--gray-soft); background:var(--white); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.4rem; transition:.18s; }
 .act-btn:hover{ background:var(--green); color:#fff; border-color:var(--green); }
 .audio-controls{ display:flex; gap:0.5rem; justify-content:center; margin:0.5rem 0 0.2rem; }
@@ -433,7 +655,7 @@ html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
 .tm-btn{ flex:1; display:flex; align-items:center; justify-content:center; gap:0.3rem; border:none; background:transparent; color:var(--ink-soft); font-size:0.7rem; font-weight:700; padding:0.4rem 0.5rem; border-radius:999px; cursor:pointer; transition:.15s; font-family:inherit; }
 .tm-btn.active{ background:var(--green-dark); color:#fff; box-shadow:0 2px 6px rgba(35,40,29,0.25); }
 .tm-btn:hover:not(.active){ background:rgba(35,40,29,0.08); }
-@media (max-width:600px){ .tm-btn{ font-size:0.66rem; padding:0.5rem 0.4rem; } }
+@media (max-width:760px){ .tm-btn{ font-size:0.66rem; padding:0.5rem 0.4rem; } }
 .dest-hero-img{ width:100%; height:min(34vw,180px); border-radius:14px; overflow:hidden; margin-bottom:1rem; background:var(--stone); }
 .dest-hero-img img{ width:100%; height:100%; object-fit:cover; }
 .dest-desc{ font-size:0.88rem; color:var(--ink); line-height:1.8; margin:0.9rem 0; }
@@ -454,7 +676,7 @@ html[lang="en"] .video-lightbox-title{ font-family:var(--font-display-en); font-
 .video-lightbox-inner iframe{ display:block; width:min(74vw,980px); aspect-ratio:16/9; max-height:74vh; border:none; border-radius:14px; background:#000; box-shadow:var(--shadow-lg); }
 .video-lightbox-close{ position:absolute; top:-3rem; inset-inline-end:0; width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.4); font-size:1.4rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.18s; }
 .video-lightbox-close:hover{ background:rgba(255,255,255,0.28); transform:scale(1.06); }
-@media (max-width:700px){ .video-lightbox-close{ top:-2.6rem; width:36px; height:36px; font-size:1.2rem; } .video-lightbox{ padding:2vh 2vw; } .video-lightbox-inner{ max-width:92vw; } .video-lightbox-inner video{ max-width:92vw; } .video-lightbox-inner iframe{ width:90vw; } }
+@media (max-width:760px){ .video-lightbox-close{ top:-2.6rem; width:36px; height:36px; font-size:1.2rem; } .video-lightbox{ padding:2vh 2vw; } .video-lightbox-inner{ max-width:92vw; } .video-lightbox-inner video{ max-width:92vw; } .video-lightbox-inner iframe{ width:90vw; } }
 .video-placeholder{ text-align:center; color:var(--ink-soft); font-size:0.82rem; padding:0.9rem; border:1px dashed var(--gray-soft); border-radius:8px; background:var(--stone); margin-top:0.7rem; }
 .toast{ position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px); z-index:3000; background:var(--green-deeper); color:#F4EFE2; padding:0.8rem 1.4rem; border-radius:999px; font-size:0.85rem; box-shadow:var(--shadow-lg); opacity:0; pointer-events:none; transition:all .25s; }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
@@ -489,7 +711,7 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 .intro-audio-btn:hover{ background:var(--green); }
 .intro-audio-controls{ display:flex; gap:0.4rem; background:var(--white); border-radius:999px; padding:0.4rem; box-shadow:var(--shadow); }
 .intro-audio-controls .ac-btn{ width:38px; height:38px; }
-@media (max-width:600px){ .intro-audio-bar{ inset-inline-start:12px; bottom:12px; } .intro-audio-btn span:last-child{ display:none; } }
+@media (max-width:760px){ .intro-audio-bar{ inset-inline-start:12px; bottom:12px; } .intro-audio-btn span:last-child{ display:none; } }
 </style>
 </head>
 <body>
@@ -559,18 +781,15 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
         <a href="#map-section" class="btn btn-outline btn-sm" id="aboutQuickMap">🗺️ <span id="aboutQuickMapLabel">الخريطة</span></a>
         <a href="#bus" class="btn btn-outline btn-sm" id="aboutQuickBus">🚌 <span id="aboutQuickBusLabel">دروب الحافلة</span></a>
       </div>
-      <div class="section-head">
-        <h2 class="section-title" id="aboutTitle">مرحلتان، تجربة واحدة متكاملة</h2>
-      </div>
       <div class="about-grid">
         <div class="stage-card">
-          <div class="stage-num">01</div>
+          <div class="stage-num">1</div>
           <div class="stage-icon">🚶</div>
           <h3 id="stage1Title">استكشف الدروب سيراً على الأقدام</h3>
           <p id="stage1Desc">ليست مجرد جولة، بل رحلة تروي حكاية سلفيت. تنقلكم عبر تسعة دروب مترابطة بين تاريخ المدينة وتراثها وطبيعتها، لتكتشفوا معالمها وساحاتها وينابيعها في تجربة تفاعلية ثرية تجمع بين المعرفة ومتعة الاستكشاف.</p>
         </div>
         <div class="stage-card">
-          <div class="stage-num">02</div>
+          <div class="stage-num">2</div>
           <div class="stage-icon">🚌</div>
           <h3 id="stage2Title">واصل رحلتك عبر جولات الحافلة</h3>
           <p id="stage2Desc">عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد الدروب بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريدة من نوعها.</p>
@@ -753,15 +972,15 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 //   كائن الترجمة (جميع النصوص)
 // ============================================================
 const T = {
-  brandTitle: { ar:'دروب الزيتون', en:'Olive Paths' },
+  brandTitle: { ar:'دروب الزيتون', en:'Olive Trails' },
   brandSub: { ar:'بلدية سلفيت', en:'Salfeet Municipality' },
   langLabel: { ar:'English', en:'عربي' },
-  heroEyebrow: { ar:'دروب الزيتون', en:'Olive Paths' },
-  heroTitle: { ar:'اكتشف مدينة سلفيت', en:'Discover the city of Salfeet.' },
-  heroSub: { ar:'خطوة بخطوة بين التاريخ والطبيعة', en:'Step by step through history and nature' },
+  heroEyebrow: { ar:'دروب الزيتون', en:'Olive Trails' },
+  heroTitle: { ar:'اكتشف مدينة سلفيت', en:'Discover the City of Salfeet' },
+  heroSub: { ar:'خطوة بخطوة بين التاريخ والطبيعة', en:'Step by Step Through History and Nature' },
   heroDesc: { ar:'أهلاً بكم في سلفيت\nبين عبق الزيتون وذاكرة المكان وجمال الطبيعة\nاكتشفوا سلفيت كما لم تروها من قبل\nخطوةً بخطوة عبر دروب الزيتون.',
-    en:'Welcome to Salfeet\n Amid the scent of olives, the memory of the place, and the beauty of nature\n discover Salfit as you’ve never seen it before\n step by step along the olive paths.' },
-  heroAboutBtn: { ar:'عن الدروب', en:'About' },
+    en:'Welcome to Salfeet\nAmid the scent of olives, the memory of the place, and the beauty of nature\nDiscover Salfeet as you have never seen it before\nStep by step, through the Olive Trails.' },
+  heroAboutBtn: { ar:'عن الدروب', en:'About the Trails' },
   heroMapBtn: { ar:'الخريطة', en:'Map' },
   heroBusBtn: { ar:'دروب الحافلة', en:'Bus Route' },
   clockLabel: { ar:'الوقت', en:'Time' },
@@ -773,20 +992,20 @@ const T = {
   aboutTitle: { ar:'مرحلتان، تجربة واحدة متكاملة', en:'Two stages, one seamless experience' },
   stage1Title: { ar:'استكشف الدروب سيراً على الأقدام', en:'Stage One — Walking Tour' },
   stage1Desc: { ar:'ليست مجرد جولة، بل رحلة تروي حكاية سلفيت. تنقلكم عبر تسعة دروب مترابطة بين تاريخ المدينة وتراثها وطبيعتها، لتكتشفوا معالمها وساحاتها وينابيعها في تجربة تفاعلية ثرية تجمع بين المعرفة ومتعة الاستكشاف.',
-    en:'Visitors walk through the historic city center, following nine carefully ordered trails — from the municipality building to the bus station.' },
+    en:'More than just a tour — it\'s a journey that tells Salfeet\'s story. It takes you through nine interconnected trails weaving together the city\'s history, heritage, and nature, so you can discover its landmarks, squares, and springs in a rich, interactive experience that blends knowledge with the joy of exploration.' },
   stage1li1: { ar:'مسار محدد بدقة بين المحطات', en:'Precisely mapped route between stops' },
   stage1li2: { ar:'بطاقة تفصيلية لكل درب', en:'Detailed card for every trail' },
   stage1li3: { ar:'ينتهي عند موقف الحافلات', en:'Ends at the Bus Station' },
   stage2Title: { ar:'واصل رحلتك عبر جولات الحافلة', en:'Stage Two — Bus Tours' },
   stage2Desc: { ar:'عند وصولك إلى موقف الحافلات، تبدأ مرحلة جديدة من رحلتك لاكتشاف سلفيت. اختر أحد الدروب بما ينسجم مع اهتماماتك، واستمتع بتجربة استكشافية فريدة من نوعها.',
-    en:'After reaching the Bus Station, visitors choose a customized route based on their interests and available time, from four suggested routes around the city.' },
+    en:'When you reach the Bus Station, a new stage of your journey to discover Salfeet begins. Choose a trail that matches your interests, and enjoy a truly unique exploration experience.' },
   stage2li1: { ar:'أربع جولات مصممة حسب الاهتمامات', en:'Four routes designed around your interests' },
   stage2li2: { ar:'مسار محسوب عبر شبكة الطرق الفعلية', en:'Route calculated over the real road network' },
   stage2li3: { ar:'معلومات المسافة والوقت التقديري لكل وجهة', en:'Estimated distance and time for every destination' },
   mapHome: { ar:'🏠 الرئيسية', en:'🏠 Home' },
   mapQuickBusLabel: { ar:'دروب الحافلة', en:'Bus Route' },
   mapEyebrow: { ar:'دروب الزيتون', en:'Olive Trails' },
-  mapTitle: { ar:'مسار دروب الزيتون', en:'Olive Trails Route' },
+  mapTitle: { ar:'مسار دروب الزيتون', en:'The Olive Trails Route' },
   mapSub: { ar:'محطات تروي تراث المكان و جذور العراقة و تنبض بالحكايات\nتاريخنا لا يطوى مع الزمن بل يبعث حيا من دروبنا',
     en:'Stops that tell the story of this place\'s heritage and roots, alive with tales — our history is never folded away by time, but reborn through our trails.' },
   statTrailsLabel: { ar:'دروب', en:'Trails' },
@@ -814,35 +1033,33 @@ const T = {
   destLoadingLabel: { ar:'جارٍ رسم المسار عبر شبكة الطرق...', en:'Drawing the route via the road network...' },
   destNote: { ar:'يبدأ هذا المسار من موقف الحافلات (نهاية درب التجمع والترفيه) ويتابع عبر شبكة الطرق الفعلية وصولاً إلى الوجهة المختارة.',
     en:'This route starts from the Bus Station (the end of the Gathering & Leisure Trail) and continues via the road network to the selected destination.' },
-  footerText: { ar:'<strong>الدليل التفاعلي الرسمي لدروب الزيتون</strong><br>إشراف: <strong>بلدية سلفيت</strong> | تصميم وتطوير: <strong>ديما ماضي</strong><br>جميع الحقوق محفوظة © {year} بلدية سلفيت',
-    en:'<strong>The Official Interactive Guide to Olive Trails</strong><br>Supervised by: <strong>Salfeet Municipality</strong> | Design & Development: <strong>Dema Madi</strong><br>All rights reserved © {year} Salfeet Municipality' },
-  stopNames: { 1:{ar:'',en:''}, 2:{ar:'',en:''}, 3:{ar:'',en:''}, 4:{ar:'',en:''}, 5:{ar:'',en:"'"}, 6:{ar:'',en:''}, 7:{ar:'',en:''}, 8:{ar:'',en:''}, 9:{ar:'',en:''}, 10:{ar:'',en:''} },
-  stopPaths: { 1:{ar:'درب الأساس',en:'Foundation Trail'}, 2:{ar:'درب الذاكرة',en:'Ancestors Trail'}, 3:{ar:'درب عبق الياسمين',en:'Jasmine Trail'}, 4:{ar:'درب عين المغرفة',en:'Ain Al-Maghrafa Trail'}, 5:{ar:'درب الحواكير',en:'Orchards Trail'}, 6:{ar:'درب الأصالة',en:'Heritage Trail'}, 7:{ar:'درب التحدي',en:'Challenge Trail'}, 8:{ar:'درب النقاء',en:'Purity Trail'}, 9:{ar:'درب ميدان التوتة',en:'Tut Square Trail'}, 10:{ar:'درب اللقاء والترفيه',en:'Gathering & Leisure Trail'} },
+  stopNames: { 1:{ar:'',en:''}, 2:{ar:'',en:''}, 3:{ar:'',en:''}, 4:{ar:'',en:''}, 5:{ar:'',en:''}, 6:{ar:'',en:''}, 7:{ar:'',en:''}, 8:{ar:'',en:''}, 9:{ar:'',en:''}, 10:{ar:'',en:''} },
+  stopPaths: { 1:{ar:'درب الأساس',en:'Foundation Trail'}, 2:{ar:'درب الذاكرة',en:'Memory Trail'}, 3:{ar:'درب عبق الياسمين',en:'Jasmine Trail'}, 4:{ar:'درب عين المغرفة',en:'Ain Al-Maghrafa Trail'}, 5:{ar:'درب الحواكير',en:'Orchards Trail'}, 6:{ar:'درب الأصالة',en:'Heritage Trail'}, 7:{ar:'درب التحدي',en:'Challenge Trail'}, 8:{ar:'درب النقاء',en:'Purity Trail'}, 9:{ar:'درب ميدان التوتة',en:'Tut Square Trail'}, 10:{ar:'درب اللقاء والترفيه',en:'Gathering & Leisure Trail'} },
   stopTexts: { 1:{ar:'تُعدّ بلدية سلفيت من أقدم الهيئات المحلية في فلسطين، ويعود تأسيس أول مجلس بلدي فيها إلى عام 1882 في أواخر العهد العثماني، برئاسة الحاج عبد القادر الزير. وخلال فترة الانتداب البريطاني، أُعيد تنظيم الإدارة المحلية في سلفيت، حيث تم تشكيل مجلس قروي عام 1945 برئاسة الحاج رشيد مرار، وفي عام 1952 اعتمدت سلفيت مجلسًا محليًا خلال فترة الإدارة الأردنية للضفة الغربية. تقع مدينة سلفيت في وسط الضفة الغربية، وهي مركز محافظة سلفيت، وتتميز بموقعها على سلسلة من التلال المرتفعة بين مدن نابلس ورام الله وقلقيلية، كما تشتهر بوفرة ينابيعها وأراضيها الزراعية وأشجار الزيتون التي تشكل جزءًا أساسيًا من هويتها وتراثها. ويمتد تاريخ سلفيت إلى عصور قديمة، حيث تشير الشواهد الأثرية إلى وجود استيطان بشري في المنطقة منذ العهدين الروماني والبيزنطي. واليوم، تواصل بلدية سلفيت دورها في خدمة المجتمع المحلي، والحفاظ على هوية المدينة وتراثها، وتطوير خدماتها ومرافقها، وتعزيز السياحة المحلية، بلدية سلفيت محطة من تاريخ المدينة، وذاكرة حاضرة في قلب دروب الزيتون',
-    en:'Starting Point\nIn front of Salfeet Municipality building begins the Olive Trails journey, where routes meet and stories unfold.\n\nFounded in 1882, Salfeet Municipality is one of the oldest local authorities in Palestine.\n\nSalfeet sits at the heart of the West Bank, known for its mountainous landscape, fresh springs, and fertile agricultural land.' },
+    en:'Salfeet Municipality is one of the oldest local authorities in Palestine. Its first municipal council was founded in 1882, in the late Ottoman era, headed by Haj Abdel Qader Al-Zeer. During the British Mandate, local administration in Salfeet was reorganized, and a village council was formed in 1945 headed by Haj Rashid Marar; in 1952, Salfeet adopted a local council under Jordanian administration of the West Bank. Salfeet is located in the center of the West Bank and is the capital of Salfeet Governorate, distinguished by its position on a range of high hills between the cities of Nablus, Ramallah, and Qalqilya, and known for its abundant springs, farmland, and olive trees, which form an essential part of its identity and heritage. Salfeet\'s history reaches back to ancient times, with archaeological evidence pointing to human settlement in the area since the Roman and Byzantine periods. Today, Salfeet Municipality continues its role in serving the local community, preserving the city\'s identity and heritage, developing its services and facilities, and promoting local tourism. Salfeet Municipality is a milestone in the city\'s history, and a living memory at the heart of the Olive Trails.' },
   2:{ar:'ديوان بلدية سلفيت هو درب الذاكرة، ضمن مسار دروب الزيتون. يقع الديوان في قلب النسيج العمراني القديم لمدينة سلفيت، ويُعرف في الذاكرة المحلية باسم «الجمرك». يأخذكم هذا المكان في رحلة إلى جانب من تاريخ سلفيت العمراني والإداري، من خلال مبنى ارتبط بذاكرة الأهالي، وبمحطات من تاريخ العمل البلدي في المدينة. وتشير الروايات الشفوية المتداولة إلى أن المبنى استُخدم في فترة سابقة مقرًا لبلدية سلفيت، قبل انتقالها إلى موقعها الحالي. وخلال الفترة الأولى من الاحتلال الإسرائيلي، استُخدم المبنى مركزًا للتدريب المهني، قبل أن يخضع عام 2019 لأعمال الترميم والتأهيل وإعادة التوظيف، ليصبح اليوم ديوانًا لبلدية سلفيت. واليوم، يواصل الديوان حضوره كجزء من ذاكرة المدينة، ويمنح الزائر فرصة للتعرّف إلى أحد المباني التي تحكي جانبًا من تاريخ سلفيت، واكتشاف العلاقة بين المكان والتاريخ والإنسان. درب الأجداد... حكاية مكان، وذاكرة أجيال، ومسار يأخذك بين معالم سلفيت القديمة.',
-    en:'Municipal Hall\nA key community facility hosting official, cultural, and social events throughout the year.\n\nThe hall embodies the municipality\'s vision of strengthening ties with residents and supporting community initiatives.' },
+    en:'The Salfeet Municipality Hall is the Memory Trail, part of the Olive Trails route. The hall stands in the heart of Salfeet\'s old urban fabric and is known locally as "Al-Jumruk" (the Customs House). It takes you on a journey through part of Salfeet\'s urban and administrative history, through a building tied to residents\' memory and to milestones in the city\'s municipal history. Oral accounts say the building once served as an earlier headquarters for Salfeet Municipality before it moved to its current location. During the early period of the Israeli occupation, the building was used as a vocational training center, before undergoing restoration, rehabilitation, and repurposing in 2019 to become today\'s Municipality Hall. The hall remains part of the city\'s memory, giving visitors a chance to learn about a building that tells part of Salfeet\'s story, and to discover the relationship between place, history, and people. The Ancestors\' Trail... a story of a place, a memory of generations, and a route that takes you through Salfeet\'s old landmarks.' },
   3:{ar:'حديقة البلدة القديمة تُعد إحدى المحطات الجميلة في مسارات دروب الزيتون، وتقع في قلب النسيج العمراني القديم لمدينة سلفيت، لتشكّل مساحة تجمع بين الطبيعة وهدوء المكان وذاكرة المدينة. تمنح الحديقة الزائر فرصة للتوقف والاستراحة والاستمتاع بأجواء البلدة القديمة، والتعرّف إلى جانب من الحياة اليومية في المدينة. وترتبط الحديقة بالمشهد العمراني والتراثي المحيط بها، حيث يمكن للزائر خلال جولته استكشاف الأزقة والمباني القديمة والمعالم المحيطة بالمكان، والتعرّف إلى الطابع التقليدي للمدينة، في مشهد تتداخل فيه الطبيعة مع النسيج العمراني القديم، ليعكس خصوصية سلفيت وروحها. وتشكل الحديقة محطة مناسبة للزوار ضمن درب عبق الياسمين، حيث يمكنهم الاستراحة والتقاط الصور والاستمتاع بأجواء المكان، قبل مواصلة رحلتهم بين المعالم التاريخية والطبيعية للمدينة. حديقة البلدة القديمة... محطة هادئة في قلب سلفيت، تجمع بين جمال المكان وعبق الذاكرة، ضمن درب عبق الياسمين.',
-    en:'Old Town Garden\nOne of Salfeet\'s oldest public gardens, a favorite family destination for decades.\n\nThe garden remains a landmark reflecting the spirit of the city.' },
+    en:'The Old Town Garden is one of the loveliest stops on the Olive Trails, located in the heart of Salfeet\'s old urban fabric, forming a space that brings together nature, calm, and the city\'s memory. The garden gives visitors a chance to pause, rest, and enjoy the atmosphere of the old town, and to experience part of the city\'s daily life. It is tied to the heritage streetscape around it, where visitors can explore the old alleys, buildings, and landmarks nearby, and get a feel for the city\'s traditional character, in a scene where nature and old urban fabric intertwine, reflecting Salfeet\'s distinct spirit. The garden is a fitting stop for visitors along the Jasmine Trail, where they can rest, take photos, and enjoy the atmosphere before continuing their journey among the city\'s historic and natural landmarks. The Old Town Garden... a quiet stop at the heart of Salfeet, combining the beauty of the place with the scent of memory, along the Jasmine Trail.' },
   4:{ar:'عين المغرفة تُعد من أبرز العيون التاريخية في البلدة القديمة بمدينة سلفيت، وإحدى المحطات التراثية في مسارات دروب الزيتون. تقع العين في الجهة الجنوبية من المدينة، وارتبطت على مدى عقود بحياة سكان سلفيت، حيث كانت مصدرًا للمياه للشرب وتزويد المنازل، إضافة إلى ري البساتين المجاورة. تخرج مياه العين من أسفل صخرة ضخمة، وقد أُقيم عليها مبنى حجري مميز يضم رواقًا بأربعة أقواس متقاطعة ومدخلًا نصف دائري من الحجر المشذّب، ليشكّل نموذجًا من العمارة التقليدية المرتبطة بالعيون ومصادر المياه في سلفيت. ولا تتوفر حتى الآن وثائق تاريخية تحدد سنة إنشاء مبنى العين بدقة، إلا أن طابعه المعماري وموقعه ضمن البلدة القديمة يرجحان أن يعود بناؤه إلى العهد العثماني، بين القرنين السابع عشر والتاسع عشر. وقد شهد المبنى في فترات لاحقة أعمال ترميم وإعادة تأهيل للحفاظ على قيمته التاريخية والمعمارية واستمرار الاستفادة منه. واليوم، تمثل عين المغرفة شاهدًا حيًا على تاريخ سلفيت وتراثها المائي، وتجسد العلاقة الوثيقة بين الإنسان والماء والمكان، لتبقى محطة مميزة للزائر ضمن دروب الزيتون، تروي حكاية من حكايات المدينة وذاكرة أهلها. عين المغرفة... حكاية ماءٍ وحجر، ومحطة من ذاكرة سلفيت في دروب الزيتون.',
-    en:'Ain Al-Maghrafa Spring\nOne of the most prominent historic springs in the old town, a main water source for decades.\n\nStudies suggest it dates to the Ottoman era, between the 17th and 19th centuries.\n\nBuilt from local stone in the traditional architectural style.' },
+    en:'Ain Al-Maghrafa is one of the most prominent historic springs in Salfeet\'s old town, and a heritage stop on the Olive Trails. Located in the southern part of the city, it has been tied to the life of Salfeet\'s residents for decades, serving as a source of drinking water for homes and for irrigating nearby orchards. Its water emerges from beneath a massive rock, over which a distinctive stone building was built, featuring a portico with four intersecting arches and a semicircular entrance of dressed stone — an example of the traditional architecture associated with springs and water sources in Salfeet. No historical documents pin down exactly when the spring\'s building was constructed, but its architectural style and location within the old town suggest it dates to the Ottoman era, between the 17th and 19th centuries. The building has since undergone restoration and rehabilitation to preserve its historical and architectural value and keep it in use. Today, Ain Al-Maghrafa stands as a living witness to Salfeet\'s history and water heritage, embodying the close relationship between people, water, and place, remaining a distinctive stop for visitors on the Olive Trails that tells one of the city\'s stories and its people\'s memory. Ain Al-Maghrafa... a story of water and stone, a milestone of Salfeet\'s memory along the Olive Trails.' },
   5:{ar:'دخلة هاشم تعد من الممرات المميزة في قلب مدينة سلفيت، وتشكل حلقة وصل بين السوق العام وشارع الشهداء ومركز المدينة، مما يجعلها مسارًا حيويًا يستخدمه الأهالي والزوار للوصول إلى قلب البلدة القديمة واكتشاف تفاصيلها، ويتميز الممر بطابعه الحجري وأجوائه الهادئة، حيث تتناغم الجدران الحجرية مع أرضياته ومرافقه البسيطة لتمنح الزائر تجربة قريبة من روح المكان وذاكرته العمرانية، وقد ساهم تأهيل الدخلة في إبراز جمالها وتحسين البيئة المحيطة بها من خلال إعادة تأهيل الجدران الحجرية ورصف الممر وإضافة المقاعد والمعرش المعدني وزراعة الورود، وتشكل دخلة هاشم اليوم إحدى المحطات التي يمكن للزائر المرور بها أثناء استكشاف سلفيت ضمن دروب الزيتون، حيث يأخذك الممر بين تفاصيل المدينة القديمة ويمنحك فرصة للتوقف والاستمتاع بجمال الحجر وروح المكان. ',
-    en:'An alley winding through old house orchards and fruit trees, reflecting Salfeet\'s close relationship with the olive tree.' },
+    en:'Dakhlet Hashem is one of the notable passageways in the heart of Salfeet, forming a link between the public market, Al-Shuhada Street, and the city center — a lively route used by residents and visitors to reach the heart of the old town and discover its details. The passage is known for its stone character and calm atmosphere, where stone walls blend with its simple flooring and features to give visitors an experience close to the spirit and urban memory of the place. Its rehabilitation helped highlight its beauty and improve its surroundings, through restoring the stone walls, paving the passage, and adding benches, a metal pergola, and rose plantings. Dakhlet Hashem today is a stop visitors can pass through while exploring Salfeet along the Olive Trails, taking you through the details of the old town and offering a chance to pause and enjoy the beauty of the stone and the spirit of the place.' },
   6:{ar:'قصر دار عفانة شاهد حجري على ذاكرة العائلات السلفيتية، وإحدى المحطات التاريخية في درب الأصالة، أحد مسارات دروب الزيتون. يقف قصر دار عفانة في قلب مدينة سلفيت كأحد المباني التاريخية التي تعكس جانبًا من العمارة الفلسطينية في أواخر العهد العثماني. شُيّد المبنى في نهايات الحكم العثماني على يد أحد أفراد آل عبد الهادي، الذين عُرفوا آنذاك بتولي مهام جمع الضرائب، ثم انتقلت ملكيته إلى عبد الله إسماعيل عفانة، وكان البناء عند شرائه مكتملًا إلى حد كبير، باستثناء بعض الأبواب والشبابيك والتشطيبات النهائية. يمتد البناء على مساحة تقارب دونمًا واحدًا، ويتكون من ست غرف ذات عقود متقاطعة، وشبابيك مزدوجة وثلاثية تطل على الحوش الداخلي الذي تبلغ مساحته نحو 100 متر مربع، ويضم أشجار الليمون ومغاسل حجرية وأحواضًا دائرية للزراعة. كما يضم القصر مطبخًا مشتركًا وحمامًا وخانًا للحيوانات، إضافة إلى نظام تمديدات صحية بدائي كان يصل إلى وادٍ غرب المدينة. ولم يكن للقصر بئر خاص، إذ كان سكانه يجلبون المياه من العين الشامية، كما كان حال معظم أهالي سلفيت في ذلك الوقت. وخلال خمسينيات وستينيات القرن الماضي، احتضن القصر ست عائلات تراوح عدد أفرادها بين ثلاثة واثني عشر فردًا للعائلة الواحدة، ليصل عدد سكانه في تلك الفترة إلى نحو 50 شخصًا، في صورة تعكس طبيعة الحياة الأسرية والمجتمعية في سلفيت قديمًا. أما اليوم، فلا يزال أحد أجزاء القصر مأهولًا بالسكان، وقد أُضيفت إليه بعض المرافق الحديثة، فيما أُعيد توظيف جزء آخر من المبنى ليكون مطعمًا تراثيًا يستقبل الزوار، محافظًا على روح المكان ومانحًا الزائر فرصة للتعرف على جانب من الحياة اليومية والعمران التقليدي في سلفيت. ويشكل قصر دار عفانة محطة مميزة في درب الأصالة، حيث يلتقي التاريخ بالعمارة والذاكرة الشعبية، ويأخذ الزائر في رحلة للتعرف على تفاصيل الحياة السلفيتية عبر الأجيال. درب الأصالة... محطة من دروب الزيتون، حيث تحكي حجارة قصر دار عفانة قصة المكان، وتبقى ذاكرة العائلات حاضرة في قلب سلفيت ',
-    en:'Afana House\nOne of the most prominent heritage buildings, an authentic example of traditional Palestinian architecture from the late Ottoman era.\n\nBuilt from local stone, featuring sturdy stone arches and inner courtyards.' },
+    en:'Qasr Dar Afana is a stone witness to the memory of Salfeet\'s families, and a historic stop on the Heritage Trail, one of the Olive Trails. It stands in the heart of Salfeet as one of the historic buildings reflecting an aspect of Palestinian architecture from the late Ottoman era. It was built at the end of Ottoman rule by a member of the Abdel Hadi family, known at the time for collecting taxes, before ownership passed to Abdullah Ismail Afana; the building was largely complete when he acquired it, aside from some doors, windows, and final finishes. It covers an area of about one dunum and consists of six rooms with intersecting vaults, and double and triple windows overlooking an inner courtyard of about 100 square meters, which includes lemon trees, stone basins, and circular planting beds. The house also has a shared kitchen, a bathroom, and a stable for animals, along with a rudimentary plumbing system that drained to a valley west of the city. The house had no well of its own — its residents fetched water from Ain Al-Shamiya, as most of Salfeet\'s residents did at the time. During the 1950s and 60s, the house was home to six families ranging from three to twelve members each, bringing its population at the time to around 50 people, reflecting the nature of family and community life in old Salfeet. Today, part of the house is still inhabited, with some modern amenities added, while another part has been repurposed as a heritage restaurant welcoming visitors, preserving the spirit of the place and giving visitors a glimpse of traditional daily life and architecture in Salfeet. Qasr Dar Afana is a distinctive stop on the Heritage Trail, where history meets architecture and popular memory, taking visitors on a journey through the details of Salfeet life across generations. The Heritage Trail... a stop on the Olive Trails, where the stones of Qasr Dar Afana tell the story of the place, and the memory of families remains alive at the heart of Salfeet.' },
   7:{ar:'الصالة الرياضية في سلفيت هي إحدى المحطات الحيوية ضمن مسارات دروب الزيتون، وتمثل مركزًا مهمًا للأنشطة الرياضية والشبابية في المدينة. تستضيف الصالة على مدار العام التدريبات والبطولات والفعاليات الرياضية، وتحتضن منافسات كرة السلة والكرة الطائرة وكرة اليد، إلى جانب عدد من الألعاب والأنشطة الفردية والجماعية، كما توفر مساحة مناسبة للأندية الرياضية لتدريب فرقها وتنمية مهارات اللاعبين. ولا يقتصر دور الصالة على ممارسة الرياضة، بل تشكل مساحة لاحتضان المواهب الشابة، وتعزيز روح التعاون والتنافس الرياضي، وتشجيع الأجيال الجديدة على المشاركة والإبداع والتميز. وتمثل الصالة الرياضية اليوم جزءًا من الحياة المجتمعية في سلفيت، ومحطة تعكس اهتمام المدينة بالرياضة والشباب، وتمنح الزائر لمحة عن جانب من الحياة المعاصرة والنشاط المجتمعي في المدينة ضمن مسارات دروب الزيتون.',
-    en:'One of the district\'s most prominent sports facilities, hosting year-round training sessions and tournaments.' },
+    en:'The sports hall in Salfeet is one of the vital stops on the Olive Trails, and an important center for sports and youth activities in the city. Throughout the year, it hosts training sessions, tournaments, and sporting events, and holds basketball, volleyball, and handball competitions, alongside a number of individual and group games and activities. It also provides suitable space for sports clubs to train their teams and develop players\' skills. The hall\'s role is not limited to sport — it is also a space for nurturing young talent, promoting a spirit of cooperation and healthy competition, and encouraging new generations to take part, create, and excel. Today, the sports hall is part of community life in Salfeet, a stop that reflects the city\'s interest in sport and youth, and gives visitors a glimpse of contemporary life and community activity in the city along the Olive Trails.' },
   8:{ar:'طريق واسع ونظيف يصل زوار المسار بالأحياء المجاورة.',
     en:'A wide, clean street connecting trail visitors to the neighboring residential areas.' },
   9:{ar:'درب ميدان التوتة هو إحدى مسارات دروب الزيتون، وتُعد ساحة التوتة، التي أُنشئت عام 1965، القلب النابض لمدينة سلفيت، وقد شكّلت على مدى عقود الساحة العامة الرئيسة ومركزًا اقتصاديًا واجتماعيًا يخدم المدينة وقرى المنطقة. واشتهرت الساحة بكونها سوقًا رئيسيًا للمعدات والآلات الزراعية، حيث كانت تُعرض فيها الجرارات ومختلف مستلزمات الفلاحة، في انعكاس للمكانة الزراعية التي تميزت بها سلفيت، المعروفة بإنتاج الزيتون والعنب والتين والمشمش والكرز والتفاح، والتي شكّلت أحد المراكز الزراعية المهمة في وسط الضفة الغربية. ولم يقتصر دور ساحة التوتة على النشاط التجاري، بل كانت أيضًا ملتقىً اجتماعيًا نابضًا بالحياة، احتضنت المناسبات الوطنية والاجتماعية، والأفراح الشعبية، والاحتفالات العامة، لتصبح مساحة تجمع أبناء المدينة وزوارها، ومسرحًا للحياة اليومية في سلفيت. ويتوسط الساحة شجرة التوت التاريخية التي استمدت منها اسمها، وما تزال قائمة حتى اليوم شاهدةً على ذاكرة المدينة وإرثها العريق. وتبقى ساحة التوتة إحدى أبرز محطات دروب الزيتون، حيث يلتقي التاريخ بالحياة، وتروي تفاصيل المكان حكاية مدينة ارتبطت أرضها بالزراعة، وأهلها بالمجتمع، وذاكرتها بالمكان.',
-    en:'Tut Square\nEstablished in 1965, the beating heart of Salfeet and once a main market for agricultural equipment.\n\nA historic mulberry tree at its center gives the square its name.' },
+    en:'Tut Square Trail is one of the Olive Trails routes. Tut Square, established in 1965, is the beating heart of the city of Salfeet, and for decades it formed the city\'s main public square and an economic and social hub serving the city and the surrounding villages. The square was known as a major market for agricultural equipment and machinery, where tractors and various farming supplies were displayed, reflecting the agricultural standing of Salfeet, known for producing olives, grapes, figs, apricots, cherries, and apples, making it one of the important agricultural centers in the central West Bank. The square\'s role was not limited to commerce — it was also a lively social meeting point, hosting national and social occasions, popular weddings, and public celebrations, becoming a space that brings together the city\'s people and visitors, and a stage for daily life in Salfeet. At the center of the square stands the historic mulberry tree that gave it its name, still standing today as a witness to the city\'s memory and rich heritage. Tut Square remains one of the most prominent stops on the Olive Trails, where history meets life, and the details of the place tell the story of a city whose land is tied to agriculture, its people to community, and its memory to place.' },
   10:{ar:' في قلب مدينة سلفيت، يمتد منتزه بلدية سلفيت كمساحة هادئة تجمع بين جمال الطبيعة وروعة المكان، ليمنح الزائر فرصةً للاستراحة والاستمتاع بأجواء المدينة بعيدًا عن صخب الحياة اليومية. يتميز المنتزه بمساحاته الخضراء وأجوائه الهادئة، ويُعد وجهةً محببة للعائلات والزوار ومحبي الطبيعة، كما يستضيف مجموعةً من الفعاليات والأنشطة الاجتماعية والترفيهية التي تضفي على المكان حيويةً خاصة، وتجعله مساحةً للتلاقي والاستجمام. ويمثل المنتزه إحدى المساحات العامة التي تعكس اهتمام مدينة سلفيت بتوفير بيئة مريحة وآمنة للزوار، وتشجيع الاستمتاع بالهواء الطلق وقضاء أوقات ممتعة مع العائلة والأصدقاء. ويشكّل منتزه بلدية سلفيت اليوم إحدى المحطات المميزة ضمن دروب الزيتون، حيث يلتقي هدوء الطبيعة بروح المدينة، في تجربة تمنح الزائر لحظةً للراحة والاستمتاع، وفرصةً لاكتشاف جانب من جمال سلفيت وحياتها اليومية.',
-    en:'A bonus leisure stop offering green spaces and a calm atmosphere just before reaching the Bus Station.' } },
+    en:'At the heart of the city of Salfeet, Salfeet Municipality Park stretches out as a calm space that brings together the beauty of nature and the charm of the place, giving visitors a chance to rest and enjoy the city\'s atmosphere away from the hustle of daily life. The park is known for its green spaces and calm atmosphere, and is a favorite destination for families, visitors, and nature lovers. It also hosts a range of social and recreational events and activities that give the place a special vibrancy and make it a space for gathering and relaxation. The park is one of the public spaces reflecting Salfeet\'s commitment to providing a comfortable, safe environment for visitors, and to encouraging outdoor enjoyment and quality time with family and friends. Today, Salfeet Municipality Park is one of the distinctive stops on the Olive Trails, where the calm of nature meets the spirit of the city, in an experience that gives visitors a moment of rest and enjoyment, and a chance to discover a side of Salfeet\'s beauty and daily life.' } },
   busTourNames: { 1:{ar:'درب عين فريج',en:'Nature Tour'}, 2:{ar:' درب عين عدس',en:'Olive & Agriculture Tour'}, 3:{ar:'درب الخير ',en:'Investment & Industrial Tour'}, 4:{ar:'درب الطبيعة المتنوعة',en:'Cultural & Heritage Tour'} },
-  busTourDescs: { 1:{ar:'عين فريج تقع جنوب غرب مدينة سلفيت، وتتميز بصفاء مياهها وبرودتها الشديدة، إذ تنبع من صخر عميق يُعرف محليًا باسم «الدست». وبجوارها يقع متنزه حديث يوفر للزوار مساحة للاستراحة والاستمتاع بجمال الطبيعة، كما توجد بالقرب منها آثار معصرة عنب قديمة تضيف للمكان قيمة تاريخية وتراثية. وترتبط العين في الذاكرة الشعبية بروايات محلية تتحدث عن الخصائص العلاجية لمياهها وقدرتها على المساعدة في علاج بعض الأمراض، مما يعكس مكانتها في التراث الشعبي لأهالي سلفيت. عين فريج... ماء بارد صافٍ، وطبيعة تحكي حكاية سلفيت.',en:'Explore the valleys, springs, and natural vegetation surrounding the city.'}, 
-  2:{ar:'تقع عين عدس عند سفح الجبل الذي يحمل اسمها، حيث تنبع مياهها من أسفل الجبل وتصب في بركة دائرية يبلغ عمقها نحو 1.5 متر، شُيّدت في خمسينيات القرن الماضي. وتحيط بالعين أشجار الزيتون والليمون، إلى جانب المساحات المزروعة بالخضروات، لتشكّل مشهدًا طبيعيًا يجمع بين الماء والزراعة وجمال الريف السلفيتي. وتُعد عين عدس من الأماكن التي تعكس ارتباط أهالي سلفيت بالأرض والماء، وتمنح الزائر فرصة للاستمتاع بهدوء الطبيعة وجمال المشهد الزراعي المحيط بها.',en:'Visit historic olive farms and learn about local olive oil production.'},
-  3:{ar:'خربة قيس تقع جنوب مدينة سلفيت، وهي ضاحية تتميز بطبيعتها الريفية الهادئة وأراضيها الزراعية وحقول الزيتون، وتحتضن عددًا من عيون المياه والمعالم التراثية التي تعكس تاريخ المكان وارتباط أهالي سلفيت بأرضهم. وتنتشر فيها آثار ومواقع قديمة تحكي جانبًا من الحياة الريفية التي عاشها السكان عبر الأجيال، فيما تضفي أشجار الزيتون والمساحات الخضراء المحيطة بالمكان جمالًا خاصًا على المشهد. وتمنح خربة قيس زوارها فرصة للتجول بين مساراتها الطبيعية، واكتشاف معالمها التراثية، والاستمتاع بجمال الريف السلفيتي وهدوء المكان',en:'Overview of the industrial zone and available investment opportunities in Salfeet.'},
-  4:{ar:' عين الشاعر  تعد من  الينابيع الغزيرة في منطقة سلفيت، حيث تنبع مياهها من ملتقى جبلين، في مشهد طبيعي يجمع بين جمال الجبال ووفرة المياه. وقد شكّلت العين مصدرًا مهمًا للمياه لأهالي المنطقة والقرى المجاورة، ومنها قرية الساوية، حيث تُستخدم مياهها في سقاية المواشي. وتُجسّد عين الشاعر أهمية الينابيع في الحياة الريفية، ودورها في دعم الزراعة وتربية المواشي، إلى جانب ما تضفيه من جمال طبيعي على المنطقة.',en:'An in-depth tour of archaeological sites and heritage buildings surrounding the city.'} },
+  busTourDescs: { 1:{ar:'عين فريج تقع جنوب غرب مدينة سلفيت، وتتميز بصفاء مياهها وبرودتها الشديدة، إذ تنبع من صخر عميق يُعرف محليًا باسم «الدست». وبجوارها يقع متنزه حديث يوفر للزوار مساحة للاستراحة والاستمتاع بجمال الطبيعة، كما توجد بالقرب منها آثار معصرة عنب قديمة تضيف للمكان قيمة تاريخية وتراثية. وترتبط العين في الذاكرة الشعبية بروايات محلية تتحدث عن الخصائص العلاجية لمياهها وقدرتها على المساعدة في علاج بعض الأمراض، مما يعكس مكانتها في التراث الشعبي لأهالي سلفيت. عين فريج... ماء بارد صافٍ، وطبيعة تحكي حكاية سلفيت.',en:'Ain Fareej lies southwest of Salfeet, known for its clear, remarkably cold water rising from a deep rock locally called "Al-Dast." A modern park nearby offers visitors a place to rest and enjoy nature, and the remains of an old grape press add historical and heritage value to the site. In local memory, the spring is linked to popular stories about its water\'s healing properties and its ability to help treat certain ailments, reflecting its place in the folk heritage of Salfeet\'s people. Ain Fareej... cool, clear water, and a landscape that tells Salfeet\'s story.'}, 
+  2:{ar:'تقع عين عدس عند سفح الجبل الذي يحمل اسمها، حيث تنبع مياهها من أسفل الجبل وتصب في بركة دائرية يبلغ عمقها نحو 1.5 متر، شُيّدت في خمسينيات القرن الماضي. وتحيط بالعين أشجار الزيتون والليمون، إلى جانب المساحات المزروعة بالخضروات، لتشكّل مشهدًا طبيعيًا يجمع بين الماء والزراعة وجمال الريف السلفيتي. وتُعد عين عدس من الأماكن التي تعكس ارتباط أهالي سلفيت بالأرض والماء، وتمنح الزائر فرصة للاستمتاع بهدوء الطبيعة وجمال المشهد الزراعي المحيط بها.',en:'Ain Adas lies at the foot of the mountain that bears its name, its water rising from beneath the mountain into a circular pool about 1.5 meters deep, built in the 1950s. Olive and lemon trees surround the spring alongside vegetable plots, forming a natural scene that brings together water, farming, and the beauty of the Salfeet countryside. Ain Adas reflects the bond between Salfeet\'s people and their land and water, offering visitors a chance to enjoy the calm of nature and the beauty of the surrounding farmland.'},
+  3:{ar:'خربة قيس تقع جنوب مدينة سلفيت، وهي ضاحية تتميز بطبيعتها الريفية الهادئة وأراضيها الزراعية وحقول الزيتون، وتحتضن عددًا من عيون المياه والمعالم التراثية التي تعكس تاريخ المكان وارتباط أهالي سلفيت بأرضهم. وتنتشر فيها آثار ومواقع قديمة تحكي جانبًا من الحياة الريفية التي عاشها السكان عبر الأجيال، فيما تضفي أشجار الزيتون والمساحات الخضراء المحيطة بالمكان جمالًا خاصًا على المشهد. وتمنح خربة قيس زوارها فرصة للتجول بين مساراتها الطبيعية، واكتشاف معالمها التراثية، والاستمتاع بجمال الريف السلفيتي وهدوء المكان',en:'Khirbet Qais lies south of Salfeet, a quiet rural suburb known for its farmland and olive groves. It is home to several springs and heritage sites reflecting the area\'s history and the bond between Salfeet\'s people and their land. Ancient ruins scattered across the site tell part of the rural life residents have lived for generations, while olive trees and green spaces lend the scenery a special beauty. Khirbet Qais offers visitors the chance to wander its natural trails, discover its heritage landmarks, and enjoy the beauty and calm of the Salfeet countryside.'},
+  4:{ar:' عين الشاعر  تعد من  الينابيع الغزيرة في منطقة سلفيت، حيث تنبع مياهها من ملتقى جبلين، في مشهد طبيعي يجمع بين جمال الجبال ووفرة المياه. وقد شكّلت العين مصدرًا مهمًا للمياه لأهالي المنطقة والقرى المجاورة، ومنها قرية الساوية، حيث تُستخدم مياهها في سقاية المواشي. وتُجسّد عين الشاعر أهمية الينابيع في الحياة الريفية، ودورها في دعم الزراعة وتربية المواشي، إلى جانب ما تضفيه من جمال طبيعي على المنطقة.',en:'Ain Al-Sha\'er is one of the abundant springs in the Salfeet area, its water rising from where two mountains meet, forming a natural scene that combines mountain beauty with plentiful water. The spring has long been an important water source for residents of the area and neighboring villages, including the village of Al-Sawiya, where it is used to water livestock. Ain Al-Sha\'er reflects the importance of springs in rural life and their role in supporting agriculture and livestock farming, alongside the natural beauty they bring to the region.'} },
   busStart: { ar:'ابدأ الجولة', en:'Start Tour' },
   discoverTrail: { ar:'اكتشف درب', en:'Discover trail' },
   imHere: { ar:'أنا هنا', en:"I'm here" },
@@ -864,7 +1081,7 @@ const T = {
   mapCentered: { ar:'تم توسيط الخريطة على كامل المسار', en:'Map centered on the full trail' },
   currentStopSet: { ar:'تم تحديد محطتك الحالية', en:'Current stop set' },
   qrMessage: { ar:'رمز QR لهذه المحطة متاح عند نشر الموقع رسميًا', en:'QR code for this stop will be available on the live deployment' },
-  a11yAnnouncement: { ar:'الدليل التفاعلي الرسمي لدروب الزيتون. تصميم وتطوير: ديما ماضي. {year} بلدية سلفيت.', en:'The official interactive guide to Olive Trails. Design and development: Dema Madi. {year} Salfeet Municipality.' },
+  a11yAnnouncement: { ar:'الدليل التفاعلي الرسمي لدروب الزيتون. تصميم وتطوير: ديما ماضي. {year} بلدية سلفيت.', en:'The official interactive guide to the Olive Trails. Design and development: Dema Madi. {year} Salfeet Municipality.' },
   audioPlaying: { ar:'يتم الآن تشغيل الدليل الصوتي', en:'Playing audio guide' },
   audioNotSupported: { ar:'المتصفح لا يدعم القراءة الصوتية', en:'Speech synthesis not supported' },
   imagePending: { ar:'صورة بانتظار أرشيف البلدية', en:'Image pending municipal archive' },
@@ -876,7 +1093,7 @@ const T = {
   mapBasemap: { ar:'خريطة أساسية', en:'Basemap' },
   footerText: {
     ar:'<strong>الدليل التفاعلي الرسمي لدروب الزيتون</strong><br>تصميم وتطوير: <strong>ديما ماضي</strong><br>بلدية سلفيت {year}',
-    en:'<strong>Official Interactive Guide for Olive Trails</strong><br>Design &amp; Development: <strong>Dema Madi</strong><br>Salfit Municipality {year}'
+    en:'<strong>The Official Interactive Guide to the Olive Trails</strong><br>Design &amp; Development: <strong>Dema Madi</strong><br>Salfeet Municipality {year}'
   },
   a11yTitle: { ar:'إعدادات إمكانية الوصول', en:'Accessibility settings' },
   a11yIncrease: { ar:'تكبير النص', en:'Increase text size' },
@@ -1166,20 +1383,19 @@ async function showRouteDirectionsToTrail(latitude,longitude){
   lastMapPos=[latitude,longitude];
   try{
     let target, title, extraNote;
+    const trailStart=foundationTrailSite();
+    target=trailStart?[trailStart.lat,trailStart.lon]:[busLat,busLon];
+    const trailName=T.stopPaths[1]?T.stopPaths[1][lang]:'درب الأساس';
     if(mapTravelMode==='car'){
-      const trailStart=foundationTrailSite();
-      target=trailStart?[trailStart.lat,trailStart.lon]:[busLat,busLon];
-      const trailName=T.stopPaths[1]?T.stopPaths[1][lang]:'درب الأساس';
       extraNote = lang==='ar'
         ? `<li>توجّه مباشرة بسيارتك حتى بداية ${trailName}، ثم ابدأ السير على الدرب حسب اللوحات الإرشادية</li>`
         : `<li>Drive directly to the start of the ${trailName}, then begin walking the trail following the signs</li>`;
       title = lang==='ar' ? `الاتجاهات بالسيارة إلى ${trailName}` : `Driving directions to the ${trailName}`;
     } else {
-      target=[busLat,busLon];
       extraNote = lang==='ar'
-        ? `<li>اركب الحافلة من ${t('busStationLabel')} حتى بداية درب الأساس، ثم أكمل السير على الدرب حسب اللوحات</li>`
-        : `<li>Take the bus from the ${t('busStationLabel')} to the start of the main trail, then continue on foot following the trail signs</li>`;
-      title = lang==='ar' ? 'الاتجاهات إلى درب الأساس عبر الحافلة' : 'Directions to the main trail via the bus';
+        ? `<li>يمكنك ركوب الحافلة باتجاه بداية ${trailName}، ثم إكمال السير على الدرب حسب اللوحات الإرشادية</li>`
+        : `<li>You can take the bus toward the start of the ${trailName}, then continue on foot following the trail signs</li>`;
+      title = lang==='ar' ? `الاتجاهات إلى ${trailName} عبر الحافلة` : `Directions to the ${trailName} via the bus`;
     }
     const {latlngs,distance,duration,steps}=await fetchRoadRouteWithSteps([latitude,longitude],target);
     if(userRouteLine) map.removeLayer(userRouteLine);
