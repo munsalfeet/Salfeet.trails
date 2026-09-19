@@ -290,7 +290,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     height:auto !important;
 
     padding:0.3rem 0.6rem !important;
-    font-size:0.62rem !important;
+    font-size:0.72rem !important;
 
     justify-content:center;
     align-items:center;
@@ -374,21 +374,28 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
      أزرار الخريطة - أعلى اليسار
   ================================= */
 @media (max-width:760px){
-  #map-section .map-toolbar{
+#map-section .map-toolbar{
     position:absolute;
-    top:30px !important;
+    top:25px !important;
     bottom:auto !important;
-    left:16px !important;
+    left:14px !important;
     right:auto !important;
     transform:none !important;
-    padding:3px !important;
-    gap:3px !important;
-    background:rgba(255,255,255,0.10);
-    border:1px solid rgba(255,255,255,0.55);
+    padding:4px !important;
+    gap:4px !important;
+
+    /* ✅ خلفية أوضح شوي */
+    background:rgba(255,255,255,0.18);
+
+    /* ✅ إطار أوضح */
+    border:1.5px solid rgba(255,255,255,0.55);
     backdrop-filter:blur(12px);
-    border-radius:14px !important;
+
+    /* ✅ الحل: حواف خفيفة جداً = مربع */
+    border-radius:6px !important;
+
     flex-direction:column !important;
-  }
+}
   /* تصغير أزرار الخريطة */
   #map-section .map-toolbar .map-btn{
     width:32px !important;
