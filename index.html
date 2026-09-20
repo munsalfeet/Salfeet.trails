@@ -267,7 +267,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 
 
 /* أزرار الخريطة */
-#map-section .map-toolbar{ top:20px; right:auto; left:16px; transform:none !important; padding:5px !important; gap:5px !important; background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.55); backdrop-filter:blur(12px); border-radius:14px !important; } /* كل زر يصبح دائرة */ #map-section .map-toolbar .map-btn{ width:38px !important; height:38px !important; min-width:38px !important; min-height:38px !important; padding:0 !important; display:flex !important; align-items:center !important; justify-content:center !important; font-size:1rem !important; border-radius:50% !important; background:rgba(164, 211, 255, 0.46) !important;; border:1px solid rgba(255,255,255,0.55) !important; box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25); }
+#map-section .map-toolbar, #destModal .map-toolbar{ top:20px; right:auto; left:16px; transform:none !important; padding:5px !important; gap:5px !important; background:rgba(255,255,255,0.10); border:1px solid rgba(255,255,255,0.55); backdrop-filter:blur(12px); border-radius:14px !important; } /* كل زر يصبح دائرة */ #map-section .map-toolbar .map-btn, #destModal .map-toolbar .map-btn{ width:38px !important; height:38px !important; min-width:38px !important; min-height:38px !important; padding:0 !important; display:flex !important; align-items:center !important; justify-content:center !important; font-size:1rem !important; border-radius:50% !important; background:rgba(164, 211, 255, 0.46) !important;; border:1px solid rgba(255,255,255,0.55) !important; box-shadow: 0 3px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25); }
 /* ================================
    أزرار الوصول - الجوال
 ================================ */
@@ -374,7 +374,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
      أزرار الخريطة - أعلى اليسار
   ================================= */
 @media (max-width:760px){
-#map-section .map-toolbar{
+#map-section .map-toolbar, #destModal .map-toolbar{
     position:absolute;
     top:25px !important;
     bottom:auto !important;
@@ -397,7 +397,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     flex-direction:column !important;
 }
   /* تصغير أزرار الخريطة */
-  #map-section .map-toolbar .map-btn{
+  #map-section .map-toolbar .map-btn, #destModal .map-toolbar .map-btn{
     width:32px !important;
     height:32px !important;
     min-width:32px !important;
@@ -596,8 +596,8 @@ html[lang="en"] .sidebar h3{ font-family:var(--font-display-en); }
 .leaflet-tooltip.stop-label::before{ display:none; }
 .stop-label .lbl-pill{ display:inline-flex; align-items:center; gap:4px; background:rgba(255,255,255,0.96); border:1.5px solid var(--path); border-radius:999px; padding:2px 10px; box-shadow:0 3px 10px rgba(35,40,29,0.28); transition:.15s; }
 .stop-label .lbl-text{ font-weight:700; font-size:0.75rem; color:#000; max-width:150px; overflow:hidden; text-overflow:ellipsis; }
-.stop-label.label-current .lbl-pill{ border-color:#23281D; background:#FFFFFF; }
-.stop-label.label-selected .lbl-pill{ border-color:#23281D; background:#FFFFFF; }
+.stop-label.label-current .lbl-pill{ border-color:var(--path); background:#FFFFFF; }
+.stop-label.label-selected .lbl-pill{ border-color:var(--path); background:#FFFFFF; }
 .stop-label.label-dim .lbl-pill{ opacity:0.4; transform:scale(0.88); }
 .bus-station-marker{ display:flex; flex-direction:column; align-items:center; width:130px; pointer-events:none; }
 .bus-station-badge{ width:38px; height:38px; border-radius:50%; background:#00bcf5; border:2.5px solid #fff; display:flex; align-items:center; justify-content:center; font-size:1.15rem; box-shadow:0 3px 10px rgba(0,0,0,0.45); position:relative; }
@@ -1473,7 +1473,7 @@ function panToSite(id){ const site=sites.find(s=>s.id===id); if(!site) return; m
 function flashStopCard(id){ const card=document.querySelector(`.stop-card[data-id="${id}"]`); if(!card) return; card.scrollIntoView({behavior:'smooth',block:'center'}); card.classList.add('flash'); setTimeout(()=>card.classList.remove('flash'),1600); }
 function toggleSite(id){ const idx=selected.indexOf(id); if(idx>-1) selected.splice(idx,1); else selected.push(id); render(); }
 function setCurrentStop(id){ currentStopId=id; render(); showToast(t('currentStopSet')); }
-function fitMapToRoute(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding:[50,50],maxZoom:18}); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon],16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding:[40,40]}); } }
+function fitMapToRoute(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding:[50,50],maxZoom:18}); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon],16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding:[20,20],maxZoom:15}); } }
 function render(){ sites.forEach(site=>{ const idx=selected.indexOf(site.id); const isCurrent=site.id===currentStopId; markers[site.id].setIcon(pinIcon(idx>-1?idx+1:null, idx>-1, isCurrent)); markers[site.id].setTooltipContent(stopLabelHtml(site,idx)); const tt=markers[site.id].getTooltip(); if(tt){ const el=tt.getElement(); if(el){ el.classList.toggle('label-current',isCurrent); el.classList.toggle('label-selected',!isCurrent&&idx>-1); } } }); routeLayers.forEach(l=>map.removeLayer(l)); routeLayers=[]; if(selected.length>1){ const segs=buildFollowSegments(selected); segs.forEach(({latlngs})=>{ routeLayers.push(L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.55}).addTo(map)); routeLayers.push(L.polyline(latlngs,{color:'#F5B301',weight:4,opacity:0.95}).addTo(map)); const {point,bearing}=midOfPolyline(latlngs); routeLayers.push(L.marker(point,{ icon:L.divIcon({className:'', html:`<div class="route-arrow" style="transform:rotate(${bearing}deg)">▲</div>`, iconSize:[18,18], iconAnchor:[9,9]}), interactive:false }).addTo(map)); }); } renderStopList(); updateProgress(); fitMapToRoute(); }
 function renderStopList(){ const list=document.getElementById('stopList'); list.innerHTML=''; sites.forEach(site=>{ const idx=selected.indexOf(site.id); const card=document.createElement('div'); card.className='stop-card'+(idx>-1?' active':'')+(site.id===currentStopId?' current':''); card.dataset.id=site.id; card.tabIndex=0; const pathName=T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id; card.innerHTML=`<div class="badge">${idx>-1?(idx+1):''}</div><div class="stop-info"><b>${pathName}</b><button type="button" class="info-btn" data-id="${site.id}">${t('discoverTrail')}</button><button type="button" class="here-btn" data-here="${site.id}">📍 ${t('imHere')}</button><button type="button" class="map-pin-btn" data-pan="${site.id}">🗺️ ${t('showOnMap')}</button></div>`; card.querySelector('.badge').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.stop-info b').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.info-btn').onclick=e=>{e.stopPropagation(); openModal(site.id);}; card.querySelector('.here-btn').onclick=e=>{e.stopPropagation(); setCurrentStop(site.id);}; card.querySelector('.map-pin-btn').onclick=e=>{e.stopPropagation(); panToSite(site.id);}; card.onclick=()=>toggleSite(site.id); list.appendChild(card); }); }
 function updateProgress(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); const total=totalDistance(); const walkSpeedKmh=4.5; const statSelected = document.getElementById('statSelected');
@@ -1680,7 +1680,7 @@ async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon
 //   تهيئة الخريطة الرئيسية
 // ============================================================
 const center = sites.reduce((a,s)=>[a[0]+s.lat/sites.length, a[1]+s.lon/sites.length], [0,0]);
-const map = L.map('map', { scrollWheelZoom:true, zoomControl:false }).setView(center, 10);
+const map = L.map('map', { scrollWheelZoom:true, zoomControl:false }).setView(center, 12);
 const baseLayer = L.tileLayer(
     'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
     {
@@ -1759,13 +1759,6 @@ function setMapMode(mode){
   }
 }
 satBtn.onclick = ()=>setMapMode(mapMode === 'base' ? 'satellite' : 'base');
-map.on('zoomend', ()=>{
-  const dim = map.getZoom() < 16;
-  sites.forEach(site => {
-    const el = markers[site.id].getTooltip()?.getElement();
-    if(el) el.classList.toggle('label-dim', dim);
-  });
-});
 
 document.getElementById('mapGpsBtn').onclick = ()=>{
   if(watchId !== null){ stopTracking(); } else { startTracking(); }
