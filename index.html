@@ -13,16 +13,21 @@
    ============================================ */
 * { box-sizing:border-box; margin:0; }
 :root{
+  /* الهوية البصرية الموحّدة: أزرق (أساسي) + ذهبي (ثانوي/المسارات) + أبيض/رمادي داكن (نصوص وخلفيات) — بدون أي أخضر */
   --stone:#F4EFE2; --stone-deep:#e7e1cf; --white:#FFFFFF;
-  --green:#91908ef6; --green-dark:#161615fa; --green-deeper:#82d8fa;
-  --sky:#82d8fa; --sky-dark:#056b8a;
-  --gray:#8B8A82; --gray-soft:#131105;
-  --ink:#040700; --ink-soft:#020000;
-  --path:#F5B301;
+  --blue:#1D5FA8;        /* الأزرق الأساسي: هوية الموقع، الأزرار، التفاعل */
+  --blue-deep:#0E3A63;   /* أزرق داكن: خلفيات قوية، عناوين النوافذ، محطات مهمة */
+  --blue-light:#4E97D9;  /* أزرق فاتح: تمييز ثانوي داخل الخريطة */
+  --gps-blue:#2563EB;    /* أزرق مخصص لـGPS وموقعي — مختلف بوضوح عن المسارات */
+  --gold:#F5B301;        /* الذهبي: المسار الرئيسي والتمييز */
+  --gold-deep:#C98A00;   /* ذهبي داكن: حالات hover والتأكيد */
+  --gray:#8B8A82; --gray-soft:#2A2E33;
+  --ink:#20242A; --ink-soft:#454A52;
+  --path:var(--gold);
   --paper:#FBF9F2;
   --radius:16px; --radius-lg:26px;
-  --shadow:0 10px 34px rgba(35,40,29,0.14);
-  --shadow-lg:0 24px 60px rgba(35,40,29,0.22);
+  --shadow:0 10px 34px rgba(10,18,32,0.14);
+  --shadow-lg:0 24px 60px rgba(10,18,32,0.22);
   --glass:rgba(255,255,255,0.62);
   --glass-border:rgba(255,255,255,0.5);
   --font-display-ar:'Amiri',serif; --font-display-en:'Fraunces',serif;
@@ -37,6 +42,40 @@ html[lang="en"] body{ font-family:var(--font-body-en); }
 .container{ max-width:1220px; margin:0 auto; padding:0 10vw; }
 @media (max-width:760px){ .container{ padding:0 1.2rem; } }
 
+/* ============================================================
+   التوهج الخارجي الأبيض
+   ============================================================ */
+
+.route-glow-outer {
+    filter:
+        drop-shadow(0 0 5px rgba(255,255,255,0.85))
+        drop-shadow(0 0 11px rgba(255,255,255,0.55))
+        drop-shadow(0 0 18px rgba(255,255,255,0.30));
+}
+
+
+/* ============================================================
+   التوهج الأبيض القريب
+   ============================================================ */
+
+.route-glow-inner {
+    filter:
+        drop-shadow(0 0 4px rgba(255,255,255,1))
+        drop-shadow(0 0 8px rgba(255,255,255,0.75))
+        drop-shadow(0 0 13px rgba(255,255,255,0.45));
+}
+
+
+/* ============================================================
+   الأصفر في المنتصف
+   ============================================================ */
+
+.route-yellow {
+    filter:
+        drop-shadow(0 0 2px rgba(255,255,255,1))
+        drop-shadow(0 0 4px rgba(255,255,255,0.75));
+}
+
 /* شريط التنقل */
 .nav{ position:sticky; top:0; z-index:300; padding:0.7rem 0; background:var(--glass); backdrop-filter:blur(100px); border-bottom:1px solid var(--glass-border); }
 .nav-inner{ display:flex; align-items:center; gap:0.5rem; }
@@ -45,11 +84,12 @@ html[lang="en"] body{ font-family:var(--font-body-en); }
 .brand-text b{ font-family:var(--font-display-ar); font-size:1rem; display:block; line-height:1.4; }
 html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 .brand-text span{ font-family:var(--font-display-ar); font-size:0.6rem; display:block; line-height:1.0;}
+html[lang="en"] .brand-text span{ font-family:var(--font-display-en); }
 .nav-tools{ display:flex; align-items:center; gap:0.5rem; margin-inline-start:auto; }
 .tool-btn{ width:28px; height:28px; border-radius:50%; border:1px solid var(--gray-soft); background:#f0efef; cursor:pointer; transition:.18s; display:flex; align-items:center; justify-content:center; }
-.tool-btn:hover{ background:var(--green); color:#f0efef; border-color:#f0efef; }
+.tool-btn:hover{ background:var(--blue); color:#f0efef; border-color:#f0efef; }
 .lang-toggle{ width:auto; padding:0 0.2rem; border-radius:999px; font-weight:700; font-size:0.5rem; background:#f0efef; border:1px solid var(--gray-soft); display:flex; align-items:center; gap:0.4rem; }
-.lang-toggle:hover{ background:var(--green); color:#fff; border-color:var(--green); }
+.lang-toggle:hover{ background:var(--blue); color:#fff; border-color:var(--blue); }
 
 /* الصفحات */
 #about, #map-section, #bus{ display:none; }
@@ -60,12 +100,13 @@ html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
 .page-nav-row{ display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.4rem; }
 
 /* الهيرو */
-.hero{ position:relative; min-height:84vh; display:flex; align-items:center; background:#141912; color:#F6F3E6; overflow:hidden; }
-.hero::before{ content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,25,15,0.12),rgba(16,20,12,0.42)); z-index:1; }
-.hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; pointer-events:none; }
-.sound-toggle{ position:absolute; bottom:16px; inset-inline-end:16px; z-index:50; width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.5); background:rgba(20,25,15,0.55); color:#fff; font-size:1.15rem; cursor:pointer; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px); transition:.2s; }
+.hero{ position:relative; min-height:84vh; display:flex; align-items:center; background:#0B1826; color:#F6F3E6; overflow:hidden; }
+.hero::before{ content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,20,34,0.12),rgba(6,12,22,0.42)); z-index:1; }
+.hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; pointer-events:none; opacity:0; transition:opacity .6s ease; }
+.hero-video.is-ready{ opacity:1; }
+.sound-toggle{ position:absolute; bottom:16px; inset-inline-end:16px; z-index:50; width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.5); background:rgba(10,20,34,0.55); color:#fff; font-size:1.15rem; cursor:pointer; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px); transition:.2s; }
 .sound-toggle.show{ display:flex; }
-.sound-toggle:hover{ background:rgba(20,25,15,0.8); transform:translateY(-2px); }
+.sound-toggle:hover{ background:rgba(10,20,34,0.8); transform:translateY(-2px); }
 @media (max-width:760px){ .sound-toggle{ bottom:12px; inset-inline-end:12px; width:38px; height:42px; font-size:1rem; } }
 @media (max-width:760px){
   .hero{ min-height:auto; }
@@ -78,8 +119,8 @@ html[lang="en"] .brand-text b{ font-family:var(--font-display-en); }
   .btn-map-highlight{ padding:0.9rem 1.6rem; font-size:0.8rem; }
 }
 .hero-content{ position:relative; z-index:2; padding:4.2rem 0 8.5rem; width:100%; min-height:60vh; display:flex; flex-direction:column; justify-content:center; }
-.hero-eyebrow{ display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; background:rgba(255,255,255,0.12); border:2.5px solid rgba(255,255,255,0.28); padding:0.4rem 0.9rem; border-radius:1509px; margin-bottom:0.2rem; backdrop-filter:blur(1000px); width:fit-content; transform:translateX(-40px); }
-.hero h1{ font-family:var(--font-display-ar); font-size:clamp(0.6rem,6vw,2.6rem); color:#FBF7E8; text-shadow:0 4px 24px rgba(0,0,0,0.35); margin:20px 0 0.rem ; position:relative; z-index:2; transform:translateX(-30px); }
+.hero-eyebrow{ display:inline-flex; align-items:center; gap:0.5rem; font-size:0.78rem; background:rgba(255,255,255,0.12); border:2.5px solid rgba(255,255,255,0.28); padding:0.4rem 0.9rem; border-radius:1509px; margin-bottom:0.2rem; backdrop-filter:blur(1000px); width:fit-content; /* offset removed: natural flow */ }
+.hero h1{ font-family:var(--font-display-ar); font-size:clamp(0.6rem,6vw,2.6rem); color:#FBF7E8; text-shadow:0 4px 24px rgba(0,0,0,0.35); margin:20px 0 0.6rem; position:relative; z-index:2; }
 html[lang="en"] .hero h1{ font-family:var(--font-display-en); font-weight:600; }
 .hero-subtitle{ font-size:clamp(0.1rem,2vw,1.4rem); font-weight:300; color:#EFEADA; margin:-0.1rem 0 1.2rem; position:relative; z-index:2; }
 
@@ -124,7 +165,7 @@ html[lang="en"] .hero p.lede {
     position:relative;
     z-index:6;
     margin-top:auto;
-    transform:translate(-30px, 120px);
+    /* offset removed: natural flow */
 }
 
 .btn{
@@ -144,11 +185,11 @@ html[lang="en"] .hero p.lede {
 .btn-ghost:hover{ background:rgba(255,255,255,0.22); transform:translateY(-12px); }
 .btn-outline{ background:rgba(255,255,255,0.1); color:#0c0303; border:1.5px solid rgba(14, 6, 6, 0.55); backdrop-filter:blur(20px); }
 .btn-outline:hover{ background:#fdf9eb; color:#000000; }
-.btn-map-highlight{ background:var(--green-dark); color:#fff; box-shadow:0 20px 26px rgba(49, 83, 86, 0.5); padding:10.5rem 2.4rem; font-size:0.8rem; }
-.btn-map-highlight:hover{ background:var(--green); transform:translateY(-12px); }
+.btn-map-highlight{ background:var(--blue-deep); color:#fff; box-shadow:0 12px 26px rgba(14,58,99,0.35); padding:1.05rem 2.4rem; font-size:0.8rem; }
+.btn-map-highlight:hover{ background:var(--blue); transform:translateY(-12px); }
 .btn-sm{ padding:0.5rem 0.4rem; font-size:0.6rem; }
 .btn-bus{ background:#50c9ee; color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); gap:0.2rem; }
-.btn-bus:hover{ background:var(--sky-dark); transform:translateY(0%); }
+.btn-bus:hover{ background:var(--blue-deep); transform:translateY(0%); }
 .hero-meta{
     display:flex;
     flex-wrap:wrap;
@@ -156,7 +197,7 @@ html[lang="en"] .hero p.lede {
     margin-top:0.5rem;
     position:relative;
     z-index:2;
-    transform:translate(-80px, 100px);
+    /* offset removed: natural flow */
 }
 
 .meta-chip{
@@ -200,6 +241,7 @@ html[lang="en"] h2.section-title{ font-family:var(--font-display-en); font-weigh
 @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
 .stage-card{ background:var(--white); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow); border:1px solid var(--glass-border); position:relative; overflow:hidden; }
 .stage-num{ position:absolute; top:-14px; inset-inline-end:-120px; font-family:var(--font-display-ar); font-size:5rem; color:var(--stone-deep); font-weight:700; z-index:0; line-height:1; user-select:none; }
+html[lang="en"] .stage-num{ font-family:var(--font-display-en); }
 .stage-card>*{ position:relative; z-index:1; }
 .stage-icon{ font-size:3rem; margin-bottom:0.8rem; inset-inline-end:-120px; }
 .stage-card h3{ font-family:var(--font-display-ar); font-size:1.4rem; margin:0 0 0.6rem; text-align:center; }
@@ -432,7 +474,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
   padding:6px;
 
   box-shadow:
-    0 12px 28px rgba(35,40,29,0.18),
+    0 12px 28px rgba(10,20,34,0.18),
     inset 0 1px 0 rgba(255,255,255,0.7);
 
   pointer-events:none;
@@ -468,7 +510,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
   transform:translateY(-2px);
   box-shadow:
     inset 0 1px 2px rgba(0,0,0,0.03),
-    0 4px 10px rgba(35,40,29,0.1);
+    0 4px 10px rgba(10,20,34,0.1);
 }
 
 /* ✅ أيقونة دائرية ملوّنة */
@@ -513,13 +555,13 @@ html[lang="en"] .map-route-info .stat-chip b{
 
 /* ✅ ألوان الأيقونات */
 .map-route-info .stat-chip:nth-child(1) .sc-ic{
-  background:#5a9e4a;   /* ← أخضر */
+  background:var(--blue);   /* دروب */
 }
 .map-route-info .stat-chip:nth-child(2) .sc-ic{
-  background:#3b82f6;   /* ← أزرق */
+  background:var(--blue-light);   /* أزرق */
 }
 .map-route-info .stat-chip:nth-child(3) .sc-ic{
-  background:#f59e0b;   /* ← أصفر/برتقالي */
+  background:var(--gold);   /* ذهبي */
 }
 
 /* ✅ الجوال */
@@ -555,7 +597,7 @@ html[lang="en"] .map-route-info .stat-chip b{
 .progress-top b{ font-family:var(--font-display-ar); font-size:1.05rem; }
 html[lang="en"] .progress-top b{ font-family:var(--font-display-en); }
 .progress-track{ height:10px; border-radius:999px; background:var(--stone); overflow:hidden; }
-.progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--green),var(--sky)); transition:width .5s ease; border-radius:999px; }
+.progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--blue),var(--blue-light)); transition:width .5s ease; border-radius:999px; }
 .progress-details{ display:flex; gap:1.4rem; flex-wrap:wrap; margin-top:0.9rem; }
 .progress-details div{ font-size:0.78rem; color:var(--ink-soft); }
 .progress-details b{ display:block; color:var(--ink); font-size:0.95rem; }
@@ -570,63 +612,60 @@ html[lang="en"] .sidebar{ border-left:none; border-right:1px solid var(--glass-b
 html[lang="en"] .sidebar h3{ font-family:var(--font-display-en); }
 .route-summary{ display:flex; justify-content:space-between; align-items:center; background:var(--stone); border:1px dashed var(--gray-soft); border-radius:8px; padding:0.6rem 0.85rem; margin-bottom:1rem; }
 .route-summary b{ font-family:var(--font-display-ar); font-size:1rem; color:var(--path); }
+html[lang="en"] .route-summary b{ font-family:var(--font-display-en); }
 .reset-btn{ background:none; border:1px solid var(--path); color:var(--path); font-size:0.72rem; padding:0.35rem 0.7rem; border-radius:8px; cursor:pointer; }
 .reset-btn:hover{ background:var(--path); color:#fff; }
 .stop-card{ display:flex; align-items:flex-start; gap:0.7rem; padding:0.65rem 0.4rem; border-bottom:1px solid var(--glass-border); cursor:pointer; transition:background .5s; border-radius:8px; }
-.stop-card:hover{ background:rgba(110,143,92,0.08); }
-.stop-card.active{ background:rgba(110,143,92,0.16); }
-.stop-card.current{ outline:2px solid var(--sky-dark); }
-.badge{ flex:0 0 auto; width:26px; height:26px; border-radius:50%; border:1.5px solid var(--green); color:var(--green-dark); display:flex; align-items:center; justify-content:center; font-family:var(--font-display-ar); font-size:0.88rem; background:var(--white); margin-top:2px; }
-.stop-card.active .badge{ background:var(--green); color:#fff; }
+.stop-card:hover{ background:rgba(29,95,168,0.08); }
+.stop-card.active{ background:rgba(29,95,168,0.16); }
+.stop-card.current{ outline:2px solid var(--blue-deep); }
+.badge{ flex:0 0 auto; width:26px; height:26px; border-radius:50%; border:1.5px solid var(--blue); color:var(--blue-deep); display:flex; align-items:center; justify-content:center; font-family:var(--font-display-ar); font-size:0.88rem; background:var(--white); margin-top:2px; }
+html[lang="en"] .badge{ font-family:var(--font-display-en); }
+.stop-card.active .badge{ background:var(--blue); color:#fff; }
 .stop-info b{ display:block; font-size:0.95rem; font-family:var(--font-display-ar); }
+html[lang="en"] .stop-info b{ font-family:var(--font-display-en); }
 .desc-tag{ display:block; margin-top:0.2rem; font-size:0.72rem; color:var(--ink-soft); }
-.info-btn{ margin-top:0.3rem; font-size:0.7rem; color:var(--sky-dark); background:none; border:none; padding:0; cursor:pointer; text-decoration:underline dashed; }
+.info-btn{ margin-top:0.3rem; font-size:0.7rem; color:var(--blue-deep); background:none; border:none; padding:0; cursor:pointer; text-decoration:underline dashed; }
 .here-btn{ margin-top:0.3rem; font-size:0.68rem; color:var(--path); background:none; border:none; padding:0 0 0 0.6rem; cursor:pointer; }
 .map-wrap{ position:relative; background:#fff; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); }
 #map-section .map-wrap{ position:absolute; inset:0; border-radius:0; box-shadow:none; }
-#map{ height:100%; min-height:640px; width:100%; background:#dfe6d8; }
+#map{ height:100%; min-height:640px; width:100%; background:#E7EEF5; }
 #map-section #map{ position:absolute; inset:0; min-height:0; }
-.site-pin{ position:relative; width:32px; height:32px; filter:drop-shadow(0 2px 3px rgba(0,0,0,0.35)); }
-.site-pin .pin-shape{ position:absolute; inset:0; width:32px; height:32px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#2563EB; border:2px solid #fff; box-shadow:0 3px 8px rgba(0,0,0,0.5); transition:.18s; }
-.site-pin.selected .pin-shape{ background:#b7ebff; border-color:#081233; }
-.site-pin.current-pin .pin-shape{ background:#00d8c63b; }
-.site-pin .pin-num{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#000; font-family:var(--font-display-ar); font-weight:700; font-size:0.82rem; transform:translateY(-3px); }
-.site-pin .pin-dot{ position:absolute; top:8px; left:8px; width:16px; height:16px; border-radius:50%; background:#000; transform:rotate(45deg); }
+.site-pin{ position:relative; width:24px; height:24px; filter:drop-shadow(0 2px 3px rgba(0,0,0,0.35)); }
+.site-pin .pin-shape{ position:absolute; inset:0; width:24px; height:24px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); background:#4E97D9; border:1.5px solid var(--path); box-shadow:0 3px 8px rgba(0,0,0,0.5); transition:.18s; }
+.site-pin.selected .pin-shape{ border:2.5px solid #C98A00; background:#4E97D9; }
+.site-pin.current-pin .pin-shape{ background:rgba(29,95,168,0.35); }
+.site-pin .pin-num{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#FFF; font-family:var(--font-display-ar); font-weight:700; font-size:0.62rem; transform:translateY(-2px); }
+html[lang="en"] .site-pin .pin-num{ font-family:var(--font-display-en); }
+.site-pin .pin-dot{ position:absolute; top:6px; left:6px; width:12px; height:12px; border-radius:50%; background:#f5f4f4; transform:rotate(45deg); }
 .stop-label{ background:transparent; border:none; box-shadow:none; padding:0; white-space:nowrap; }
 .leaflet-tooltip.stop-label::before{ display:none; }
-.stop-label .lbl-pill{ display:inline-flex; align-items:center; gap:4px; background:rgba(255,255,255,0.96); border:1.5px solid var(--path); border-radius:999px; padding:2px 10px; box-shadow:0 3px 10px rgba(35,40,29,0.28); transition:.15s; }
-.stop-label .lbl-text{ font-weight:700; font-size:0.75rem; color:#000; max-width:150px; overflow:hidden; text-overflow:ellipsis; }
+.stop-label .lbl-pill{ display:inline-flex; align-items:center; gap:3px; background:rgba(255,255,255,0.96); border:0.1px solid #C98A00; border-radius:999px; padding:1px 7px; box-shadow:0 3px 10px rgba(10,20,34,0.28); transition:.15s; }
+.stop-label .lbl-text{ font-weight:700; font-size:0.6rem; color:#4E97D9; max-width:120px; overflow:hidden; text-overflow:ellipsis; }
 .stop-label.label-current .lbl-pill{ border-color:var(--path); background:#FFFFFF; }
 .stop-label.label-selected .lbl-pill{ border-color:var(--path); background:#FFFFFF; }
 .stop-label.label-dim .lbl-pill{ opacity:0.4; transform:scale(0.88); }
-.bus-station-marker{ display:flex; flex-direction:column; align-items:center; width:130px; pointer-events:none; }
-.bus-station-badge{ width:38px; height:38px; border-radius:50%; background:#00bcf5; border:2.5px solid #fff; display:flex; align-items:center; justify-content:center; font-size:1.15rem; box-shadow:0 3px 10px rgba(0,0,0,0.45); position:relative; }
-.bus-station-badge::after{ content:''; position:absolute; bottom:-7px; left:50%; transform:translateX(-50%); border-left:7px solid transparent; border-right:7px solid transparent; border-top:8px solid #00bcf5; }
-.bus-station-label{ margin-top:10px; background:var(--sky-dark); color:#fff; font-size:0.68rem; font-weight:700; padding:0.28rem 0.75rem; border-radius:999px; white-space:nowrap; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.35); border:1.5px solid #fff; }
-.me-pin{ width:22px; height:22px; border-radius:50%; background:#23281D; border:3px solid #fff; box-shadow:0 0 0 6px rgba(37,99,235,0.28); }
+.bus-station-marker{ display:flex; flex-direction:column; align-items:center; width:108px; pointer-events:none; }
+.bus-station-badge{ width:30px; height:30px; border-radius:50%; background:#000000; border:2.5px solid #C98A00; display:flex; align-items:center; justify-content:center; font-size:0.92rem; box-shadow:0 3px 10px rgba(0,0,0,0.45); position:relative; }
+.bus-station-badge::after{ content:''; position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); border-left:6px solid transparent; border-right:6px solid transparent; border-top:7px solid #C98A00; }
+.bus-station-label{ margin-top:8px; background:#000000; color:#fff; font-size:0.62rem; font-weight:700; padding:0.22rem 0.6rem; border-radius:999px; white-space:nowrap; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.35); border:1.2px solid var(--path); }
+.me-pin{ width:22px; height:22px; border-radius:50%; background:var(--blue-deep); border:3px solid #fff; box-shadow:0 0 0 6px rgba(37,99,235,0.28); }
 .me-pin.tracking{ animation:mePulse 1.8s ease-out infinite; }
 @keyframes mePulse{ 0%{box-shadow:0 0 0 6px rgba(37,99,235,0.28);} 70%{box-shadow:0 0 0 16px rgba(37,99,235,0);} 100%{box-shadow:0 0 0 6px rgba(37,99,235,0);} }
 .stop-card.flash{ background:rgba(37,99,235,0.14); outline:2px solid #2563EB; }
-.map-pin-btn{ margin-top:0.3rem; font-size:0.68rem; color:var(--green-dark); background:none; border:none; padding:0 0 0 0.6rem; cursor:pointer; }
-.route-arrow{ color:var(--green-dark); font-size:0.9rem; text-shadow:0 0 3px #fff,0 0 3px #fff; }
+.map-pin-btn{ margin-top:0.3rem; font-size:0.68rem; color:var(--blue-deep); background:none; border:none; padding:0 0 0 0.6rem; cursor:pointer; }
+.route-arrow{ color:#B9D8F2; font-size:0.5rem; text-shadow:0 0 3px #fff,0 0 3px #fff; }
 .map-toolbar{ position:absolute; top:40px; left:16px; z-index:650; display:flex; flex-direction:column; align-items:center; gap:6px; background:rgba(255,255,255,0.72); backdrop-filter:blur(10px); border:1px solid var(--glass-border); border-radius:999px; padding:8px; box-shadow:var(--shadow); }
 html[dir="rtl"] .map-toolbar{ left:16px; right:auto; }
-.map-toolbar .map-divider{ width:22px; height:1px; background:rgba(35,40,29,0.14); margin:2px 0; }
-.map-btn{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(35,40,29,0.08); background:#dad8d8; color:var(--ink); font-size:0.8rem; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(35,40,29,0.14); transition:.15s; position:relative; }
-.map-btn:hover{ transform:translateY(-2px) scale(1.05); box-shadow:0 6px 14px rgba(35,40,29,0.22); }
-.map-btn.on{ background:var(--green-dark); color:#fff; border-color:var(--green-dark); }
+.map-toolbar .map-divider{ width:22px; height:1px; background:rgba(10,20,34,0.14); margin:2px 0; }
+.map-btn{ width:22px; height:22px; border-radius:50%; border:1px solid rgba(10,20,34,0.08); background:#dad8d8; color:var(--ink); font-size:0.8rem; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(10,20,34,0.14); transition:.15s; position:relative; }
+.map-btn:hover{ transform:translateY(-2px) scale(1.05); box-shadow:0 6px 14px rgba(10,20,34,0.22); }
+.map-btn.on{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
 .map-btn .pulse-dot{ position:absolute; top:2px; inset-inline-end:2px; width:9px; height:9px; border-radius:50%; background:#e70f0f; border:2px solid #fff; display:none; }
 .map-btn.on .pulse-dot{ display:block; animation:mePulse 1.6s ease-out infinite; }
-.map-mode-badge{ position:absolute; top:16px; right:16px; z-index:640; background:rgba(35,40,29,0.68); color:#fff; backdrop-filter:blur(6px); border-radius:999px; padding:0.32rem 0.85rem; font-size:0.7rem; font-weight:600; display:flex; align-items:center; gap:0.35rem; box-shadow:0 2px 10px rgba(35,40,29,0.08); pointer-events:none; }
+.map-mode-badge{ position:absolute; top:16px; right:16px; z-index:640; background:rgba(10,20,34,0.68); color:#fff; backdrop-filter:blur(6px); border-radius:999px; padding:0.32rem 0.85rem; font-size:0.7rem; font-weight:600; display:flex; align-items:center; gap:0.35rem; box-shadow:0 2px 10px rgba(10,20,34,0.08); pointer-events:none; }
 html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
 @media (max-width:760px){
-  #map{ min-height:62vh; }
-  @media (max-width:760px){
-
-  #map{
-    min-height:62vh;
-  }
-
   /* أزرار الخريطة: يسار + منتصف الشاشة */
   .map-toolbar{
     top:50%;
@@ -647,8 +686,8 @@ html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
   }
 
   .map-btn{
-    width:44px;
-    height:44px;
+    width:46px;
+    height:46px;
     font-size:1.05rem;
   }
 
@@ -657,23 +696,19 @@ html[dir="rtl"] .map-mode-badge{ right:auto; left:16px; }
     font-size:0.64rem;
     padding:0.26rem 0.65rem;
   }
-}
-  .map-mode-badge{ top:10px; font-size:0.64rem; padding:0.26rem 0.65rem; }
+
+  #map{ min-height:66vh; }
   .dest-map-wrap{ height:min(60vh,520px); border-radius:0; }
   .dest-modal-card{ width:100%; max-height:100vh; height:100vh; border-radius:0; }
   .dest-modal-body{ padding-bottom:2rem; }
-}
-@media (max-width:760px){
-  #map{ min-height:66vh; }
-  .map-btn{ width:46px; height:46px; }
 }
 
 /* جولات الحافلة */
 .bus-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,2fr)); gap:2.4rem; }
 .bus-card{ background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--glass-border); display:flex; flex-direction:column; transition:.1s; }
 .bus-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-lg); }
-.bus-media{ height:150px; position:relative; background:linear-gradient(135deg,#00bcf5,var(--sky-dark)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
-.bus-media img{ width:100%; height:200%; object-fit:cover; }
+.bus-media{ height:150px; position:relative; background:linear-gradient(135deg,#4E97D9,var(--blue-deep)); display:flex; align-items:center; justify-content:center; font-size:2.6rem; overflow:hidden; }
+.bus-media img{ width:100%; height:100%; object-fit:cover; }
 .bus-media .no-img-label{ color:#fff; font-size:0.75rem; background:rgba(0,0,0,0.25); padding:1.3rem 1.7rem; border-radius:2000px; position:absolute; bottom:1px; }
 .bus-body{ padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; }
 .bus-body h3{ font-family:var(--font-display-ar); font-size:2.2rem; text-align:center; margin:0; }
@@ -717,7 +752,7 @@ html[lang="en"] .bus-body h3{ font-family:var(--font-display-en); }
     font-family:var(--font-display-ar);
     font-weight:500;
     font-size:0.85rem;
-    color:var(--green-dark);
+    color:var(--blue-deep);
     line-height:1;
 }
 
@@ -742,12 +777,12 @@ footer p{ font-size:0.68rem; color:var(--ink); line-height:1.5; text-align:cente
 .dest-modal-card{ background:var(--paper); width:min(980px,96vw); max-height:94vh; overflow-y:auto; border-radius:20px; box-shadow:0 30px 80px rgba(0,0,0,0.55); position:relative; }
 .modal-close{ position:absolute; top:12px; inset-inline-start:12px; z-index:5; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.35); font-size:1.3rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
 .modal-close:hover{ background:rgba(255,255,255,0.35); }
-.modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--sky-dark),#00bcf5); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--sky-dark); }
+.modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--blue-deep),#4E97D9); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--blue-deep); }
 .modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#FFF; margin:0 0 0.3rem; }
 html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
-.modal-subtitle{ font-size:2.85rem; color:rgba(255,255,255,0.85); }
-.modal-image{ height:300px; margin:1.4rem 1.4rem 0; border-radius:12px; overflow:hidden; background:linear-gradient(135deg,var(--green),var(--green-dark)); display:flex; align-items:center; justify-content:center; color:#fff; flex-direction:column; gap:0.3rem; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
-.modal-image img{ width:100%; height:180%; object-fit:cover; }
+.modal-subtitle, .dest-modal-subtitle{ font-size:0.85rem; color:rgba(255,255,255,0.85); }
+.modal-image{ height:300px; margin:1.4rem 1.4rem 0; border-radius:12px; overflow:hidden; background:linear-gradient(135deg,var(--blue),var(--blue-deep)); display:flex; align-items:center; justify-content:center; color:#fff; flex-direction:column; gap:0.3rem; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
+.modal-image img{ width:100%; height:100%; object-fit:cover; }
 .modal-image .emoji{ font-size:3.2rem; }
 .modal-image .cap{ font-size:0.72rem; opacity:0.85; padding:0 1rem; text-align:center; }
 .modal-meta-row{ display:flex; gap:0.6rem; flex-wrap:wrap; padding:1rem 1.3rem 0; }
@@ -757,13 +792,13 @@ html[lang="en"] .modal-title{ font-family:var(--font-display-en); }
 .modal-actions-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:0.7rem; }
 @media (max-width:760px){ .modal-actions-grid{ grid-template-columns:1fr; } }
 .act-btn{ padding:0.8rem 0.7rem; border-radius:8px; font-size:0.82rem; font-weight:700; border:1px solid var(--gray-soft); background:var(--white); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.4rem; transition:.18s; }
-.act-btn:hover{ background:var(--green); color:#fff; border-color:var(--green); }
+.act-btn:hover{ background:var(--blue); color:#fff; border-color:var(--blue); }
 .audio-controls{ display:flex; gap:0.5rem; justify-content:center; margin:0.5rem 0 0.2rem; }
 .ac-btn{ width:42px; height:42px; border-radius:50%; border:1px solid var(--gray-soft); background:var(--white); font-size:1.05rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.15s; }
-.ac-btn:hover{ background:var(--green); color:#fff; border-color:var(--green); }
-.modal-toggle{ width:100%; padding:0.75rem; background:var(--green); color:#fff; border:none; border-radius:8px; font-size:0.9rem; font-weight:700; cursor:pointer; margin-top:0.4rem; }
+.ac-btn:hover{ background:var(--blue); color:#fff; border-color:var(--blue); }
+.modal-toggle{ width:100%; padding:0.75rem; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:0.9rem; font-weight:700; cursor:pointer; margin-top:0.4rem; }
 .modal-toggle.remove{ background:#853030; }
-.dest-modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--sky-dark),#00bcf5); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--sky-dark); }
+.dest-modal-header{ text-align:center; padding:2rem 1.3rem 1.2rem; background:linear-gradient(135deg,var(--blue-deep),#4E97D9); color:var(--paper); border-radius:20px 20px 0 0; border-bottom:3px solid var(--blue-deep); }
 .dest-modal-title{ font-family:var(--font-display-ar); font-size:1.9rem; font-weight:700; color:#FFF; margin:0 0 0.3rem; }
 html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
 .dest-modal-body{
@@ -775,7 +810,7 @@ html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
     line-height:1.7;
     text-align:right;
 }
-.dest-map-wrap{ width:100%; height:min(72vh,640px); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(35,40,29,0.08); position:relative; }
+.dest-map-wrap{ width:100%; height:min(72vh,640px); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(10,20,34,0.08); position:relative; }
 #destMap{ width:100%; height:100%; }
 .dest-map-loading{ position:absolute; inset:0; background:rgba(251,249,242,0.85); display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--ink-soft); z-index:400; transition:opacity .2s; }
 .dest-map-loading.hidden{ opacity:0; pointer-events:none; }
@@ -796,14 +831,14 @@ html[lang="en"] .dest-modal-title{font-family:var(--font-display-en); }
 @media (max-width:760px){ .loc-directions{ max-width:none; inset-inline-start:8px; inset-inline-end:8px; bottom:76px; max-height:42%; } }
 .travel-mode-toggle{ display:flex; gap:0.3rem; margin-bottom:0.5rem; background:var(--stone); border-radius:999px; padding:3px; }
 .tm-btn{ flex:1; display:flex; align-items:center; justify-content:center; gap:0.3rem; border:none; background:transparent; color:var(--ink-soft); font-size:0.7rem; font-weight:700; padding:0.4rem 0.5rem; border-radius:999px; cursor:pointer; transition:.15s; font-family:inherit; }
-.tm-btn.active{ background:var(--green-dark); color:#fff; box-shadow:0 2px 6px rgba(35,40,29,0.25); }
-.tm-btn:hover:not(.active){ background:rgba(35,40,29,0.08); }
+.tm-btn.active{ background:var(--blue-deep); color:#fff; box-shadow:0 2px 6px rgba(10,20,34,0.25); }
+.tm-btn:hover:not(.active){ background:rgba(10,20,34,0.08); }
 @media (max-width:760px){ .tm-btn{ font-size:0.66rem; padding:0.5rem 0.4rem; } }
 .dest-hero-img{ width:100%; height:min(34vw,180px); border-radius:14px; overflow:hidden; margin-bottom:1rem; background:var(--stone); }
 .dest-hero-img img{ width:100%; height:100%; object-fit:cover; }
 .dest-desc{ font-size:0.88rem; color:var(--ink); line-height:1.8; margin:0.9rem 0; }
 #destVideo{ margin-top:0.2rem;margin-bottom:4.7rem }
-.video-btn{ width:100%; padding:0.9rem 1rem; background:var(--path); color:#fff; border:none; border-radius:8px; font-size:0.94rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.6rem; box-shadow:1 3px 10px rgba(245,179,1,0.35); margin-top:1.2rem ;margin-bottom:1.2rem; }
+.video-btn{ width:100%; padding:0.9rem 1rem; background:var(--path); color:#fff; border:none; border-radius:8px; font-size:0.94rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.6rem; box-shadow:0 3px 10px rgba(245,179,1,0.35); margin-top:1.2rem ;margin-bottom:1.2rem; }
 .video-btn:hover{ filter:brightness(1.08); }
 .video-frame{ width:100%; border-radius:8px; overflow:hidden; background:#000; margin-top:0.7rem; box-shadow:var(--shadow); }
 .video-frame iframe{ width:100%; aspect-ratio:16/9; border:none; display:block; }
@@ -821,11 +856,11 @@ html[lang="en"] .video-lightbox-title{ font-family:var(--font-display-en); font-
 .video-lightbox-close:hover{ background:rgba(255,255,255,0.28); transform:scale(1.06); }
 @media (max-width:760px){ .video-lightbox-close{ top:-2.6rem; width:36px; height:36px; font-size:1.2rem; } .video-lightbox{ padding:2vh 2vw; } .video-lightbox-inner{ max-width:92vw; } .video-lightbox-inner video{ max-width:92vw; } .video-lightbox-inner iframe{ width:90vw; } }
 .video-placeholder{ text-align:center; color:var(--ink-soft); font-size:0.82rem; padding:0.9rem; border:1px dashed var(--gray-soft); border-radius:8px; background:var(--stone); margin-top:0.7rem; }
-.toast{ position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px); z-index:3000; background:var(--green-deeper); color:#F4EFE2; padding:0.8rem 1.4rem; border-radius:999px; font-size:0.85rem; box-shadow:var(--shadow-lg); opacity:0; pointer-events:none; transition:all .25s; }
+.toast{ position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(20px); z-index:3000; background:var(--blue-light); color:#F4EFE2; padding:0.8rem 1.4rem; border-radius:999px; font-size:0.85rem; box-shadow:var(--shadow-lg); opacity:0; pointer-events:none; transition:all .25s; }
 .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
-.back-to-top{ position:fixed; bottom:22px; inset-inline-end:22px; z-index:800; width:44px; height:44px; border-radius:50%; background:var(--green); color:#fff; border:none; font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transform:translateY(10px); transition:all .25s; }
+.back-to-top{ position:fixed; bottom:22px; inset-inline-end:22px; z-index:800; width:44px; height:44px; border-radius:50%; background:var(--blue); color:#fff; border:none; font-size:1.1rem; cursor:pointer; box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transform:translateY(10px); transition:all .25s; }
 .back-to-top.show{ opacity:1; pointer-events:auto; transform:translateY(0); }
-.back-to-top:hover{ background:var(--green-dark); }
+.back-to-top:hover{ background:var(--blue-deep); }
 
 /* ===== إمكانية الوصول ===== */
 .a11y-wrap{ position:relative; }
@@ -834,24 +869,27 @@ html[lang="en"] .video-lightbox-title{ font-family:var(--font-display-en); font-
 .a11y-panel b{ font-size:0.78rem; color:var(--ink-soft); padding:0.2rem 0.4rem 0.5rem; border-bottom:1px solid var(--glass-border); margin-bottom:0.2rem; }
 .a11y-panel button{ display:flex; align-items:center; gap:0.6rem; width:100%; padding:0.55rem 0.6rem; border:none; background:none; border-radius:8px; font-size:0.85rem; color:var(--ink); cursor:pointer; text-align:start; min-height:44px; }
 .a11y-panel button:hover, .a11y-panel button:focus-visible{ background:var(--stone); }
-.a11y-panel button.active{ background:var(--green); color:#fff; }
+.a11y-panel button.active{ background:var(--blue); color:#fff; }
 
 /* تباين عالٍ */
 html[data-contrast="high"]{ --ink:#000000; --ink-soft:#000000; --stone-deep:#ffffff; --white:#ffffff; --glass-border:#000000; }
 html[data-contrast="high"] body{ background:#ffffff; }
-html[data-contrast="high"] .hero{ background:linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.82)),url('https://www.travelpalestine.ps/public/files/image/destinations/salfeet%20old%20city.jpg') center/cover no-repeat; }
+/* رابط الصورة الخارجية السابق كان معطوباً (403) ويمنع الزائر من رؤية أي شيء خلف النص في وضع التباين العالي؛
+   نعتمد بدلاً منه خلفية داكنة صلبة تضمن أعلى تباين ممكن دون الاعتماد على مصدر خارجي قد يتعطل. */
+html[data-contrast="high"] .hero{ background:linear-gradient(180deg,#0B1826,#050c15); }
+html[data-contrast="high"] .hero-video{ display:none; }
 html[data-contrast="high"] .btn, html[data-contrast="high"] .stage-card, html[data-contrast="high"] .bus-card, html[data-contrast="high"] .stat-chip{ border:2px solid #000; }
 
 /* إيقاف الحركة */
 html[data-motion="reduced"] *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 
 /* وضوح التركيز عند التنقل بلوحة المفاتيح */
-a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focus-visible{ outline:3px solid var(--sky-dark); outline-offset:2px; }
+a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focus-visible{ outline:3px solid var(--blue-deep); outline-offset:2px; }
 
 /* شريط الدليل الصوتي الترحيبي */
 .intro-audio-bar{ position:fixed; bottom:22px; inset-inline-start:22px; z-index:800; display:flex; align-items:center; gap:0.4rem; }
-.intro-audio-btn{ display:flex; align-items:center; gap:0.5rem; background:var(--green-dark); color:#fff; border:none; border-radius:999px; padding:0.75rem 1.2rem; font-size:0.85rem; font-weight:700; cursor:pointer; box-shadow:var(--shadow-lg); }
-.intro-audio-btn:hover{ background:var(--green); }
+.intro-audio-btn{ display:flex; align-items:center; gap:0.5rem; background:var(--blue-deep); color:#fff; border:none; border-radius:999px; padding:0.75rem 1.2rem; font-size:0.85rem; font-weight:700; cursor:pointer; box-shadow:var(--shadow-lg); }
+.intro-audio-btn:hover{ background:var(--blue); }
 .intro-audio-controls{ display:flex; gap:0.4rem; background:var(--white); border-radius:999px; padding:0.4rem; box-shadow:var(--shadow); }
 .intro-audio-controls .ac-btn{ width:38px; height:38px; }
 @media (max-width:760px){ .intro-audio-bar{ inset-inline-start:12px; bottom:12px; } .intro-audio-btn span:last-child{ display:none; } }
@@ -891,7 +929,7 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
 <main>
   <!-- الهيرو -->
   <header class="hero" id="home">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
       <source src="https://raw.githubusercontent.com/munsalfeet/Salfeet.trails/main/int.mp4" type="video/mp4">
     </video>
     <div class="container hero-content">
@@ -1096,7 +1134,7 @@ a:focus-visible, button:focus-visible, .stop-card:focus-visible, [tabindex]:focu
       </div>
       <div class="dest-info-row" id="destInfoRow"></div>
       <p class="dest-desc" id="destDesc"></p>
-      <button type="button" class="video-btn" id="destAudioBtn" style="background:var(--sky-dark);">🔊 <span id="destAudioLabel">دليل صوتي</span></button>
+      <button type="button" class="video-btn" id="destAudioBtn" style="background:var(--blue-deep);">🔊 <span id="destAudioLabel">دليل صوتي</span></button>
       <div id="destVideo"></div>
     </div>
   </div>
@@ -1198,7 +1236,7 @@ const T = {
     en:'Tut Square Trail is one of the Olive Trails routes. Tut Square, established in 1965, is the beating heart of the city of Salfeet, and for decades it formed the city\'s main public square and an economic and social hub serving the city and the surrounding villages. The square was known as a major market for agricultural equipment and machinery, where tractors and various farming supplies were displayed, reflecting the agricultural standing of Salfeet, known for producing olives, grapes, figs, apricots, cherries, and apples, making it one of the important agricultural centers in the central West Bank. The square\'s role was not limited to commerce — it was also a lively social meeting point, hosting national and social occasions, popular weddings, and public celebrations, becoming a space that brings together the city\'s people and visitors, and a stage for daily life in Salfeet. At the center of the square stands the historic mulberry tree that gave it its name, still standing today as a witness to the city\'s memory and rich heritage. Tut Square remains one of the most prominent stops on the Olive Trails, where history meets life, and the details of the place tell the story of a city whose land is tied to agriculture, its people to community, and its memory to place.' },
   10:{ar:' في قلب مدينة سلفيت، يمتد منتزه بلدية سلفيت كمساحة هادئة تجمع بين جمال الطبيعة وروعة المكان، ليمنح الزائر فرصةً للاستراحة والاستمتاع بأجواء المدينة بعيدًا عن صخب الحياة اليومية. يتميز المنتزه بمساحاته الخضراء وأجوائه الهادئة، ويُعد وجهةً محببة للعائلات والزوار ومحبي الطبيعة، كما يستضيف مجموعةً من الفعاليات والأنشطة الاجتماعية والترفيهية التي تضفي على المكان حيويةً خاصة، وتجعله مساحةً للتلاقي والاستجمام. ويمثل المنتزه إحدى المساحات العامة التي تعكس اهتمام مدينة سلفيت بتوفير بيئة مريحة وآمنة للزوار، وتشجيع الاستمتاع بالهواء الطلق وقضاء أوقات ممتعة مع العائلة والأصدقاء. ويشكّل منتزه بلدية سلفيت اليوم إحدى المحطات المميزة ضمن دروب الزيتون، حيث يلتقي هدوء الطبيعة بروح المدينة، في تجربة تمنح الزائر لحظةً للراحة والاستمتاع، وفرصةً لاكتشاف جانب من جمال سلفيت وحياتها اليومية.',
     en:'At the heart of the city of Salfeet, Salfeet Municipality Park stretches out as a calm space that brings together the beauty of nature and the charm of the place, giving visitors a chance to rest and enjoy the city\'s atmosphere away from the hustle of daily life. The park is known for its green spaces and calm atmosphere, and is a favorite destination for families, visitors, and nature lovers. It also hosts a range of social and recreational events and activities that give the place a special vibrancy and make it a space for gathering and relaxation. The park is one of the public spaces reflecting Salfeet\'s commitment to providing a comfortable, safe environment for visitors, and to encouraging outdoor enjoyment and quality time with family and friends. Today, Salfeet Municipality Park is one of the distinctive stops on the Olive Trails, where the calm of nature meets the spirit of the city, in an experience that gives visitors a moment of rest and enjoyment, and a chance to discover a side of Salfeet\'s beauty and daily life.' } },
-  busTourNames: { 1:{ar:'درب عين فريج',en:'Nature Tour'}, 2:{ar:' درب عين عدس',en:'Olive & Agriculture Tour'}, 3:{ar:'درب الخير ',en:'Investment & Industrial Tour'}, 4:{ar:'درب الطبيعة المتنوعة',en:'Cultural & Heritage Tour'} },
+  busTourNames: { 1:{ar:'درب عين فريج',en:'Ain Fareej Trail'}, 2:{ar:'درب عين عدس',en:'Ain Adas Trail'}, 3:{ar:'درب الخير',en:'Goodness Trail'}, 4:{ar:'درب الطبيعة المتنوعة',en:'Diverse Nature Trail'} },
   busTourDescs: { 1:{ar:'عين فريج تقع جنوب غرب مدينة سلفيت، وتتميز بصفاء مياهها وبرودتها الشديدة، إذ تنبع من صخر عميق يُعرف محليًا باسم «الدست». وبجوارها يقع متنزه حديث يوفر للزوار مساحة للاستراحة والاستمتاع بجمال الطبيعة، كما توجد بالقرب منها آثار معصرة عنب قديمة تضيف للمكان قيمة تاريخية وتراثية. وترتبط العين في الذاكرة الشعبية بروايات محلية تتحدث عن الخصائص العلاجية لمياهها وقدرتها على المساعدة في علاج بعض الأمراض، مما يعكس مكانتها في التراث الشعبي لأهالي سلفيت. عين فريج... ماء بارد صافٍ، وطبيعة تحكي حكاية سلفيت.',en:'Ain Fareej lies southwest of Salfeet, known for its clear, remarkably cold water rising from a deep rock locally called "Al-Dast." A modern park nearby offers visitors a place to rest and enjoy nature, and the remains of an old grape press add historical and heritage value to the site. In local memory, the spring is linked to popular stories about its water\'s healing properties and its ability to help treat certain ailments, reflecting its place in the folk heritage of Salfeet\'s people. Ain Fareej... cool, clear water, and a landscape that tells Salfeet\'s story.'}, 
   2:{ar:'تقع عين عدس عند سفح الجبل الذي يحمل اسمها، حيث تنبع مياهها من أسفل الجبل وتصب في بركة دائرية يبلغ عمقها نحو 1.5 متر، شُيّدت في خمسينيات القرن الماضي. وتحيط بالعين أشجار الزيتون والليمون، إلى جانب المساحات المزروعة بالخضروات، لتشكّل مشهدًا طبيعيًا يجمع بين الماء والزراعة وجمال الريف السلفيتي. وتُعد عين عدس من الأماكن التي تعكس ارتباط أهالي سلفيت بالأرض والماء، وتمنح الزائر فرصة للاستمتاع بهدوء الطبيعة وجمال المشهد الزراعي المحيط بها.',en:'Ain Adas lies at the foot of the mountain that bears its name, its water rising from beneath the mountain into a circular pool about 1.5 meters deep, built in the 1950s. Olive and lemon trees surround the spring alongside vegetable plots, forming a natural scene that brings together water, farming, and the beauty of the Salfeet countryside. Ain Adas reflects the bond between Salfeet\'s people and their land and water, offering visitors a chance to enjoy the calm of nature and the beauty of the surrounding farmland.'},
   3:{ar:'خربة قيس تقع جنوب مدينة سلفيت، وهي ضاحية تتميز بطبيعتها الريفية الهادئة وأراضيها الزراعية وحقول الزيتون، وتحتضن عددًا من عيون المياه والمعالم التراثية التي تعكس تاريخ المكان وارتباط أهالي سلفيت بأرضهم. وتنتشر فيها آثار ومواقع قديمة تحكي جانبًا من الحياة الريفية التي عاشها السكان عبر الأجيال، فيما تضفي أشجار الزيتون والمساحات الخضراء المحيطة بالمكان جمالًا خاصًا على المشهد. وتمنح خربة قيس زوارها فرصة للتجول بين مساراتها الطبيعية، واكتشاف معالمها التراثية، والاستمتاع بجمال الريف السلفيتي وهدوء المكان',en:'Khirbet Qais lies south of Salfeet, a quiet rural suburb known for its farmland and olive groves. It is home to several springs and heritage sites reflecting the area\'s history and the bond between Salfeet\'s people and their land. Ancient ruins scattered across the site tell part of the rural life residents have lived for generations, while olive trees and green spaces lend the scenery a special beauty. Khirbet Qais offers visitors the chance to wander its natural trails, discover its heritage landmarks, and enjoy the beauty and calm of the Salfeet countryside.'},
@@ -1345,7 +1383,7 @@ function updateUI() {
     busMarker.setPopupContent(`<b>${t('busStationPopup')}</b>`);
     busMarker.setIcon(L.divIcon({
       className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`,
-      iconSize:[130,66], iconAnchor:[65,45]
+      iconSize:[108,58], iconAnchor:[54,40]
     }));
   }
 }
@@ -1412,7 +1450,7 @@ function fmtMinUnit(min){ if(min < 60) return `${min} ${t('minUnit')}`; const h=
 // ============================================================
 //   الخريطة والمنطق
 // ============================================================
-const BUS_ROUTE_COLOR = '#00bcf5';
+const BUS_ROUTE_COLOR = '#1D5FA8';
 const DEFAULT_ROUTE = [1,2,3,4,9,5,6,7,8,10];
 let selected = [...DEFAULT_ROUTE];
 let currentStopId = null;
@@ -1436,7 +1474,16 @@ let destAccCircle = null;
 function escapeAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function youtubeEmbedUrl(url){ if(!url) return ''; if(url.includes('/embed/')) return url; try{ const u=new URL(url); let id=''; if(u.hostname.includes('youtu.be')) id=u.pathname.slice(1); else if(u.searchParams.get('v')) id=u.searchParams.get('v'); if(id) return `https://www.youtube.com/embed/${id}`; return url; }catch(e){ return url; } }
 function isDirectVideoFile(url){ if(!url) return false; return /\.(mp4|webm|ogv|ogg|mov|m4v)(\?.*)?$/i.test(url); }
-function openVideoLightbox(url,title){ const overlay=document.getElementById('videoLightbox'); const content=document.getElementById('videoLightboxContent'); const titleEl=document.getElementById('videoLightboxTitle'); titleEl.textContent=title||''; if(isDirectVideoFile(url)){ content.innerHTML=`<video src="${escapeAttr(url)}" controls controlsList="nodownload noremoteplayback" disablePictureInPicture playsinline autoplay preload="auto" title="${escapeAttr(title||'')}">${t('noVideo')}</video>`; } else { const base=youtubeEmbedUrl(url); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; content.innerHTML=`<iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(title||'')}"></iframe>`; } overlay.classList.add('open'); document.body.style.overflow='hidden'; }
+function handleLightboxVideoError(videoEl){
+  // بعض روابط الفيديو قد تكون مفقودة على المستودع؛ بدل شاشة كسر سوداء، نعرض رسالة واضحة للزائر
+  const ph=document.createElement('div');
+  ph.className='video-placeholder';
+  ph.style.color='#fff';
+  ph.style.border='1px dashed rgba(255,255,255,0.4)';
+  ph.textContent=t('noVideo');
+  videoEl.replaceWith(ph);
+}
+function openVideoLightbox(url,title){ const overlay=document.getElementById('videoLightbox'); const content=document.getElementById('videoLightboxContent'); const titleEl=document.getElementById('videoLightboxTitle'); titleEl.textContent=title||''; if(isDirectVideoFile(url)){ content.innerHTML=`<video src="${escapeAttr(url)}" controls controlsList="nodownload noremoteplayback" disablePictureInPicture playsinline autoplay preload="auto" title="${escapeAttr(title||'')}" onerror="handleLightboxVideoError(this)">${t('noVideo')}</video>`; } else { const base=youtubeEmbedUrl(url); const embedUrl=base+(base.includes('?')?'&':'?')+'autoplay=1&rel=0'; content.innerHTML=`<iframe src="${escapeAttr(embedUrl)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${escapeAttr(title||'')}"></iframe>`; } overlay.classList.add('open'); document.body.style.overflow='hidden'; }
 function closeVideoLightbox(){ const overlay=document.getElementById('videoLightbox'); const content=document.getElementById('videoLightboxContent'); const titleEl=document.getElementById('videoLightboxTitle'); overlay.classList.remove('open'); content.innerHTML=''; titleEl.textContent=''; document.body.style.overflow=''; }
 document.getElementById('videoLightboxClose').addEventListener('click',closeVideoLightbox);
 document.getElementById('videoLightbox').addEventListener('click',(e)=>{ if(e.target.id==='videoLightbox') closeVideoLightbox(); });
@@ -1467,18 +1514,18 @@ function haversineLL(a,b){ const R=6371; const dLat=(b[0]-a[0])*Math.PI/180, dLo
 function totalDistance(){ const segs=buildFollowSegments(selected); let d=0; segs.forEach(({latlngs})=>{ for(let i=0;i<latlngs.length-1;i++) d+=haversineLL(latlngs[i],latlngs[i+1]); }); return d; }
 function bearingDeg(a,b){ const lat=(a[0]+b[0])/2*Math.PI/180; const dLon=(b[1]-a[1])*Math.cos(lat); const dLat=(b[0]-a[0]); return Math.atan2(dLon,dLat)*180/Math.PI; }
 function midOfPolyline(latlngs){ let total=0, lens=[]; for(let i=0;i<latlngs.length-1;i++){ const l=haversineLL(latlngs[i],latlngs[i+1]); lens.push(l); total+=l; } let acc=0, half=total/2; for(let i=0;i<lens.length;i++){ if(acc+lens[i]>=half){ const t=lens[i]===0?0:(half-acc)/lens[i]; const [la1,lo1]=latlngs[i],[la2,lo2]=latlngs[i+1]; return {point:[la1+(la2-la1)*t, lo1+(lo2-lo1)*t], bearing:bearingDeg(latlngs[i],latlngs[i+1])}; } acc+=lens[i]; } const n=latlngs.length; return {point:latlngs[Math.floor(n/2)], bearing:bearingDeg(latlngs[0],latlngs[n-1])}; }
-function pinIcon(n,isSelected,isCurrent){ const inner=n?`<span class="pin-num">${n}</span>`:`<span class="pin-dot"></span>`; return L.divIcon({className:'', html:`<div class="site-pin${isSelected?' selected':''}${isCurrent?' current-pin':''}"><div class="pin-shape"></div>${inner}</div>`, iconSize:[32,32], iconAnchor:[16,30]}); }
+function pinIcon(n,isSelected,isCurrent){ const inner=n?`<span class="pin-num">${n}</span>`:`<span class="pin-dot"></span>`; return L.divIcon({className:'', html:`<div class="site-pin${isSelected?' selected':''}${isCurrent?' current-pin':''}"><div class="pin-shape"></div>${inner}</div>`, iconSize:[24,24], iconAnchor:[12,22]}); }
 function stopLabelHtml(site,idx){ const name=T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id; return `<span class="lbl-pill"><span class="lbl-text">${name}</span></span>`; }
 function panToSite(id){ const site=sites.find(s=>s.id===id); if(!site) return; map.flyTo([site.lat,site.lon], Math.max(map.getZoom(),17), {animate:true,duration:0.6}); markers[id].openTooltip(); document.getElementById('map-section').scrollIntoView({behavior:'smooth',block:'start'}); }
 function flashStopCard(id){ const card=document.querySelector(`.stop-card[data-id="${id}"]`); if(!card) return; card.scrollIntoView({behavior:'smooth',block:'center'}); card.classList.add('flash'); setTimeout(()=>card.classList.remove('flash'),1600); }
 function toggleSite(id){ const idx=selected.indexOf(id); if(idx>-1) selected.splice(idx,1); else selected.push(id); render(); }
 function setCurrentStop(id){ currentStopId=id; render(); showToast(t('currentStopSet')); }
-function fitMapToRoute(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding:[50,50],maxZoom:18}); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon],16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding:[20,20],maxZoom:15}); } }
+function fitMapToRoute(){ const isMobile = window.innerWidth <= 760; const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); if(orderedSites.length>1){ const allPoints=orderedSites.map(s=>[s.lat,s.lon]); const routeBounds=L.latLngBounds(allPoints); map.fitBounds(routeBounds,{padding: isMobile?[30,30]:[50,50], maxZoom:18}); if(isMobile) map.setZoom(Math.min(map.getZoom()+1,18)); } else if(orderedSites.length===1){ map.setView([orderedSites[0].lat,orderedSites[0].lon], isMobile?17:16); } else { const bounds=L.latLngBounds(sites.map(s=>[s.lat,s.lon]).concat([[busLat,busLon]])); map.fitBounds(bounds,{padding: isMobile?[8,8]:[20,20], maxZoom: isMobile?17:15}); if(isMobile) map.setZoom(Math.min(map.getZoom()+2,17)); } }
 function render(){ sites.forEach(site=>{ const idx=selected.indexOf(site.id); const isCurrent=site.id===currentStopId; markers[site.id].setIcon(pinIcon(idx>-1?idx+1:null, idx>-1, isCurrent)); markers[site.id].setTooltipContent(stopLabelHtml(site,idx)); const tt=markers[site.id].getTooltip(); if(tt){ const el=tt.getElement(); if(el){ el.classList.toggle('label-current',isCurrent); el.classList.toggle('label-selected',!isCurrent&&idx>-1); } } }); routeLayers.forEach(l=>map.removeLayer(l)); routeLayers=[]; if(selected.length>1){ const segs=buildFollowSegments(selected); segs.forEach(({latlngs})=>{ routeLayers.push(L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.55}).addTo(map)); routeLayers.push(L.polyline(latlngs,{color:'#F5B301',weight:4,opacity:0.95}).addTo(map)); const {point,bearing}=midOfPolyline(latlngs); routeLayers.push(L.marker(point,{ icon:L.divIcon({className:'', html:`<div class="route-arrow" style="transform:rotate(${bearing}deg)">▲</div>`, iconSize:[18,18], iconAnchor:[9,9]}), interactive:false }).addTo(map)); }); } renderStopList(); updateProgress(); fitMapToRoute(); }
 function renderStopList(){ const list=document.getElementById('stopList'); list.innerHTML=''; sites.forEach(site=>{ const idx=selected.indexOf(site.id); const card=document.createElement('div'); card.className='stop-card'+(idx>-1?' active':'')+(site.id===currentStopId?' current':''); card.dataset.id=site.id; card.tabIndex=0; const pathName=T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id; card.innerHTML=`<div class="badge">${idx>-1?(idx+1):''}</div><div class="stop-info"><b>${pathName}</b><button type="button" class="info-btn" data-id="${site.id}">${t('discoverTrail')}</button><button type="button" class="here-btn" data-here="${site.id}">📍 ${t('imHere')}</button><button type="button" class="map-pin-btn" data-pan="${site.id}">🗺️ ${t('showOnMap')}</button></div>`; card.querySelector('.badge').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.stop-info b').onclick=e=>{e.stopPropagation(); toggleSite(site.id);}; card.querySelector('.info-btn').onclick=e=>{e.stopPropagation(); openModal(site.id);}; card.querySelector('.here-btn').onclick=e=>{e.stopPropagation(); setCurrentStop(site.id);}; card.querySelector('.map-pin-btn').onclick=e=>{e.stopPropagation(); panToSite(site.id);}; card.onclick=()=>toggleSite(site.id); list.appendChild(card); }); }
 function updateProgress(){ const orderedSites=selected.map(id=>sites.find(s=>s.id===id)).filter(Boolean); const total=totalDistance(); const walkSpeedKmh=4.5; const statSelected = document.getElementById('statSelected');
 if (statSelected) statSelected.textContent = selected.length;; const distText=total>0?total.toFixed(2)+' '+(lang==='ar'?'كم':'km'):'—'; document.getElementById('statDist').textContent=distText; document.getElementById('summaryDist').textContent=distText; document.getElementById('statTime').textContent=total>0?fmtTime((total/walkSpeedKmh)*60):'—'; if(!currentStopId||orderedSites.length<2){ document.getElementById('progressFill').style.width='0%'; document.getElementById('progressPct').textContent='0%'; document.getElementById('curStopLbl').textContent='—'; document.getElementById('nextStopLbl').textContent='—'; document.getElementById('remDistLbl').textContent='—'; document.getElementById('remTimeLbl').textContent='—'; return; } const curIdx=orderedSites.findIndex(s=>s.id===currentStopId); if(curIdx===-1) return; const pct=Math.round((curIdx/(orderedSites.length-1))*100); document.getElementById('progressFill').style.width=pct+'%'; document.getElementById('progressPct').textContent=pct+'%'; updateProgressLabel(); const cur=orderedSites[curIdx]; const next=orderedSites[curIdx+1]; const curName=T.stopPaths[cur.id]?T.stopPaths[cur.id][lang]:cur.id; const nextName=next?(T.stopPaths[next.id]?T.stopPaths[next.id][lang]:next.id):t('endOfTrail'); document.getElementById('curStopLbl').textContent=curName; document.getElementById('nextStopLbl').textContent=nextName; let remDist=0; const remainingIds=selected.slice(curIdx); if(remainingIds.length>1){ const segs=buildFollowSegments(remainingIds); segs.forEach(({latlngs})=>{ for(let i=0;i<latlngs.length-1;i++) remDist+=haversineLL(latlngs[i],latlngs[i+1]); }); } document.getElementById('remDistLbl').textContent=remDist>0?remDist.toFixed(2)+' '+(lang==='ar'?'كم':'km'):t('arrived'); document.getElementById('remTimeLbl').textContent=remDist>0?fmtTime((remDist/walkSpeedKmh)*60):'—'; }
-function renderBus(){ const grid=document.getElementById('busGrid'); grid.innerHTML=''; busTours.forEach(tour=>{ const card=document.createElement('div'); card.className='bus-card'; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; const hasImg=tour.img&&/^https?:\/\//.test(tour.img); const mediaInner=hasImg?`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`:`<span class="no-img-label">${name}</span>`; card.innerHTML=`<div class="bus-media" style="background:linear-gradient(135deg, ${BUS_ROUTE_COLOR}, var(--sky-dark));">${mediaInner}</div><div class="bus-body">
+function renderBus(){ const grid=document.getElementById('busGrid'); grid.innerHTML=''; busTours.forEach(tour=>{ const card=document.createElement('div'); card.className='bus-card'; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; const hasImg=tour.img&&/^https?:\/\//.test(tour.img); const mediaInner=hasImg?`<img src="${escapeAttr(tour.img)}" alt="${escapeAttr(name)}" loading="lazy">`:`<span class="no-img-label">${name}</span>`; card.innerHTML=`<div class="bus-media" style="background:linear-gradient(135deg, ${BUS_ROUTE_COLOR}, var(--blue-deep));">${mediaInner}</div><div class="bus-body">
     <h3>${name}</h3>
     <div class="bus-meta">
         <div class="bus-meta-chip"><span class="bmc-ic">🕒</span><span class="bmc-num">${tour.durationMin}</span><span class="bmc-unit">${t('minUnit')}</span></div>
@@ -1674,7 +1721,7 @@ function renderDirections(prefix, distanceM, durationS, steps, titleText, extraS
 function hideDirections(prefix){ const panel=document.getElementById(prefix+'Directions'); if(panel) panel.classList.remove('show'); }
 document.getElementById('mapDirClose')?.addEventListener('click', ()=>hideDirections('map'));
 document.getElementById('destDirClose')?.addEventListener('click', ()=>hideDirections('dest'));
-async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; document.getElementById('destAudioBtn').onclick=()=>playDestAudioGuide(tour); const heroBox=document.getElementById('destHeroImg'); heroBox.style.display='none'; heroBox.innerHTML=''; const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ openVideoLightbox(tour.video,name); }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } currentDestTourStops=stops; currentDestTourName=name; lastDestPos=null; destTravelMode='bus'; document.getElementById('destModeCar')?.classList.remove('active'); document.getElementById('destModeBus')?.classList.add('active'); const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; hideDirections('dest'); directionsFetchedDest=false; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); stops.forEach((s,i)=>{ const stopMarker=L.marker([s.lat,s.lon],{ icon: pinIcon(i+1,false,false) }).addTo(dMap); stopMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(s.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(stopMarker); }); if(hasFixedTrail && endStop){ const endMarker=L.marker([endStop.lat,endStop.lon],{ icon: pinIcon(stops.length+1,false,false) }).addTo(dMap); endMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(endStop.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(endMarker); } const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.6}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4.2,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:6,opacity:0.7}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML = `<span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم':'km'}</span><span class="mchip">⏱ ${totalMins} ${lang==='ar'?'د':'min'}</span>`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:3,opacity:0.85}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:3.6,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
+async function openDestMap(tour){ const stops=tour.stops_geo.map(s=>{ const [lon,lat]=toWGS(s.x,s.y); return {...s,lat,lon}; }); const hasFixedTrail=!!tour.fixedTrailXY; const endStop=hasFixedTrail?(()=>{ const [lon,lat]=toWGS(tour.endStop.x,tour.endStop.y); return {...tour.endStop,lat,lon}; })():null; const name=T.busTourNames[tour.id]?T.busTourNames[tour.id][lang]:tour.id; document.getElementById('destModalTitle').textContent=name; document.getElementById('destModalSubtitle').textContent=t(''); const desc=T.busTourDescs[tour.id]?T.busTourDescs[tour.id][lang]:''; document.getElementById('destDesc').textContent=desc; document.getElementById('destAudioBtn').onclick=()=>playDestAudioGuide(tour); const heroBox=document.getElementById('destHeroImg'); heroBox.style.display='none'; heroBox.innerHTML=''; const videoBox=document.getElementById('destVideo'); if(tour.video&&/^https?:\/\//.test(tour.video)){ videoBox.innerHTML=`<button type="button" class="video-btn" id="destVideoPlayBtn"><span>▶</span><span>${t('watchRouteVideo')}</span></button>`; document.getElementById('destVideoPlayBtn').onclick=()=>{ openVideoLightbox(tour.video,name); }; } else { videoBox.innerHTML=`<div class="video-placeholder">${t('noBusVideo')}</div>`; } currentDestTourStops=stops; currentDestTourName=name; lastDestPos=null; destTravelMode='bus'; document.getElementById('destModeCar')?.classList.remove('active'); document.getElementById('destModeBus')?.classList.add('active'); const infoRow=document.getElementById('destInfoRow'); infoRow.innerHTML=''; hideDirections('dest'); directionsFetchedDest=false; const loading=document.getElementById('destMapLoading'); loading.classList.remove('hidden'); document.getElementById('destModal').classList.add('open'); const dMap=ensureDestMap(); setTimeout(()=>dMap.invalidateSize(),60); clearDestLayers(); const startMarker=L.marker([busLat,busLon],{ icon:L.divIcon({className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[108,58], iconAnchor:[54,40]}) }).addTo(dMap).bindPopup(`<b>${t('busStationStart')}</b>`); destMarkers.push(startMarker); stops.forEach((s,i)=>{ const stopMarker=L.marker([s.lat,s.lon],{ icon: pinIcon(i+1,false,false) }).addTo(dMap); stopMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(s.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(stopMarker); }); if(hasFixedTrail && endStop){ const endMarker=L.marker([endStop.lat,endStop.lon],{ icon: pinIcon(stops.length+1,false,false) }).addTo(dMap); endMarker.bindTooltip(`<span class="lbl-pill"><span class="lbl-text">${escapeAttr(endStop.nameKey||'')}</span></span>`, { permanent:true, direction:'right', offset:[-5,10], className:'stop-label', interactive:false }); destMarkers.push(endMarker); } const allPts=[[busLat,busLon], ...stops.map(s=>[s.lat,s.lon])]; const bounds=L.latLngBounds(hasFixedTrail?[...allPts,[endStop.lat,endStop.lon]]:allPts); destFitBounds(bounds); try{ const {latlngs,distance,duration}=await fetchRoadRoute(allPts); const roadLine1=L.polyline(latlngs,{color:'#ffffff',weight:7,opacity:0.55}).addTo(dMap); const roadLine2=L.polyline(latlngs,{color:BUS_ROUTE_COLOR,weight:4,opacity:0.95}).addTo(dMap); destRouteLayers.push(roadLine1,roadLine2); let totalKm=distance/1000; let totalMins=Math.round(duration/60); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine1=L.polyline(trailLatLngs,{color:'#ffffff',weight:7,opacity:0.55}).addTo(dMap); const trailLine2=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:4,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine1,trailLine2); const trailKm=tour.fixedTrailLenKm; const trailMins=Math.round((trailKm/4.5)*60); totalKm+=trailKm; totalMins+=trailMins; const combined=L.featureGroup([roadLine2,trailLine2]); destFitBounds(combined.getBounds()); } else { destFitBounds(roadLine2.getBounds()); } infoRow.innerHTML = `<span class="mchip">📏 ${totalKm.toFixed(1)} ${lang==='ar'?'كم':'km'}</span><span class="mchip">⏱ ${totalMins} ${lang==='ar'?'د':'min'}</span>`; } catch(err){ const fallback=L.polyline(allPts,{color:BUS_ROUTE_COLOR,weight:4,opacity:0.95}).addTo(dMap); destRouteLayers.push(fallback); if(hasFixedTrail){ const trailLatLngs=tour.fixedTrailXY.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }); const trailLine=L.polyline(trailLatLngs,{color:BUS_ROUTE_COLOR,weight:4,opacity:0.95}).addTo(dMap); destRouteLayers.push(trailLine); } infoRow.innerHTML=`<span class="mchip">⚠ ${lang==='ar'?'تعذّر جلب مسار شبكة الطرق للمرحلة الأولى، عُرض خط تقريبي مباشر':'Could not fetch the road route for the first leg, showing an approximate straight line'}</span>`; } finally { loading.classList.add('hidden'); } }
 
 // ============================================================
 //   تهيئة الخريطة الرئيسية
@@ -1710,10 +1757,50 @@ const satelliteLayer =  L.tileLayer(
 let mapMode = 'base';
 baseLayer.addTo(map);
 const transitLatLngs = routePartsXY.map(part => part.map(([x,y])=>{ const [lon,lat]=toWGS(x,y); return [lat,lon]; }));
-L.polyline(transitLatLngs, { color:'#ffffff', weight:6, opacity:0.85 }).addTo(map);
-L.polyline(transitLatLngs, { color:'#F5B301', weight:3.4, opacity:0.95 }).addTo(map);
+// ============================================================
+// مسار المواصلات بإضاءة احترافية
+// ============================================================
 
-let busMarker = L.marker([busLat,busLon], { icon:L.divIcon({ className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[130,66], iconAnchor:[65,45] }) }).addTo(map).bindPopup(`<b>${t('busStationPopup')}</b>`);
+// هالة بيضاء خارجية ناعمة
+L.polyline(transitLatLngs, {
+    color: '#ffffff',
+    weight: 6,
+    opacity: 0.16,
+    lineCap: 'round',
+    lineJoin: 'round',
+    className: 'route-glow-outer'
+}).addTo(map);
+
+// توهج أبيض قريب من المسار
+L.polyline(transitLatLngs, {
+    color: '#ffffff',
+    weight: 8,
+    opacity: 0.42,
+    lineCap: 'round',
+    lineJoin: 'round',
+    className: 'route-glow-inner'
+}).addTo(map);
+
+// الحافة البيضاء حول الأصفر
+L.polyline(transitLatLngs, {
+    color: '#ffffff',
+    weight: 0.2,
+    opacity: 0.95,
+    lineCap: 'round',
+    lineJoin: 'round'
+}).addTo(map);
+
+// الأصفر الرئيسي في المنتصف
+L.polyline(transitLatLngs, {
+    color: '#F5B301',
+    weight: 0.2,
+    opacity: 0.2,
+    lineCap: 'round',
+    lineJoin: 'round',
+    className: 'route-yellow'
+}).addTo(map);
+
+let busMarker = L.marker([busLat,busLon], { icon:L.divIcon({ className:'', html:`<div class="bus-station-marker"><div class="bus-station-badge">🚌</div><div class="bus-station-label">${t('busStationLabel')}</div></div>`, iconSize:[108,58], iconAnchor:[54,40] }) }).addTo(map).bindPopup(`<b>${t('busStationPopup')}</b>`);
 window.busMarker = busMarker;
 
 sites.forEach(site => {
@@ -1745,7 +1832,7 @@ function setMapMode(mode){
   if(mode === 'base'){
     if(map.hasLayer(satelliteLayer)) map.removeLayer(satelliteLayer);
     if(!map.hasLayer(baseLayer)) baseLayer.addTo(map);
-    satBtn.textContent = '🛰️';
+    satBtn.textContent = '🗺️';
     satBtn.title = lang==='ar' ? 'التبديل إلى خارطة الشوارع' : 'Switch to satellite view';
     if(modeBadge && modeBadge.firstChild) modeBadge.firstChild.textContent = '🗺️ ';
     if(modeLabel) modeLabel.textContent = t('mapBasemap');
@@ -1754,7 +1841,7 @@ function setMapMode(mode){
     if(!map.hasLayer(satelliteLayer)) satelliteLayer.addTo(map);
     satBtn.textContent = '🗺️';
     satBtn.title = lang==='ar' ? 'التبديل إلى الخريطة الأساسية' : 'Switch to basemap view';
-    if(modeBadge && modeBadge.firstChild) modeBadge.firstChild.textContent = '🛰️ ';
+    if(modeBadge && modeBadge.firstChild) modeBadge.firstChild.textContent = '🗺️ ';
     if(modeLabel) modeLabel.textContent = t('mapSatellite');
   }
 }
@@ -1776,7 +1863,7 @@ function setDestMapMode(mode){
   if(mode === 'base'){
     if(destMap.hasLayer(destSatLayer)) destMap.removeLayer(destSatLayer);
     if(!destMap.hasLayer(destBaseLayer)) destBaseLayer.addTo(destMap);
-    destSatBtn.textContent = '🛰️';
+    destSatBtn.textContent = '🗺️';
     destSatBtn.title = lang==='ar' ? 'التبديل إلى خارطة الشوارع' : 'Switch to street map';
     if(destModeBadge && destModeBadge.firstChild) destModeBadge.firstChild.textContent = '🗺️ ';
     if(destModeLabel) destModeLabel.textContent = t('mapBasemap');
@@ -1785,7 +1872,7 @@ function setDestMapMode(mode){
     if(!destMap.hasLayer(destSatLayer)) destSatLayer.addTo(destMap);
     destSatBtn.textContent = '🗺️';
     destSatBtn.title = lang==='ar' ? 'التبديل إلى الخريطة الأساسية' : 'Switch to basemap view';
-    if(destModeBadge && destModeBadge.firstChild) destModeBadge.firstChild.textContent = '🛰️ ';
+    if(destModeBadge && destModeBadge.firstChild) destModeBadge.firstChild.textContent = '🗺️ ';
     if(destModeLabel) destModeLabel.textContent = t('mapSatellite');
   }
 }
@@ -1818,6 +1905,31 @@ function initClock(){
 }
 initClock();
 document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+// كشف الفيديو الترحيبي فقط عندما يصبح جاهزاً للعرض فعلياً، لتفادي وميض الشاشة السوداء أثناء التحميل
+(function(){
+  const hv = document.getElementById('heroVideo');
+  if(!hv) return;
+  const reveal = ()=>hv.classList.add('is-ready');
+  if(hv.readyState >= 2) reveal();
+  hv.addEventListener('loadeddata', reveal, { once:true });
+  hv.addEventListener('playing', reveal, { once:true });
+
+  // تشغيل فوري ومضمون: بعض المتصفحات (خصوصاً على الجوال) تتجاهل خاصية autoplay
+  // إن لم يُستدعَ play() صراحة من جافاسكريبت، لذلك نحاول عدة مرات: فوراً، عند اكتمال
+  // تحميل الصفحة، وعند أول تفاعل من الزائر (كحل احتياطي أخير).
+  function tryPlayHero(){
+    if(!hv.paused) return;
+    const p = hv.play();
+    if(p && typeof p.catch === 'function') p.catch(()=>{});
+  }
+  tryPlayHero();
+  window.addEventListener('load', tryPlayHero, { once:true });
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) tryPlayHero(); });
+  ['pointerdown','keydown','touchstart'].forEach(evt=>{
+    window.addEventListener(evt, tryPlayHero, { once:true, passive:true, capture:true });
+  });
+})();
 
 const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', ()=>{ backToTop.classList.toggle('show', window.scrollY > 600); }, { passive:true });
