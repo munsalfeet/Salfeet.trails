@@ -188,7 +188,7 @@ html[lang="en"] .hero p.lede {
 .btn-map-highlight{ background:var(--blue-deep); color:#fff; box-shadow:0 12px 26px rgba(14,58,99,0.35); padding:1.05rem 2.4rem; font-size:0.8rem; }
 .btn-map-highlight:hover{ background:var(--blue); transform:translateY(-12px); }
 .btn-sm{ padding:0.5rem 0.4rem; font-size:0.6rem; }
-.btn-bus{ background:#50c9ee; color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); gap:0.2rem; }
+.btn-bus{ background:var(--blue-light); color:#fff; box-shadow:0 10px 26px rgba(12, 120, 153, 0.712); gap:0.2rem; }
 .btn-bus:hover{ background:var(--blue-deep); transform:translateY(0%); }
 .hero-meta{
     display:flex;
@@ -279,7 +279,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
   font-weight:600;
 
   background:rgba(255,255,255,0.15);
-  color:#59ACF9;
+  color:var(--blue-light);
 
   border:2px solid rgba(255,255,255,0.65);
   border-radius:100px;
@@ -333,13 +333,14 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
 
     padding:0.3rem 0.6rem !important;
     font-size:0.72rem !important;
+    gap:0.22rem !important;
 
     justify-content:center;
     align-items:center;
     text-align:center;
 
     background:rgba(255,255,255,0.1);
-    color:#59ACF9;
+    color:var(--blue-light);
 
     border:1px solid rgba(255,255,255,0.55) !important;
     border-radius:999px !important;
@@ -356,8 +357,6 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     color:#000000;
     border:1px solid rgba(255,255,255,0.55) !important;
   }
-
-  .map-access-row .btn{ gap:0.22rem !important; }
 }
 /* تصغير أزرار "الرئيسية" و"دروب الحافلة" وما شابهها في شريط تنقل الصفحات على الجوال */
 @media (max-width: 760px) {
@@ -382,7 +381,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
     font-weight: 600;
 
     background: rgba(255,255,255,0.15);
-    color: #59ACF9;
+    color: var(--blue-light);
 
     border: 1.5px solid rgba(255,255,255,0.65);
     border-radius: 999px;
@@ -533,7 +532,7 @@ html[lang="en"] .stage-card h3{ font-family:var(--font-display-en); }
   display:block;
   font-family:var(--font-display-ar);
   font-size:0.9rem;
-  color:#1a1a1a;
+  color:var(--ink);
   line-height:1.1;
   text-align:start;
   font-weight:700;
@@ -648,7 +647,7 @@ html[lang="en"] .site-pin .pin-num{ font-family:var(--font-display-en); }
 .bus-station-marker{ display:flex; flex-direction:column; align-items:center; width:108px; pointer-events:none; }
 .bus-station-badge{ width:30px; height:30px; border-radius:50%; background:#000000; border:2.5px solid #C98A00; display:flex; align-items:center; justify-content:center; font-size:0.92rem; box-shadow:0 3px 10px rgba(0,0,0,0.45); position:relative; }
 .bus-station-badge::after{ content:''; position:absolute; bottom:-6px; left:50%; transform:translateX(-50%); border-left:6px solid transparent; border-right:6px solid transparent; border-top:7px solid #C98A00; }
-.bus-station-label{ margin-top:8px; background:#000000; color:#fff; font-size:0.62rem; font-weight:700; padding:0.22rem 0.6rem; border-radius:999px; white-space:nowrap; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.35); border:1.2px solid var(--path); }
+.bus-station-label{ margin-top:8px; background:#000; color:#fff; font-size:0.62rem; font-weight:700; padding:0.22rem 0.6rem; border-radius:999px; white-space:nowrap; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.35); border:1.2px solid var(--path); }
 .me-pin{ width:22px; height:22px; border-radius:50%; background:var(--blue-deep); border:3px solid #fff; box-shadow:0 0 0 6px rgba(37,99,235,0.28); }
 .me-pin.tracking{ animation:mePulse 1.8s ease-out infinite; }
 @keyframes mePulse{ 0%{box-shadow:0 0 0 6px rgba(37,99,235,0.28);} 70%{box-shadow:0 0 0 16px rgba(37,99,235,0);} 100%{box-shadow:0 0 0 6px rgba(37,99,235,0);} }
@@ -1532,7 +1531,7 @@ function renderBus(){ const grid=document.getElementById('busGrid'); grid.innerH
         <div class="bus-meta-chip"><span class="bmc-ic">📍</span><span class="bmc-num">${tour.distKm}</span><span class="bmc-unit">${t('kmUnit')}</span></div>
     </div><button class="btn btn-bus btn-sm start-bus-btn" style="width:100%;justify-content:center;margin-top:0.4rem;">${t('busStart')}</button></div>`; card.querySelector('.start-bus-btn').onclick=()=>{ if(tour.stops_geo&&tour.stops_geo.length){ openDestMap(tour); } else { showToast(t('busTourSelected',{name})); } }; grid.appendChild(card); }); }
 function openModal(id){ currentModalSiteId=id; fillModal(id); document.getElementById('siteModal').classList.add('open'); }
-function fillModal(id){ const site=sites.find(s=>s.id===id); if(!site) return; currentModalSiteId=id; document.getElementById('modalPathName').textContent=T.stopPaths[id]?T.stopPaths[id][lang]:id; document.getElementById('modalPathName').dataset.siteId=id; document.getElementById('modalSiteName').textContent=T.stopNames[id]?T.stopNames[id][lang]:''; const imgContainer=document.getElementById('modalMedia'); if(site.image&&/^https?:\/\//.test(site.image)){ imgContainer.innerHTML=`<img src="${escapeAttr(site.image)}" alt="${escapeAttr(T.stopNames[id]?T.stopNames[id][lang]:id)}" loading="lazy">`; } else { imgContainer.innerHTML=`<div class="emoji">${site.id===1?'🏛️':site.id===2?'📋':site.id===3?'🌳':site.id===4?'💧':site.id===5?'🫒':site.id===6?'🏠':site.id===7?'🏃':site.id===8?'🛤️':site.id===9?'🌳':'🎡'}</div><div class="cap">${t('imagePending')}</div>`; } const text=T.stopTexts[id]?T.stopTexts[id][lang]:''; document.getElementById('modalText').innerHTML=text.replace(/\n/g,'<br>'); renderModalVideo(site); document.getElementById('audioBtn').onclick=()=>playAudioGuide(site); document.getElementById('nextStopBtn').onclick=()=>{ const idxInDefault=DEFAULT_ROUTE.indexOf(id); const nextId=idxInDefault>-1&&idxInDefault<DEFAULT_ROUTE.length-1?DEFAULT_ROUTE[idxInDefault+1]:DEFAULT_ROUTE[0]; fillModal(nextId); }; const btn=document.getElementById('modalToggleBtn'); const isSel=selected.includes(id); btn.textContent=isSel?t('modalRemove'):t('modalAdd'); btn.className='modal-toggle'+(isSel?' remove':''); btn.onclick=()=>{ toggleSite(id); fillModal(id); }; }
+function fillModal(id){ const site=sites.find(s=>s.id===id); if(!site) return; currentModalSiteId=id; document.getElementById('modalPathName').textContent=T.stopPaths[id]?T.stopPaths[id][lang]:id; document.getElementById('modalPathName').dataset.siteId=id; document.getElementById('modalSiteName').textContent=T.stopNames[id]?T.stopNames[id][lang]:''; const imgContainer=document.getElementById('modalMedia'); if(site.image&&/^https?:\/\//.test(site.image)){ const imgAlt=(T.stopNames[id]&&T.stopNames[id][lang])||(T.stopPaths[id]?T.stopPaths[id][lang]:id); imgContainer.innerHTML=`<img src="${escapeAttr(site.image)}" alt="${escapeAttr(imgAlt)}" loading="lazy">`; } else { imgContainer.innerHTML=`<div class="emoji">${site.id===1?'🏛️':site.id===2?'📋':site.id===3?'🌳':site.id===4?'💧':site.id===5?'🫒':site.id===6?'🏠':site.id===7?'🏃':site.id===8?'🛤️':site.id===9?'🌳':'🎡'}</div><div class="cap">${t('imagePending')}</div>`; } const text=T.stopTexts[id]?T.stopTexts[id][lang]:''; document.getElementById('modalText').innerHTML=text.replace(/\n/g,'<br>'); renderModalVideo(site); document.getElementById('audioBtn').onclick=()=>playAudioGuide(site); document.getElementById('nextStopBtn').onclick=()=>{ const idxInDefault=DEFAULT_ROUTE.indexOf(id); const nextId=idxInDefault>-1&&idxInDefault<DEFAULT_ROUTE.length-1?DEFAULT_ROUTE[idxInDefault+1]:DEFAULT_ROUTE[0]; fillModal(nextId); }; const btn=document.getElementById('modalToggleBtn'); const isSel=selected.includes(id); btn.textContent=isSel?t('modalRemove'):t('modalAdd'); btn.className='modal-toggle'+(isSel?' remove':''); btn.onclick=()=>{ toggleSite(id); fillModal(id); }; }
 function renderModalVideo(site){ const box=document.getElementById('modalVideo'); if(site.video&&/^https?:\/\//.test(site.video)){ box.innerHTML=`<button type="button" class="video-btn" id="videoPlayBtn"><span>▶</span><span>${t('watchVideo')}</span></button>`; document.getElementById('videoPlayBtn').onclick=()=>{ const title=T.stopPaths[site.id]?T.stopPaths[site.id][lang]:site.id; openVideoLightbox(site.video,title); }; } else { box.innerHTML=`<div class="video-placeholder">${t('noVideo')}</div>`; } }
 let lastSpokenText = '';
 function speakText(text){
